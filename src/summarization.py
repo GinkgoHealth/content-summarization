@@ -94,7 +94,7 @@ def reply(task, text, model="gpt-3.5-turbo", temperature=0.7, n_choices=5, max_t
     try:
         response = chatbot.gpt(prompt)
     except:
-        print('**API request failed**')
+        print('\t**API request failed**')
         return qna, chatbot
     try:
         for index, choice in enumerate(response.choices):
@@ -102,7 +102,7 @@ def reply(task, text, model="gpt-3.5-turbo", temperature=0.7, n_choices=5, max_t
         qna[f'text'] = text
         return qna, chatbot
     except:
-        print('**Error with response parsing**')
+        print('\t**Error with response parsing**')
         return qna, response
 
 
@@ -112,6 +112,7 @@ def batch_reply(text, prompts_df, qna_dict,  chatbot_dict, iteration_id, prompt_
     pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
     ):
     """
+    Send multiple summarization prompts to ChatGPT for the same text.
     Parameters:
         - prompts_df: DataFrame containing the prompts.
         - qna_dict: Dictionary to store the input and outputs.
@@ -147,4 +148,55 @@ def batch_reply(text, prompts_df, qna_dict,  chatbot_dict, iteration_id, prompt_
         # return updated_qna_dict, chatbot_dict
     except:
         print('Error concatenating DataFrames')
+    return qna_dict, chatbot_dict
+
+def batch_summarize(text_dict, prompts_df, qna_dict,  chatbot_dict, iteration_id, prompt_column='prompt',
+    save_outputs=False, filename=None, append_version=False,
+    csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
+    pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
+    ):
+    """
+    Summarize multiple texts using the same prompts.
+    Parameters:
+        - prompts_df: DataFrame containing the prompts.
+        - qna_dict: Dictionary to store the input and outputs.
+        - iteration_id (int, float, or string): Unique ID serving as the key for results in the qna_dict
+        - prompt_column (str): Name of the column in the prompts_df containing the user input.
+
+    """
+    temp_qna_dict = dict()
+    prompts_df = prompts_df.reset_index(drop=True)
+    qna_dfs_list = []
+    for key in text_dict:
+        text = text_dict[key]
+        temp_qna_dict[key] = dict()
+        for index, input in prompts_df['prompt'].items():
+            print(f'**Text #{key} prompt #{index} of {prompts_df.index.max()}**')
+            try:
+                temp_qna_dict[key][index], chatbot_dict[f'{iteration_id}_text{key}_prompt{index}'] = reply(input, text)
+                print('\t...Success!')
+            except:
+                print('\t...Error making chatbot request')
+                break
+        try:
+            updated_qna_dict = pd.concat([
+                pd.DataFrame(temp_qna_dict[key]),
+                prompts_df.transpose()
+            ])
+        except:
+            print('Error concatenating prompts DataFrame')
+            return temp_qna_dict, chatbot_dict
+        try:
+            qna_dfs_list.append(updated_qna_dict)
+            qna_dict[iteration_id] = pd.concat(qna_dfs_list, axis=1)
+            if save_outputs:
+                try:
+                    append_version = append_version if filename else False
+                    filename = filename if filename else f'{datetime.now().strftime("%Y-%m-%d_%H%M")}_prompt_experiments_{"{:02d}".format(iteration_id)}'
+                    savepickle(qna_dict[iteration_id], filename=filename, path=pickle_path, append_version=append_version)
+                    save_csv(qna_dict[iteration_id], filename=filename, path=pickle_path, append_version=append_version)
+                except:
+                    print('Unable to save outputs')
+        except:
+            print('Error concatenating DataFrames')
     return qna_dict, chatbot_dict
