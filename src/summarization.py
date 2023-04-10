@@ -127,8 +127,8 @@ def batch_reply(text, prompts_df, qna_dict,  chatbot_dict, iteration_id, prompt_
         # print(input)
         try:
             # prompt_num = index+1
-            print(f'**Prompt #{index} of {len(prompts_df)}**')
-            qna_dict[iteration_id][index], chatbot_dict[f'{iteration}_prompt{index}'] = reply(input, text)
+            print(f'**Prompt #{index} of {prompts_df.index.max()}**')
+            qna_dict[iteration_id][index], chatbot_dict[f'{iteration_id}_prompt{index}'] = reply(input, text)
         except:
             print('Error making chatbot request')
             break
