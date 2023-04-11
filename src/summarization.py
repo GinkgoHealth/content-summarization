@@ -42,13 +42,13 @@ class Chatbot:
         {"role": "system", "content": system_role},
         {"role": "user", "content": user_input},]
 
-        print('Done creating prompt')
+        print('\tDone creating prompt')
         # print(messages)
         return messages
 
     def gpt(self, messages):
-        print('Sending request to GPT-3')
-        print(f'\tRequesting {self.n_choices} choices using {self.model}')
+        print('\tSending request to GPT-3')
+        print(f'\t\tRequesting {self.n_choices} choices using {self.model}')
         openai.api_key = os.getenv('api_openai')
         response = openai.ChatCompletion.create(
             model=self.model, messages=messages, 
@@ -56,7 +56,7 @@ class Chatbot:
             max_tokens=self.max_tokens,
             n=self.n_choices
             )
-        print('Done sending request to GPT-3')
+        print('\tDone sending request to GPT-3')
         return response
 
 
