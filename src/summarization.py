@@ -5,11 +5,11 @@ sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\portfolio-projects\online-PT-social-media-NLP\src")
 from silvhua import *
 from datetime import datetime
-from pypdf import PdfReader
+# from pypdf import PdfReader
 import pandas as pd
 import openai
 import os
-from openai.embeddings_utils import get_embedding, cosine_similarity
+# from openai.embeddings_utils import get_embedding, cosine_similarity
 import re
 env_name = 'api_openai'
 
@@ -79,6 +79,7 @@ def reply(task, text, model="gpt-3.5-turbo", temperature=0.7, n_choices=5, max_t
         - max_tokens (int): Token limit for ChatGPT response.
         - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
     """
+    import traceback
     chatbot = Chatbot(text,
         system_role=system_role, model=model, temperature=temperature, n_choices=n_choices,
         max_tokens=max_tokens
@@ -93,7 +94,12 @@ def reply(task, text, model="gpt-3.5-turbo", temperature=0.7, n_choices=5, max_t
     qna['model'] = model
     try:
         response = chatbot.gpt(prompt)
-    except:
+    except Exception as error:
+        exc_type, exc_obj, tb = sys.exc_info()
+        f = tb.tb_frame
+        lineno = tb.tb_lineno
+        filename = f.f_code.co_filename
+        print("An error occurred on line", lineno, "in", filename, ":", error)
         print('\t**API request failed**')
         return qna, chatbot
     try:
