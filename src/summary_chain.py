@@ -285,6 +285,9 @@ def prompt_chaining_dict(simplify_prompts, qna_chain_dict, chaining_bot_dict, it
                 save_output(
                     qna_chain_dict[iteration_id], description='prompt_chain_experiment',
                     csv_path=csv_path, pickle_path=pickle_path)
+                save_output(
+                    chaining_bot_dict[iteration_id], description='chaining_bot_dict',
+                    csv_path=None, pickle_path=pickle_path)
             except:
                 print('[prompt_chaining_dict()] Unable to save outputs')
     except Exception as error:
