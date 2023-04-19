@@ -13,10 +13,10 @@ from itertools import product
 
 class Chaining:
     """
-    Requrired paramaters:
+    Required parameters:
         - text (str): Text to feed to GPT for summarization.
 
-    Optional parameters
+    Optional parameters:
         - system_role (str): ChatGPT parameter. 
             Default is "You are an expert at science communication."
         - temperature (float): ChatGPT parameter. Default is 0.7.
@@ -26,7 +26,7 @@ class Chaining:
     """
 
     def __init__(self, text, model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
-        system_role = "You are an expert at science communication."):
+        system_role="You are an expert at science communication."):
         self.text = text
         self.system_role = system_role
         self.temperature = temperature
@@ -34,45 +34,65 @@ class Chaining:
         self.model = model
     
     def create_prompt(self, task, text):
-        system_role = f'{self.system_role}'
+        """
+        Creates a prompt for ChatGPT with a given task and text.
+
+        Parameters:
+            - task (str): Task to include in ChatGPT prompt.
+            - text (str): Text to use in the prompt.
+
+        Returns:
+            A list of dictionaries, where each dictionary represents a message in the prompt.
+        """
+        system_role = f"{self.system_role}"
         user_input = f"""Given the following text: {text} \n {task}"""
         messages = [
-        {"role": "system", "content": system_role},
-        {"role": "user", "content": user_input},]
+            {"role": "system", "content": system_role},
+            {"role": "user", "content": user_input},
+        ]
 
         print('\tDone creating prompt')
         return messages
 
     def gpt(self, messages, n_choices):
+        """
+        Sends a request to ChatGPT using the provided messages and returns the response.
+
+        Parameters:
+            - messages (list of dict): A list of dictionaries, where each dictionary represents a message.
+            - n_choices (int): Number of ChatGPT responses to generate.
+
+        Returns:
+            The response from ChatGPT.
+        """
         print('\tSending request to GPT-3')
         print(f'\t\tRequesting {n_choices} choices using {self.model}')
         openai.api_key = os.getenv('api_openai')
         response = openai.ChatCompletion.create(
-            model=self.model, messages=messages, 
-            temperature=self.temperature, 
+            model=self.model,
+            messages=messages,
+            temperature=self.temperature,
             max_tokens=self.max_tokens,
             n=n_choices
-            )
+        )
         print('\tDone sending request to GPT-3')
         return response
 
-    def summarize(self, task, prep_step=None, n_choices=5
-        ):
+    def summarize(self, task, prep_step=None, n_choices=5):
         """
-        SH 2023-04-11 12:18: Same as the user-defined `reply` function, but re-written as a class method.
-        Send a ChatCompletion request to ChatGPT via the Chaining class.
+        Sends a ChatCompletion request to ChatGPT via the Chaining class and returns the response.
 
-        Requrired paramaters:
+        Parameters:
             - task (str): Task to include in ChatGPT prompt.
-            - text (str): Text to feed to GPT for summarization.
-
-        Optional parameters
-            - system_role (str): ChatGPT parameter. 
-                Default is "You are an expert at science communication."
-            - temperature (float): ChatGPT parameter. Default is 0.7.
+            - prep_step (str): Optional string representing a preparation step.
             - n_choices (int): Number of ChatGPT responses to generate. Default is 5.
-            - max_tokens (int): Token limit for ChatGPT response.
-            - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
+
+        Returns:
+            A dictionary with the following keys:
+                - 'article_title' (str): The title of the summarized article.
+                - 'system_role' (str): The role of the system in the ChatGPT prompt.
+                - 'model' (str): The ChatGPT model used.
+                - 'prep step' (str): Optional
         """
         chatbot = Chaining(self.text)
         prompt = chatbot.create_prompt(task, self.text)
