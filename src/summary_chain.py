@@ -6,23 +6,61 @@ from silvhua import *
 from datetime import datetime
 import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
-from summarization import Chatbot, reply
 import traceback
 import time
 import re
+from itertools import product
 
 class Chaining:
+    """
+    Requrired paramaters:
+        - text (str): Text to feed to GPT for summarization.
 
-    def __init__(self, text):
+    Optional parameters
+        - system_role (str): ChatGPT parameter. 
+            Default is "You are an expert at science communication."
+        - temperature (float): ChatGPT parameter. Default is 0.7.
+        - n_choices (int): Number of ChatGPT responses to generate. Default is 5.
+        - max_tokens (int): Token limit for ChatGPT response.
+        - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
+    """
+
+    def __init__(self, text, model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
+        system_role = "You are an expert at science communication."):
         self.text = text
+        self.system_role = system_role
+        self.temperature = temperature
+        self.max_tokens = max_tokens
+        self.model = model
+    
+    def create_prompt(self, task, text):
+        system_role = f'{self.system_role}'
+        user_input = f"""Given the following text: {text} \n {task}"""
+        messages = [
+        {"role": "system", "content": system_role},
+        {"role": "user", "content": user_input},]
 
-    def summarize(self, task, model="gpt-3.5-turbo", temperature=0.7, n_choices=5, max_tokens=1000,
-          text_key=['text_discussion'],
-        system_role = "You are an expert at science communication."
+        print('\tDone creating prompt')
+        return messages
+
+    def gpt(self, messages, n_choices):
+        print('\tSending request to GPT-3')
+        print(f'\t\tRequesting {n_choices} choices using {self.model}')
+        openai.api_key = os.getenv('api_openai')
+        response = openai.ChatCompletion.create(
+            model=self.model, messages=messages, 
+            temperature=self.temperature, 
+            max_tokens=self.max_tokens,
+            n=n_choices
+            )
+        print('\tDone sending request to GPT-3')
+        return response
+
+    def summarize(self, task, prep_step=None, n_choices=5
         ):
         """
         SH 2023-04-11 12:18: Same as the user-defined `reply` function, but re-written as a class method.
-        Send a ChatCompletion request to ChatGPT via the Chatbot class.
+        Send a ChatCompletion request to ChatGPT via the Chaining class.
 
         Requrired paramaters:
             - task (str): Task to include in ChatGPT prompt.
@@ -36,114 +74,95 @@ class Chaining:
             - max_tokens (int): Token limit for ChatGPT response.
             - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
         """
-        chatbot = Chatbot(self.text,
-            system_role=system_role, model=model, temperature=temperature, n_choices=n_choices,
-            max_tokens=max_tokens
-            )
-        prompt = chatbot.create_prompt(task)
+        chatbot = Chaining(self.text)
+        prompt = chatbot.create_prompt(task, self.text)
         firstline_pattern = r'\s?(\S*)(\n*)(.+)'
         title = re.match(firstline_pattern, self.text)[0]
         self.qna = dict() 
         self.qna['article_title'] = title
-        self.qna['system_role'] = system_role
-        self.qna['prompt'] = task
-        self.qna['model'] = model
+        self.qna['system_role'] = self.system_role
+        self.qna['model'] = self.model
+        self.qna['prep step'] = prep_step
+        self.qna['summarization task'] = task
         self.summaries_dict = dict()
         self.article_title = title
         self.response_regex = r'response_(.*)'
+        self.simple_summary_dict = dict()
 
         try:
-            response = chatbot.gpt(prompt)
+            response = chatbot.gpt(prompt, n_choices=n_choices)
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
             lineno = tb.tb_lineno
             filename = f.f_code.co_filename
             print("An error occurred on line", lineno, "in", filename, ":", error)
-            print('\t**API request failed**')
+            print('\t**API request failed for `.summarize()`**')
             return self.qna
         try:
             for index, choice in enumerate(response.choices):
-                self.qna[f'response_{"{:02d}".format(index+1)}'] = choice["message"]["content"]
                 self.summaries_dict[f'response_{"{:02d}".format(index+1)}'] = choice["message"]["content"]
+            self.qna.setdefault('summary', [])
+            self.qna['summary'].extend([value for value in self.summaries_dict.values()])
             self.qna[f'text'] = self.text
+            self.summaries_dict['prep_step'] = prep_step
+            self.summaries_dict['prompt'] = task
             return self.qna
-        except:
+        except Exception as error:
+            exc_type, exc_obj, tb = sys.exc_info()
+            f = tb.tb_frame
+            lineno = tb.tb_lineno
+            filename = f.f_code.co_filename
+            print("An error occurred on line", lineno, "in", filename, ":", error)
             print('\t**Error with response parsing**')
             return self.qna
 
 
-    def simplify(self, simplify_task, system_role='You are an expert at science communication.',
+    def relevance(self, relevance_task, system_role='You are an expert at science communication.',
                     model="gpt-3.5-turbo", temperature=0.0, n_choices=1, max_tokens=1000, 
                     simplify_iteration=None, pause_per_request=20
                     ):
-        self.simplify_bot_dict = dict()
-        self.simple_summary_dict = dict()
+        self.simple_summary_dict[simplify_iteration] = dict()
         if simplify_iteration == None:
             simplify_iteration = 1
-        for key, summary in self.summaries_dict.items():
-            new_key = re.sub(self.response_regex, rf'simple_summary\1_prompt{str(simplify_iteration)}', key)
+        summaries_keys = [key for key in self.summaries_dict.keys() if re.match(self.response_regex, key)]
+        print('summaries_keys: \n\t', summaries_keys)
+        for key in summaries_keys:
+            new_key = re.sub(self.response_regex, rf'simple_summary\1', key)
             print(f'\t\t...Preparing to summarize {key}')
-            self.simplify_bot_dict[new_key] = Chatbot(
-                summary, system_role=system_role,
-                model=model, temperature=temperature, n_choices=n_choices, max_tokens=max_tokens
-                )
-            simplify_prompt = self.simplify_bot_dict[new_key].create_prompt(simplify_task)
+            simplify_prompt = self.create_prompt(simplify_task, self.summaries_dict[key])
             try:
-                for index, choice in enumerate(self.simplify_bot_dict[new_key].gpt(simplify_prompt).choices):
-                    self.simple_summary_dict[f'{new_key}_option{"{:02d}".format(index+1)}'] = choice["message"]["content"]
+                response = self.gpt(simplify_prompt, n_choices)
+            except Exception as error:
+                exc_type, exc_obj, tb = sys.exc_info()
+                f = tb.tb_frame
+                lineno = tb.tb_lineno
+                filename = f.f_code.co_filename
+                print("An error occurred on line", lineno, "in", filename, ":", error)
+                print('\t**API request failed for `.simplify()`**')
+                return self.qna
+            try:
+                for index, choice in enumerate(response.choices):
+                    simple_summary_option = f'{new_key}_option{"{:02d}".format(index+1)}'
+                    self.simple_summary_dict[simplify_iteration].setdefault(simple_summary_option, {})
+                    self.simple_summary_dict[simplify_iteration][simple_summary_option] = choice["message"]["content"]                    
                     print(f'\t...Summary given')
-            except:
-                self.simple_summary_dict[new_key] = self.simplify_bot_dict[new_key].gpt(simplify_prompt)
+            except Exception as error:
+                exc_type, exc_obj, tb = sys.exc_info()
+                f = tb.tb_frame
+                lineno = tb.tb_lineno
+                filename = f.f_code.co_filename
+                print("An error occurred on line", lineno, "in", filename, ":", error)
+                self.simple_summary_dict[simplify_iteration][new_key] = response
                 print(f'\t...Error parsing response for summary request')
             print(f'[.simplify()] Sleeping {pause_per_request} sec to avoid exceeding API rate limit')
             time.sleep(pause_per_request) # Account for API rate limit of 3 API requests/limit 
-        self.simple_summary_dict['simplify_task'] = simplify_task
-        self.qna = {**self.qna, **self.simple_summary_dict}
-        try:
-            self.qna.update({'text': self.qna.pop('text')})
-        except:
-            pass
+        self.simple_summary_dict[simplify_iteration]['summary'] = self.summaries_dict
+        self.simple_summary_dict[simplify_iteration]['simplify task'] = simplify_task
         return self.simple_summary_dict
-    
-    def add_relevance(self, task, system_role='You are an expert at science communication.',
-                    model="gpt-3.5-turbo", temperature=0.0, n_choices=1, max_tokens=1000, 
-                    relevance_iteration=None, pause_per_request=20
-                    ):
-        self.relevance_bot_dict = dict()
-        self.relevance_dict = dict()
-        if relevance_iteration == None:
-            relevance_iteration = 1
-        for key, summary in self.summaries_dict.items():
-            new_key = re.sub(self.response_regex, rf'relevance\1_prompt{str(relevance_iteration)}', key)
-            print(f'\t\t...Preparing to summarize {key}')
-            self.relevance_bot_dict[new_key] = Chatbot(
-                summary, system_role=system_role,
-                model=model, temperature=temperature, n_choices=n_choices, max_tokens=max_tokens
-                )
-            relevance_prompt = self.relevance_bot_dict[new_key].create_prompt(task)
-            try:
-                for index, choice in enumerate(self.relevance_bot_dict[new_key].gpt(relevance_prompt).choices):
-                    self.relevance_dict[f'{new_key}_option{"{:02d}".format(index+1)}'] = choice["message"]["content"]
-                    print(f'\t...Relevance given')
-            except:
-                try:
-                    self.relevance_dict[new_key] = self.relevance_bot_dict[new_key].gpt(relevance_prompt).choices[0]["message"]["content"]
-                    print(f'\t...First relevance response given')
-                except:
-                    self.relevance_dict[new_key] = self.relevance_bot_dict[new_key].gpt(relevance_prompt)
-                    print(f'\t...Error parsing response for added relevance request')
-            print(f'[.add_relevance()] Sleeping {pause_per_request} sec to avoid exceeding API rate limit')
-            time.sleep(pause_per_request) # Account for API rate limit of 3 API requests/limit 
-        self.relevance_dict[f'relevance_task{"{:02d}".format(relevance_iteration)}'] = task
-        self.qna = {**self.qna, **self.relevance_dict}
-        try:
-            self.qna.update({'text': self.qna.pop('text')})
-        except:
-            pass
-        return self.relevance_dict
 
-def batch_summarize_chain(text_dict, prompts_df, qna_dict,  chaining_bot_dict, iteration_id, n_choices=5,
+
+def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaining_bot_dict, iteration_id, n_choices=5,
     prompt_column='prompt', pause_per_request=20,
     save_outputs=False, filename=None, append_version=False,
     csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
@@ -152,24 +171,30 @@ def batch_summarize_chain(text_dict, prompts_df, qna_dict,  chaining_bot_dict, i
     """
     Summarize multiple texts using the same prompts.
     Parameters:
-        - prompts_df: DataFrame containing the prompts.
+        - prep_step, summarize_task (list)
         - qna_dict: Dictionary to store the input and outputs.
         - iteration_id (int, float, or string): Unique ID serving as the key for results in the qna_dict
         - prompt_column (str): Name of the column in the prompts_df containing the user input.
 
     """
     temp_qna_dict = dict()
-    prompts_df = prompts_df.reset_index(drop=True)
     qna_dfs_list = []
+    prompts_df = pd.DataFrame(product(prep_step, summarize_task), 
+        columns=['prep_step', 'summarize_task'])
+
     chaining_bot_dict[iteration_id] = dict()
     for key in text_dict:
         text = text_dict[key]
         temp_qna_dict[key] = dict()
-        for index, input in prompts_df[prompt_column].items():
+        for index in prompts_df.index:
             print(f'**Text #{key} prompt #{index} of {prompts_df.index.max()}**')
+            task = prompts_df.loc[index, 'summarize_task']
+            prep_step = prompts_df.loc[index, 'prep_step']
             try:
+                print('Creating Chaining class instance')
                 chatbot = Chaining(text)
-                temp_qna_dict[key][index] = chatbot.summarize(input, n_choices=n_choices)
+                print('Chaining class instance created')
+                temp_qna_dict[key][index] = chatbot.summarize(task=task, prep_step=prep_step, n_choices=n_choices)
                 chaining_bot_dict[iteration_id][f'text{key}_prompt{"{:02d}".format(index)}'] = chatbot
                 print('\t...Success!')
                 print(f'[batch_summarize()] Sleeping {pause_per_request} sec to avoid exceeding API rate limit')
@@ -182,15 +207,9 @@ def batch_summarize_chain(text_dict, prompts_df, qna_dict,  chaining_bot_dict, i
                 print("An error occurred on line", lineno, "in", filename, ":", error)
                 print('\t...Error making chatbot request')
                 break
+        
         try:
-            prompts_df = prompts_df.drop(prompt_column)
-        except:
-            pass
-        try:
-            updated_qna_dict = pd.concat([
-                pd.DataFrame(temp_qna_dict[key]),
-                prompts_df.transpose()
-            ])
+            updated_qna_dict = (temp_qna_dict[key])
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
@@ -199,27 +218,34 @@ def batch_summarize_chain(text_dict, prompts_df, qna_dict,  chaining_bot_dict, i
             print("An error occurred on line", lineno, "in", filename, ":", error)
             print('Error concatenating prompts DataFrame')
             return temp_qna_dict, chaining_bot_dict
-        try:
-            qna_dfs_list.append(updated_qna_dict)
-            qna_dict[iteration_id] = pd.concat(qna_dfs_list, axis=1)
-            if save_outputs:
-                try:
-                    append_version = append_version if filename else False
-                    filename = filename if filename else f'{datetime.now().strftime("%Y-%m-%d_%H%M")}_prompt_experiments_{"{:02d}".format(iteration_id)}'
-                    savepickle(qna_dict[iteration_id], filename=filename, path=pickle_path, append_version=append_version)
-                    save_csv(qna_dict[iteration_id], filename=filename, path=pickle_path, append_version=append_version)
-                except:
-                    print('Unable to save outputs')
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print('Error concatenating DataFrames')
+        qna_dfs_list.append(updated_qna_dict)
+    try:
+        qna_dict[iteration_id] = pd.concat([
+            pd.DataFrame(
+                data, index=[choice for choice in range(1, len(data['summary'])+1)]
+            ) for dictionary in qna_dfs_list for data in dictionary.values()
+        ])
+        if save_outputs:
+            try:
+                save_output(
+                    qna_dict[iteration_id], description='prompt_chain_experiment',
+                    csv_path=csv_path, pickle_path=pickle_path)
+                save_output(
+                    chaining_bot_dict[iteration_id], description='chaining_bot_dict',
+                    csv_path=None, pickle_path=pickle_path)
+            except:
+                print('[prompt_chaining_dict()] Unable to save outputs')
+    except Exception as error:
+        exc_type, exc_obj, tb = sys.exc_info()
+        f = tb.tb_frame
+        lineno = tb.tb_lineno
+        filename = f.f_code.co_filename
+        print("An error occurred on line", lineno, "in", filename, ":", error)
+        qna_dict[iteration_id] = qna_dfs_list
+        print('Error creating DataFrame; dictionary returned instead')
     return qna_dict, chaining_bot_dict
 
-def prompt_chaining_dict(simplify_prompts, qna_chain_dict, chaining_bot_dict, iteration_id,
+def prompt_chaining_dict(simplify_prompts, simple_summaries_dict, chaining_bot_dict, iteration_id,
     summary_iteration_id=None, n_choices=None, pause_per_request=20,
     prompt_column='simplify', simplify_iteration=None, save_outputs=False,
     csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
@@ -239,11 +265,10 @@ def prompt_chaining_dict(simplify_prompts, qna_chain_dict, chaining_bot_dict, it
         simplify_prompts = [prompt for prompt in simplify_prompts[prompt_column].unique() if len(prompt) >1]
     else:
         simplify_prompts = list(set([prompt for prompt in simplify_prompts if len(prompt) >1]))
-    simple_summaries_master_dict = dict()
-    simple_summaries_df = pd.DataFrame()
-    for column, text_prompt_key in enumerate(chaining_bot_dict):
+    simple_summaries_master_list = []
+    for text_prompt_key in chaining_bot_dict.keys():
         print(f'**{text_prompt_key}')
-        simple_summaries_master_dict[text_prompt_key] = dict()
+        # simple_summaries_master_dict[text_prompt_key] = dict()
 
         for index, prompt in enumerate(simplify_prompts):
             relevance_iteration=index if len(simplify_prompts) > 1 else simplify_iteration
@@ -258,45 +283,7 @@ def prompt_chaining_dict(simplify_prompts, qna_chain_dict, chaining_bot_dict, it
                     prompt, n_choices=n_choices, pause_per_request=pause_per_request, 
                     relevance_iteration=index if len(simplify_prompts) > 1 else simplify_iteration
                     )
-            simple_summaries_master_dict[text_prompt_key] = {**simple_summaries_master_dict[text_prompt_key], **summary_dict}
-        try:
-            simple_summaries_df[column] = pd.DataFrame([
-                pd.Series(value, name=key) for key, value in simple_summaries_master_dict[text_prompt_key].items()
-            ])   
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print('Unable to create results DataFrame')
-            
-            qna_chain_dict[iteration_id+0.001] = simple_summaries_master_dict
-    try:
-        qna_chain_dict[summary_iteration_id].columns = [i for i in range(len(qna_chain_dict[summary_iteration_id].columns))]
-        temp_qna_chain_dict = pd.concat([
-            qna_chain_dict[summary_iteration_id], 
-            simple_summaries_df
-            ])
-        qna_chain_dict[iteration_id] = temp_qna_chain_dict
-        print(f"{'Simple summaries' if prompt_column=='simplify' else 'Article relevance for user'} added to original DataFrame")
-        if save_outputs:
-            try:
-                save_output(
-                    qna_chain_dict[iteration_id], description='prompt_chain_experiment',
-                    csv_path=csv_path, pickle_path=pickle_path)
-                save_output(
-                    chaining_bot_dict[iteration_id], description='chaining_bot_dict',
-                    csv_path=None, pickle_path=pickle_path)
-            except:
-                print('[prompt_chaining_dict()] Unable to save outputs')
-    except Exception as error:
-        exc_type, exc_obj, tb = sys.exc_info()
-        f = tb.tb_frame
-        lineno = tb.tb_lineno
-        filename = f.f_code.co_filename
-        print("An error occurred on line", lineno, "in", filename, ":", error)
-        print('Unable to concatenate simple summary DataFrame to original DataFrame')
-        qna_chain_dict[iteration_id+0.001] = simple_summaries_master_dict
-
-    return qna_chain_dict
+            simple_summaries_master_list.append(summary_dict)
+  
+    simple_summaries_dict[iteration_id] = simple_summaries_master_list
+    return simple_summaries_dict

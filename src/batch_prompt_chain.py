@@ -15,7 +15,7 @@ from itertools import product
 import time
 
 save_outputs = True
-folder_path = '../text/2023-04-13'
+folder_path = '../text/2023-04-17'
 prompts_dict = dict()
 experiment_num = 1
 relevance_prompts_dict = dict()
