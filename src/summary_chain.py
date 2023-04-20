@@ -13,27 +13,49 @@ from itertools import product
 
 class Chaining:
     """
-    Requrired paramaters:
-        - text (str): Text to feed to GPT for summarization.
+    Parameters:
+    -----------
+    text : str
+        Text to feed to GPT for summarization.
 
-    Optional parameters
-        - system_role (str): ChatGPT parameter. 
-            Default is "You are an expert at science communication."
-        - temperature (float): ChatGPT parameter. Default is 0.7.
-        - n_choices (int): Number of ChatGPT responses to generate. Default is 5.
-        - max_tokens (int): Token limit for ChatGPT response.
-        - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
+    Optional parameters:
+    --------------------
+    system_role : str
+        The role of the ChatGPT system in the conversation. Default is "You are an expert at science communication."
+    temperature : float
+        Controls the randomness of responses. Lower values result in more predictable responses. Default is 0.7.
+    n_choices : int
+        Number of ChatGPT responses to generate. Default is 5.
+    max_tokens : int
+        Token limit for ChatGPT response. Default is 1000.
+    model : str
+        ChatGPT model to use. Default is "gpt-3.5-turbo".
     """
 
     def __init__(self, text, model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
-        system_role = "You are an expert at science communication."):
+        system_role="You are an expert at science communication."):
         self.text = text
         self.system_role = system_role
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.model = model
-    
+
     def create_prompt(self, task, text):
+        """
+        Creates a prompt for ChatGPT with the given task and text.
+
+        Parameters:
+        -----------
+        task : str
+            The task to include in the ChatGPT prompt.
+        text : str
+            The text to include in the ChatGPT prompt.
+
+        Returns:
+        --------
+        messages : list
+            A list of dictionaries representing the system and user messages in the prompt.
+        """
         system_role = f'{self.system_role}'
         user_input = f"""Given the following text: {text} \n {task}"""
         messages = [
@@ -44,6 +66,23 @@ class Chaining:
         return messages
 
     def gpt(self, messages, n_choices, temperature):
+        """
+        Sends a request to the ChatGPT API with the given messages.
+
+        Parameters:
+        -----------
+        messages : list
+            A list of dictionaries representing the system and user messages in the prompt.
+        n_choices : int
+            Number of ChatGPT responses to generate.
+        temperature : float
+            Controls the randomness of responses. Lower values result in more predictable responses.
+
+        Returns:
+        --------
+        response : dict
+            A dictionary representing the ChatGPT response.
+        """
         print('\tSending request to GPT-3')
         print(f'\t\tRequesting {n_choices} choices using {self.model}')
         openai.api_key = os.getenv('api_openai')
@@ -56,23 +95,23 @@ class Chaining:
         print('\tDone sending request to GPT-3')
         return response
 
-    def summarize(self, task, prep_step=None, n_choices=5
-        ):
+    def summarize(self, task, prep_step=None, n_choices=5):
         """
-        SH 2023-04-11 12:18: Same as the user-defined `reply` function, but re-written as a class method.
-        Send a ChatCompletion request to ChatGPT via the Chaining class.
+        Generates summaries from the text using ChatGPT.
 
-        Requrired paramaters:
-            - task (str): Task to include in ChatGPT prompt.
-            - text (str): Text to feed to GPT for summarization.
+        Parameters:
+        -----------
+        task : str
+            The task to include in the ChatGPT prompt.
+        prep_step : str, optional
+            A preparatory step for the task, if applicable.
+        n_choices : int, optional
+            Number of ChatGPT responses to generate. Default is 5.
 
-        Optional parameters
-            - system_role (str): ChatGPT parameter. 
-                Default is "You are an expert at science communication."
-            - temperature (float): ChatGPT parameter. Default is 0.7.
-            - n_choices (int): Number of ChatGPT responses to generate. Default is 5.
-            - max_tokens (int): Token limit for ChatGPT response.
-            - model (str): ChatGPT model to use. Default is "gpt-3.5-turbo".
+        Returns:
+        --------
+        qna : dict
+            A dictionary representing the summarization task and the generated summaries.
         """
         chatbot = Chaining(self.text)
         full_task = f'{prep_step} {task}'
@@ -125,7 +164,7 @@ class Chaining:
     def simplify(self, simplify_task, audience, 
                     model="gpt-3.5-turbo", temperature=0.0, n_choices=1, 
                     # simplify_iteration=None, 
-                    pause_per_request=20
+                    pause_per_request=0
                     ):
         simplify_iteration = len(self.simple_summary_dict) + 1 
         self.simple_summary_dict[simplify_iteration] = dict()
@@ -178,7 +217,7 @@ class Chaining:
     def add_relevance(self, relevance_task, audience, 
                     model="gpt-3.5-turbo", temperature=0.0, n_choices=1, summary_type='original',
                     # relevance_iteration=None, 
-                    pause_per_request=20
+                    pause_per_request=0
                     ):
         relevance_iteration = len(self.relevance_dict) + 1 
         self.relevance_dict[relevance_iteration] = dict()
@@ -236,7 +275,7 @@ class Chaining:
         return self.relevance_dict
     
 def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaining_bot_dict, iteration_id, 
-    temperature=0.7, pause_per_request=0,
+    temperature=0.7, pause_per_request=0, n_choices=5,
     save_outputs=False, filename=None, 
     csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
     pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
@@ -244,10 +283,32 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
     """
     Summarize multiple texts using the same prompts.
     Parameters:
+        - text_dict (dict) A dictionary containing the text data to be summarized. 
+            The keys of the dictionary are the text IDs and the values are the full texts.
         - prep_step, summarize_task (list)
         - qna_dict: Dictionary to store the input and outputs.
         - iteration_id (int, float, or string): Unique ID serving as the key for results in the qna_dict
-        - prompt_column (str): Name of the column in the prompts_df containing the user input.
+
+        iteration_id: int, float or string
+            A unique identifier for the current iteration.
+        temperature: float, optional (default=0.7)
+            The level of "creativity" to use when generating summaries. Higher temperatures will result in more diverse summaries, but may also result in lower quality summaries.
+        pause_per_request: int or float, optional (default=0)
+            The number of seconds to pause between requests to avoid exceeding API rate limits. Defaults to 0, which means no pause.
+        save_outputs: bool, optional (default=False)
+            Whether to save the outputs of the summarization process to disk.
+        filename: str, optional (default=None)
+            The name of the file to save the outputs to. If no filename is specified, a default filename will be used.
+        csv_path: str, optional 
+            The path to the directory where CSV output files will be saved. Defaults to the 'output' folder in the project directory.
+        pickle_path: str, optional 
+            The path to the directory where pickle output files will be saved. Defaults to the 'pickles' folder in the project directory.
+
+        Returns:
+        --------
+        qna_dict: dict
+            A dictionary containing the results of the summarization process. The keys of the dictionary are the iteration IDs and the values are pandas dataframes containing the summaries for each text ID
+
     """
     temp_qna_dict = dict()
     qna_dfs_list = []
@@ -264,7 +325,7 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
             prep_step = prompts_df.loc[index, 'prep_step']
             try:
                 print('Creating Chaining class instance')
-                chatbot = Chaining(text)
+                chatbot = Chaining(text, temperature=temperature)
                 print('Chaining class instance created')
                 temp_qna_dict[key][index] = chatbot.summarize(
                     task=task, prep_step=prep_step, n_choices=n_choices,
@@ -358,102 +419,3 @@ def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chai
   
     simple_summaries_dict[iteration_id] = simple_summaries_master_list
     return simple_summaries_dict
-
-
-def process_chaining_results(
-        chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
-        chatbot_id=None, save_df=False, save_chatbot=False,
-        csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
-        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
-        ):
-    """
-    Merge the qna_dict and chatbot_dict into a single DataFrame. 
-    Return the dataframe grouped by rows by qna_dict[iteration_id].columns
-    """
-    # Create an empty list to store the dataframes
-    df_list = []
-    iteration_id = chatbot_id if chatbot_id != None else iteration_id
-    # Iterate through the chatbot_dict and the simple_summary_dict
-    for chatbot_key in chatbot_dict[iteration_id].keys():
-        if results_type=='simple':
-            results_dict = chatbot_dict[iteration_id][chatbot_key].simple_summary_dict
-        else:
-            results_dict = chatbot_dict[iteration_id][chatbot_key].relevance_dict
-        for iteration_key in results_dict.keys():
-            for response_key in results_dict[iteration_key].keys():
-                df_list.append(pd.DataFrame(results_dict[iteration_key][response_key]).transpose())
-    
-    # Concatenate the dataframes into a single dataframe
-    new_results = pd.concat(df_list)
-    print('New results shape:', new_results.shape)
-    
-    # Merge the qna_dict and the simple_summaries dataframe
-    new_results = qna_dict[iteration_id].merge(
-        new_results, how='right', 
-        right_on=f'{"original" if results_type=="simple" else "preceding"} summary', 
-        left_on='summary'
-    )
-    if results_type=='simple':
-        columns = [
-            'article_title',
-            'choice',
-            'system_role',
-            'model',
-            'text',
-            'prep step',
-            'summarization task',
-            'full summarization task',
-            'summary',
-            'simple summary choice',
-            'audience',
-            'simplify task',
-            'full simplify task',
-            'simple summary'
-        ]
-    else:
-        columns= [
-            'article_title',
-            'choice',
-            'system_role',
-            'model',
-            'text',
-            'prep step',
-            'summarization task',
-            'full summarization task',
-            'summary',
-            'relevance choice',
-            'audience',
-            'relevance task',
-            'full relevance task',
-            'relevance statement'
-        ]
-    new_results = new_results[columns]
-    print(f'{"simple summaries" if results_type=="simple" else "added relevance"} dataframe shape:', new_results.shape)
-    print([column for column in new_results.columns])
-    chain_results_dict[iteration_id] = new_results
-    if save_df:
-        try:
-            save_output(
-                results_dict[iteration_id], description='prompt_chain_simple_summaries',
-                csv_path=csv_path, pickle_path=pickle_path)
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} DataFrame')
-    if save_chatbot:
-        try:
-            save_output(
-                chatbot_dict[iteration_id], description='chaining_bot',
-                csv_path=None, pickle_path=pickle_path)
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} chatbot')
-            
-    return chain_results_dict
