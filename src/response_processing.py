@@ -8,21 +8,22 @@ import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
 import traceback
 import re
+import string
 
 def process_chaining_results(
         chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
+        empty_columns=None,
         chatbot_id=None, save_df=False, save_chatbot=False,
         csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
-        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
+        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
+        json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\json'
         ):
     """
     Merge the qna_dict and chatbot_dict into a single DataFrame. 
     Return the dataframe grouped by rows by qna_dict[iteration_id].columns
     """
-    # Create an empty list to store the dataframes
     df_list = []
     iteration_id = chatbot_id if chatbot_id != None else iteration_id
-    # Iterate through the chatbot_dict and the simple_summary_dict
     for chatbot_key in chatbot_dict[iteration_id].keys():
         if results_type=='simple':
             results_dict = chatbot_dict[iteration_id][chatbot_key].simple_summary_dict
@@ -32,11 +33,9 @@ def process_chaining_results(
             for response_key in results_dict[iteration_key].keys():
                 df_list.append(pd.DataFrame(results_dict[iteration_key][response_key]).transpose())
     
-    # Concatenate the dataframes into a single dataframe
     new_results = pd.concat(df_list)
     print('New results shape:', new_results.shape)
     
-    # Merge the qna_dict and the simple_summaries dataframe
     new_results = qna_dict[iteration_id].merge(
         new_results, how='right', 
         right_on=f'{"original" if results_type=="simple" else "preceding"} summary', 
@@ -77,7 +76,27 @@ def process_chaining_results(
             'relevance statement'
         ]
     new_results = new_results[columns]
-    print(f'{"simple summaries" if results_type=="simple" else "added relevance"} dataframe shape:', new_results.shape)
+
+    if empty_columns:
+        if (type(empty_columns) != dict) & (type(empty_columns) != OrderedDict):
+            empty_columns = {
+                'original summary content rating': 'k',
+                'original summary language rating': 'l',
+                'top summary': 'm',
+            }
+        print('\nColumns before adding empty columns:', [column for column in new_results.columns])
+        print('Inserting empty columns...', end='\n\t')
+        spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
+        alphabet_dict = {char:idx for idx, char in enumerate(spreadsheet_columns)}
+        for column_name, column_number in empty_columns.items():
+            empty_column_loc = alphabet_dict[empty_columns[column_name].upper()] -1
+            new_results.insert(loc=empty_column_loc, column=column_name, value='')
+            print(f'{empty_columns[column_name].upper()} ({empty_column_loc}): {column_name}', end=', ')
+        new_results.columns = [
+            f'{spreadsheet_columns[index+1]}: {column}' for index, column in enumerate(new_results.columns)
+            ]
+
+    print(f'** {"simple summaries" if results_type=="simple" else "added relevance"} dataframe shape:', new_results.shape)
     print([column for column in new_results.columns])
     chain_results_dict[iteration_id] = new_results
     if save_df:
@@ -85,7 +104,7 @@ def process_chaining_results(
             save_output(
                 chain_results_dict[iteration_id], description=f'prompt_chain_simple_summaries_{results_type}',
                 csv_path=csv_path, pickle_path=pickle_path)
-            print('DataFrame pickled.')
+            print('')
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
@@ -95,10 +114,12 @@ def process_chaining_results(
             print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} DataFrame')
     if save_chatbot:
         try:
-            save_output(
-                chatbot_dict[iteration_id], description=f'chaining_bot_{results_type}',
-                csv_path=None, pickle_path=pickle_path)
-            print('Chaining object (chatbot) pickled.')
+            print('Saving Chaining object (chatbot)...')
+            save_instance_to_dict(
+                chatbot_dict[iteration_id], 
+                description=f'batch_Chaining_attributes_{results_type}',
+                pickle_path=pickle_path, json_path=json_path
+                )
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
