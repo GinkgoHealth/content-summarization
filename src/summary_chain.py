@@ -408,12 +408,10 @@ def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chai
             if prompt_column == 'simplify':
                 summary_dict = chaining_bot_dict[text_prompt_key].simplify(
                     prompt, audience, n_choices=n_choices, pause_per_request=pause_per_request, 
-                    # simplify_iteration=index if len(simplify_prompts) > 1 else simplify_iteration
                     )
             else: 
                 summary_dict = chaining_bot_dict[text_prompt_key].add_relevance(
                     prompt, audience, n_choices=n_choices, pause_per_request=pause_per_request, 
-                    # relevance_iteration=index if len(simplify_prompts) > 1 else simplify_iteration
                     )
             simple_summaries_master_list.append(summary_dict)
   
