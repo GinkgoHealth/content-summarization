@@ -10,6 +10,7 @@ import traceback
 import time
 import re
 from itertools import product
+import openai
 
 class Chaining:
     """

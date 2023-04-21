@@ -3,9 +3,9 @@ import pandas as pd
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\portfolio-projects\online-PT-social-media-NLP\src")
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
-from summarization import Chatbot, reply
 from summary_chain import *
-from article_processing import create_text_dict
+from response_processing import *
+from article_processing import create_text_dict_from_folder
 from silvhua import *
 from datetime import datetime
 import openai
@@ -13,100 +13,116 @@ import os
 import re
 from itertools import product
 import time
+import string
 
-save_outputs = True
-folder_path = '../text/2023-04-17'
-prompts_dict = dict()
-experiment_num = 1
-relevance_prompts_dict = dict()
-
-encoding='ISO-8859-1'
-
-all_files = []
-
+# Create prompt lists
 prep_step = [
     # "Take the key points to",
     "Take the key points and numerical descriptors to",
     # ""
 ]
-
-task_part1 = [
+summarize_task = [
     # "Summarize the article in under 300 characters",
     "Summarize for a LinkedIn post",
     # "Summarize for a tweet",
-    # "Summarize in an engaging way",
+    "Summarize in an engaging way",
     "Describe the interesting points to your coworker at the water cooler"
     # "Summarize the article for a Tiktok post"
 ]
-audience = [
+simple_simplify_task = [
+    # "Use terms a 12-year-old can understand.",
+    "Assume your audience has no science background.",
+    # "Use a fun tone."
+    # "Include the most interesting findings.",
+    # "Include the key take-aways for the reader.",
+    # "Include the implications of the article."
+    # "Include the most interesting findings.",
+    # "Include the key take-aways for the reader.",
+    # "Include the implications of the article."
+]
+no_audience = ['']
+
+user_simplify_task = [
+    "Use language appropriate for",
+    # "Use terms a 12-year-old can understand.",
+]
+simplify_audience = [
+    # "",
+    # "a lay audience",
+    "people without a science background",
+]
+user_relevance_task = [
+    # "Add 1-2 sentences to make this relevant for",
+    "Write this so it is relevant for",
+    # "Add 1-2 sentences to make this relevant for older adults."
+    # "Once you are done, add 1-2 sentences to make this relevant for older adults.",
+]
+relevance_audience = [
     # "lay audience",
     # "",
     "seniors",
     "people who enjoy sports"
 ]
-task_part2 = [
-    "",
-    "Use terms a 12-year-old can understand.",
-    # "Assume your audience has no science background."
-    # "Include the most interesting findings.",
-    # "Include the key take-aways for the reader.",
-    # "Include the implications of the article."
-]
 
-task_part3 =[
-    "Add 1-2 sentences to make this relevant for"
-    # "Add 1-2 sentences to make this relevant for older adults."
-    # "Once you are done, add 1-2 sentences to make this relevant for older adults.",
-    ""
-]
-
-# prompts_df = pd.DataFrame(product(prep_step, task_part1, task_part2, task_part3, audience), 
-#     columns=['prep_step', 'task part 1', 'task part 2', 'task part 3', 'audience'])
-
-prompts_df = pd.DataFrame(product(prep_step, task_part1), 
-    columns=['prep_step', 'task part 1'])
-
-relevance_prompts_df = pd.DataFrame(product(task_part3, audience), 
-    columns=['task part 3', 'audience'])
-
-prompts_df['prompt'] = prompts_df.apply(
-    lambda row: f"{row['prep_step']} {row['task part 1']}.", 
-    axis=1)
-# prompts_df['simplify'] = prompts_df.apply(
-#     lambda row: f" {row['task part 2'] if row['task part 2'] else ''}", 
-#     axis=1)
-relevance_prompts_df['relevance'] = relevance_prompts_df.apply(
-    lambda row: f" {row['task part 3']} {row['audience']} " if row['audience'] else '', 
-    axis=1) 
-
-for filename in os.listdir(folder_path):
-    with open(os.path.join(folder_path, filename), 'r', encoding=encoding) as f:
-        all_files.append(f.read())
-
-text_dict = create_text_dict(all_files)
-
-iteration_id = experiment_num
+# Set parameters
+iteration_id = 1
 n_choices = 5
-qna_dict = dict()
-qna_chain_dict = dict()
-chatbot_dict = dict()
-simplify_prompts = task_part2
+pause_per_request=0
 summary_iteration_id = iteration_id
-pause_per_request=20
-relevance_prompts = relevance_prompts_df
+chatbot_id = iteration_id
 
-qna_dict, chaining_dict = batch_summarize_chain(text_dict, prompts_df, qna_dict, chatbot_dict, 
-    n_choices=n_choices, pause_per_request=1,
-    iteration_id=iteration_id)
+# Create text dictionary
+folder_path = '../text/2023-04-20'
+encoding='ISO-8859-1'
+subset=None
 
-time.sleep(20)
+text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=subset)
 
-qna_dict = prompt_chaining_dict(simplify_prompts, qna_dict, chaining_dict[summary_iteration_id], iteration_id,
-    n_choices=1, pause_per_request=pause_per_request,
-    simplify_iteration=1, summary_iteration_id=summary_iteration_id, save_outputs=True
+qna_dict = dict()
+chatbot_dict = dict()
+simple_summaries_dict = dict()
+relevance_dict = dict()
+
+# Create initial summaries
+qna_dict, chaining_dict = batch_summarize_chain(
+    text_dict, prep_step, summarize_task, qna_dict, chatbot_dict, 
+    n_choices=n_choices, pause_per_request=pause_per_request,
+    iteration_id=iteration_id
     )
-qna_dict = prompt_chaining_dict(relevance_prompts, qna_dict, chaining_dict[summary_iteration_id], iteration_id,
-    prompt_column='relevance', n_choices=n_choices, pause_per_request=pause_per_request,
-    simplify_iteration=1, summary_iteration_id=summary_iteration_id, save_outputs=save_outputs
+
+time.sleep(pause_per_request)
+
+# Create simple summaries
+simplify_prompts = user_simplify_task
+audience = simplify_audience
+simple_summaries = prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, 
+    chaining_dict[iteration_id], iteration_id,
+    n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
     )
-# print(os.getenv('api_openai'))
+
+# simple_summaries_dict = process_chaining_results(
+#     simple_summaries_dict, qna_dict, chatbot_dict, iteration_id,
+#     results_type='simple', chatbot_id=chatbot_id, 
+#     save_df=True, save_chatbot=False
+#     )
+
+# Add relevance
+relevance_prompts = user_relevance_task
+relevance = prompt_chaining_dict(relevance_prompts, relevance_audience, relevance_dict, 
+    chaining_dict[summary_iteration_id], iteration_id, prompt_column='relevance', 
+    n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
+    )
+# relevance_dict = process_chaining_results(
+#     relevance_dict, qna_dict, chatbot_dict, iteration_id, 
+#     results_type='relevance', chatbot_id=chatbot_id, 
+#     save_df=True, save_chatbot=True
+#     )
+
+# Merge the results
+merged_df = merge_chaining_results(
+    qna_dict, chatbot_dict, 
+    simple_summaries_dict, relevance_dict, iteration_id, 
+    empty_columns=True, pivot=True, validate=True, 
+    chatbot_id=chatbot_id, save_df=True, save_chatbot=True,
+    json_path=r'G:\Shared drives\content summarization\raw outputs\JSON'
+    )
