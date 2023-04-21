@@ -23,9 +23,9 @@ prep_step = [
 ]
 summarize_task = [
     # "Summarize the article in under 300 characters",
-    "Summarize for a LinkedIn post",
+    # "Summarize for a LinkedIn post",
     # "Summarize for a tweet",
-    "Summarize in an engaging way",
+    # "Summarize in an engaging way",
     "Describe the interesting points to your coworker at the water cooler"
     # "Summarize the article for a Tiktok post"
 ]
@@ -61,8 +61,16 @@ relevance_audience = [
     # "lay audience",
     # "",
     "seniors",
-    "people who enjoy sports"
+    # "people new to resistance training",
+    "people who enjoy sports",
 ]
+
+# Create text dictionary
+folder_path = '../text/2023-04-21 2'
+encoding='ISO-8859-1'
+subset=None
+
+text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=subset)
 
 # Set parameters
 iteration_id = 1
@@ -70,13 +78,6 @@ n_choices = 5
 pause_per_request=0
 summary_iteration_id = iteration_id
 chatbot_id = iteration_id
-
-# Create text dictionary
-folder_path = '../text/2023-04-20'
-encoding='ISO-8859-1'
-subset=None
-
-text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=subset)
 
 qna_dict = dict()
 chatbot_dict = dict()
@@ -124,5 +125,5 @@ merged_df = merge_chaining_results(
     simple_summaries_dict, relevance_dict, iteration_id, 
     empty_columns=True, pivot=True, validate=True, 
     chatbot_id=chatbot_id, save_df=True, save_chatbot=True,
-    json_path=r'G:\Shared drives\content summarization\raw outputs\JSON'
+    # json_path=r'G:\Shared drives\content summarization\raw outputs\JSON'
     )
