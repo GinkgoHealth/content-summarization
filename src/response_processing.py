@@ -9,6 +9,7 @@ sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summa
 import traceback
 import re
 import string
+from collections import OrderedDict
 
 def process_chaining_results(
         chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
@@ -183,6 +184,7 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
     return chatbot_dictionary
 
 def merge_chaining_results(
+        qna_dict, chatbot_dict, 
         simple_summaries_dict, relevance_dict, iteration_id, 
         empty_columns=None, pivot=True, validate=None,
         chatbot_id=None, save_df=False, save_chatbot=False,
@@ -193,6 +195,7 @@ def merge_chaining_results(
     """
     Merge the summaries, simple summaries, added relevance into a single DataFrame. 
     Parameters:
+        - qna_dict, chatbot_dict (dict): Dictionaries of qna DataFrames and Chaining instances
         - simple_summaries_dict: dictionary of simple summaries DataFrames
         - relevance_dict: dictionary of added relevance DataFrames
         - iteration_id: iteration ID of the chatbot
