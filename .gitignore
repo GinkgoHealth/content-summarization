@@ -1,3 +1,6 @@
 output/old_versions/
 output/prompt_experiment_outputs.xltx
 sources/export knowledge library 2023-04-24.csv
+notebooks/token.json
+notebooks/credentials.json
+notebooks/google_sheet_id.json
