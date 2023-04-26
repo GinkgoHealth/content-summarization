@@ -133,7 +133,8 @@ def process_chaining_results(
 
 def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='batch_Chaining_attributes', 
         ext='sav', save_json=True, append_version=True, 
-        path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
+        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
+        json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\jsons'
     ):
     """
     Export object as a pickle.
@@ -157,7 +158,7 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
         try:
             save_output(
                 chatbot_dictionary, filename=filename, description=description,
-                append_version=append_version, csv_path=None, pickle_path=path
+                append_version=append_version, csv_path=None, pickle_path=pickle_path
             )
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
@@ -172,7 +173,7 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
             save_to_json(
                 chatbot_dictionary, 
                 filename=filename, description=description,
-                append_version=append_version, path=path
+                append_version=append_version, path=json_path
             )
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
@@ -252,7 +253,6 @@ def merge_chaining_results(
             validate='m:1' if validate else None
         )
     if empty_columns:
-        print(type(empty_columns)) #### delete this
         if (type(empty_columns) != dict) & (type(empty_columns) != OrderedDict):
             empty_columns = {
                 'original summary content rating': 'k',
