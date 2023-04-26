@@ -66,7 +66,7 @@ relevance_audience = [
 ]
 
 # Create text dictionary
-folder_path = '../text/2023-04-21 2'
+folder_path = '../text/2023-04-21 3'
 encoding='ISO-8859-1'
 subset=None
 
