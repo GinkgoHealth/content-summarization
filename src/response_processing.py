@@ -316,44 +316,9 @@ def revive_chatbot(chatbot):
         setattr(new_chatbot, 'n_previous_prompts',  dict())
 
     else:
-        setattr(new_chatbot, 'n_previous_prompts', {**(getattr(new_chatbot, 'n_previous_prompts', {})), **n_previous_prompts})
-        print(f'\tChatbot attribute updated: n_previous_prompts')
-
-    summaries_keys = [key for key in new_chatbot.summaries_dict.keys() if re.match(new_chatbot.response_regex, key)]
-    print(f'\t\tPrevious number of prompts for summaries_dict: {len(summaries_keys)} {[key for key in summaries_keys]}')
-    new_chatbot.n_previous_prompts['summaries'] = len(summaries_keys)
-    new_chatbot.n_previous_prompts['simple_summary'] = len(new_chatbot.simple_summary_dict.keys())
-    new_chatbot.n_previous_prompts['relevance'] = len(new_chatbot.relevance_dict.keys())
-
-    print(f'\t\tPrevious number of prompts:')
-    print(f'\t\t\tOriginal summaries: {len(summaries_keys)} {[key for key in summaries_keys]}')
-    print(f'\t\t\tSimple summaries: {len(new_chatbot.simple_summary_dict.keys())}')
-    print(f'\t\t\tAdded relevance: {len(new_chatbot.relevance_dict.keys())}')
-    
-    return new_chatbot
-
-
-def revive_chatbot(chatbot):
-    """
-    Convert the dictionary of a chatbot attributes into a Chaining object.
-    """
-    new_chatbot = Chaining(chatbot['text'])
-    print(f'Article title: {chatbot["article_title"]}')
-    for key in chatbot.keys():
-        setattr(new_chatbot, key, chatbot[key])
-        print(f'\tNew chatbot attribute added: {key}')
-        if type(getattr(new_chatbot, key)) == dict:
-            print(f'\t\tAttribute dictionary keys: {[attr for attr in getattr(new_chatbot, key)]}')
-    if not hasattr(chatbot[key], 'n_previous_prompts'):
-        
-        print(f'\tNew chatbot attribute added: n_previous_prompts')
-        setattr(new_chatbot, 'n_previous_prompts',  dict())
-
-    else:
         print(f'\tUpdating `n_previous_prompts`...')
 
     summaries_keys = [key for key in new_chatbot.summaries_dict.keys() if re.match(new_chatbot.response_regex, key)]
-    print(f'\t\tPrevious number of prompts for summaries_dict: {len(summaries_keys)} {[key for key in summaries_keys]}')
     new_chatbot.n_previous_prompts['summaries'] = len(summaries_keys)
     new_chatbot.n_previous_prompts['simple_summary'] = len(new_chatbot.simple_summary_dict.keys())
     new_chatbot.n_previous_prompts['relevance'] = len(new_chatbot.relevance_dict.keys())
@@ -364,6 +329,30 @@ def revive_chatbot(chatbot):
     print(f'\t\t\tAdded relevance: {len(new_chatbot.relevance_dict.keys())}')
     
     return new_chatbot
+
+
+def revive_chatbot_dict(chatbot_dict, texts='all'):
+    """
+    Convert the dictionary of dictionaries of chatbot attributes into a dictionary of Chaining objects.
+
+    Parameters:
+        - chatbot_dict (dict): dictionary of dictionaries of chatbot attributes.
+        - texts (list or 'all'): list of integers corresponding to the text prompts to revive. 
+            If 'all', all text prompts will be revived.
+
+    See "2023-05-01 test new prompts" notebook for example usage.
+    """
+    if texts == 'all':
+        text_prompts_to_revive = [text for text in chatbot_dict.keys()]
+    elif isinstance(texts, list):
+        text_prompts_to_revive = [
+            text_prompt for text_prompt in chatbot_dict.keys() for text in texts if f'{text}_' in text_prompt]
+    else:
+        raise TypeError("The `texts` parameter must be 'all' or a list of integers")
+
+    new_chatbot_dict = {text_prompt: revive_chatbot(chatbot_dict[text_prompt]) for text_prompt in text_prompts_to_revive}
+    print(f'\n\nNew chatbot dict keys: {[key for key in new_chatbot_dict]}')
+    return new_chatbot_dict
 
 def process_chaining_results2(
         chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
@@ -563,7 +552,7 @@ def process_chaining_results2(
     if save_df:
         try:
             save_output(
-                chain_results_dict[iteration_id], description=f'prompt_chain_summaries_and_relevance_{original_summary_time}_append_{results_type}',
+                chain_results_dict[iteration_id], description=f'batch_Chaining_attributes_{original_summary_time}_append_{results_type}',
                 csv_path=csv_path, pickle_path=pickle_path)
             print('')
         except Exception as error:
