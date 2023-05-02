@@ -60,3 +60,53 @@ def create_text_dict_from_folder(folder_path, encoding='ISO-8859-1', subset=None
             else:
                 all_files.append(f.read(subset))  # read the specified subset of the file
     return create_text_dict(all_files)
+
+def grab_references(
+        kl_df, references_df, type='new', kl_reference_column='B: article', references_df_column='Reference', 
+        filter_string=None):
+    """
+    Grab references from the references dataframe based on if if there is already knowledge library content
+    referencing it (or not). Default is to return new references.
+    
+    Args:
+    - kl_df: a DataFrame containing the values to be used for filtering the references DataFrame
+    - references_df: a DataFrame containing the references to be filtered
+    - type: a string indicating whether to return new or existing references, defaults to 'new'. 
+        If any other value, returns existing references.
+    - kl_reference_column: a string indicating the name of the column in kl_df to be used for filtering, defaults to 'B: article'
+    - references_df_column: a string indicating the name of the column in references_df to be used for filtering, defaults to 'Reference'
+    - filter_string: a string indicating the filter criteria, defaults to None.
+        This is the string passed to the .query() method. Example: '`Reference Rank` <= 2'.
+        Column names with spaces or other special characters must be enclosed in backticks.
+    
+    Returns:
+    - A DataFrame containing the new (or existing) references based on the specified filter criteria.
+
+    Example usage:
+        filter_string = '`Reference Rank` == 1'
+        grab_references(df, references, type='new', filter_string=filter_string)
+    """
+    
+    # Create a list of unique article titles in kl_df[kl_reference_column]
+    kl_article_titles = kl_df[kl_reference_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
+    
+    # Filter the references DataFrame based on the article titles in kl_df[kl_reference_column]
+    references_filter = references_df[references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).apply(lambda x: any(article in x.lower() for article in kl_article_titles))
+    
+    if type == 'new':
+        # Create a list of article titles in references that do not correspond to article titles in kl_df[kl_reference_column]
+        new_references = references_df.loc[~references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
+    else:
+        new_references = references_df.loc[references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
+    
+    # Filter the references DataFrame to show only the rows corresponding to new_references
+    new_references_df = references_df.loc[references_df[references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).isin(new_references)]
+    
+    # If filter_column and filter_string are provided, filter the new_references_df based on the provided criteria
+    if filter_string is not None:
+        # Filter the new_references_df based on the provided criteria
+        new_references_df = new_references_df.query(f"{filter_string}")
+    
+    print(f'Number of {type} references where {filter_column} {filter_string}: {len(new_references_df)}')
+    
+    return new_references_df
