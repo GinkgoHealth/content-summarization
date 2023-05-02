@@ -360,8 +360,6 @@ def process_chaining_results2(
         - validate (str): Argument to pass to pd.merge() to validate the merge.
         - chatbot_id (int, float, or string): chatbot_id (dict key) of the chatbot_dict to process.
         - save_df, save_chatbot (Bool): whether to save the DataFrame and chatbot_dict.
-    
-    See "2023-05-01 test new prompts" notebook for example usage.
 
     """
     df_list = []
@@ -456,12 +454,16 @@ def process_chaining_results2(
             values='relevance statement',
             index=['preceding summary', 'relevance task']
         ).reset_index()
+        print(f'Shape of pivoted dataframe: {new_results_pivot_df.shape}')
         new_results = qna_dict[iteration_id][original_summary_columns].merge(
             new_results_pivot_df, how='outer', suffixes=(' original', ' relevance'),
             left_on='summary',
             right_on=f'{"original" if results_type=="simple" else "preceding"} summary',
             validate='m:1' if validate else None
         ).drop(columns=['preceding summary'])
+        print(f'Merged DataFrame shape: {new_results.shape}')
+        new_results.drop_duplicates(inplace=True)
+        print(f'Duplicate rows dropped. Shape: {new_results.shape}')
 
     if empty_columns:
         if pivot == False:
