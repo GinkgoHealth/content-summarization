@@ -137,12 +137,14 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
         json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\jsons'
     ):
     """
-    Export object as a pickle.
+    Convert the class instance to a dictionary whose values are the instance attributes.
+    Export object as a pickle and/or JSON file.
     Parameters:
-    - model: Model variable name.
-    - filename: Root of the filename.
-    - extension: Extension to append (do not include dot as it will be added)
-    - filepath (raw string): Use the format r'<path>'. If None, file is saved in same director.
+    - chatbot_dict_iteration: A dictionary whose items are class instances.
+    - filename (str): Root of the filename.
+    - description (str): Parameter in `save_output` function.
+    - ext (str): Extension to append (do not include dot as it will be added). Default is 'sav'.
+    - pickle_path, json_path (raw string): Use the format r'<path>'. If None, file is saved in same director.
     - append_version (bool): If true, append date and time to end of filename.
     """
     chatbot_dictionary = {}
@@ -282,7 +284,7 @@ def merge_chaining_results(
     if save_df:
         try:
             save_output(
-                merged_df, description=f'prompt_chain_summaries_and_relevance',
+                merged_df, description=f'prompt_chain_summaries',
                 csv_path=csv_path, pickle_path=pickle_path)
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
@@ -295,3 +297,40 @@ def merge_chaining_results(
     print('\nMerged DataFrame shape:', merged_df.shape)
     print('Merged DataFrame columns: ', [column for column in merged_df.columns])
     return merged_df
+
+def revive_chatbot(chatbot):
+    """
+    Convert the dictionary of a chatbot attributes into a Chaining object.
+    """
+    new_chatbot = Chaining(chatbot['text'])
+    print(f'Article title: {chatbot["article_title"]}')
+    for key in chatbot.keys():
+        # print(f'\t{chatbot[key]}')
+        setattr(new_chatbot, key, chatbot[key])
+        print(f'\tNew chatbot attribute added: {key}')
+        if type(getattr(new_chatbot, key)) == dict:
+            print(f'\t\tAttribute dictionary keys: {[attr for attr in getattr(new_chatbot, key)]}')
+    return new_chatbot
+
+def revive_chatbot_dict(chatbot_dict, texts='all'):
+    """
+    Convert the dictionary of dictionaries of chatbot attributes into a dictionary of Chaining objects.
+
+    Parameters:
+        - chatbot_dict (dict): dictionary of dictionaries of chatbot attributes.
+        - texts (list or 'all'): list of integers corresponding to the text prompts to revive. 
+            If 'all', all text prompts will be revived.
+
+    See "2023-05-01 test new prompts" notebook for example usage.
+    """
+    if texts == 'all':
+        text_prompts_to_revive = [text for text in chatbot_dict.keys()]
+    elif isinstance(texts, list):
+        text_prompts_to_revive = [
+            text_prompt for text_prompt in chatbot_dict.keys() for text in texts if f'{text}_' in text_prompt]
+    else:
+        raise TypeError("The `texts` parameter must be 'all' or a list of integers")
+
+    new_chatbot_dict = {text_prompt: revive_chatbot(chatbot_dict[text_prompt]) for text_prompt in text_prompts_to_revive}
+    print(f'New chatbot dict keys: {[key for key in new_chatbot_dict]}')
+    return new_chatbot_dict
