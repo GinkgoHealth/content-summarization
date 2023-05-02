@@ -334,3 +334,227 @@ def revive_chatbot_dict(chatbot_dict, texts='all'):
     new_chatbot_dict = {text_prompt: revive_chatbot(chatbot_dict[text_prompt]) for text_prompt in text_prompts_to_revive}
     print(f'New chatbot dict keys: {[key for key in new_chatbot_dict]}')
     return new_chatbot_dict
+
+def process_chaining_results2(
+        chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
+        empty_columns=None, pivot=True, validate=None,
+        chatbot_id=None, save_df=False, save_chatbot=False, 
+        csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
+        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
+        json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\json'
+        ):
+    """
+    Merge the qna_dict and chatbot_dict into a single DataFrame. 
+    Return the dataframe grouped by rows by qna_dict[iteration_id].columns
+
+    Parameters:
+        - chain_results_dict (dict): dictionary of DataFrames.
+        - qna_dict (dict): dictionary of QnA DataFrames.
+        - chatbot_dict (dict): dictionary of Chaining objects.
+        - iteration_id (int, float, or string): iteration_id (dict key) of the chatbot_dict to process.
+        - results_type (str): 'simple' or 'relevance'. Default is 'simple'.
+        - empty_columns (Bool, int, or dict): dictionary of empty columns to add to the DataFrame. 
+            If True or 1, default dictionary is used.
+            If False or 0, no empty columns are added.
+        - pivot (Bool): whether to pivot the relevance summaries DataFrame. Default is True.
+        - validate (str): Argument to pass to pd.merge() to validate the merge.
+        - chatbot_id (int, float, or string): chatbot_id (dict key) of the chatbot_dict to process.
+        - save_df, save_chatbot (Bool): whether to save the DataFrame and chatbot_dict.
+    
+    See "2023-05-01 test new prompts" notebook for example usage.
+
+    """
+    df_list = []
+    iteration_id = chatbot_id if chatbot_id != None else iteration_id
+    for chatbot_key in chatbot_dict[iteration_id].keys():
+        print(f'Processing {chatbot_key}...')
+        try: 
+            n_previous_prompts = chatbot_dict[iteration_id][chatbot_key].previous_n_prompts[results_type]
+            print(f'\tNumber of previous {results_type} prompts: {n_previous_prompts}')
+        except:
+            n_previous_prompts = 0
+            print(f'No previous {results_type} prompts for {chatbot_key}')
+        if results_type=='simple':
+            total_n_prompts = len(chatbot_dict[iteration_id][chatbot_key].simple_summary_dict)
+            results_dict = dict()
+            for prompt_number in range(n_previous_prompts+1, total_n_prompts+1):
+                results_dict[prompt_number] = chatbot_dict[iteration_id][chatbot_key].simple_summary_dict[prompt_number]
+            chatbot_dict[iteration_id][chatbot_key].simple_summary_dict
+        else:
+            total_n_prompts = len(chatbot_dict[iteration_id][chatbot_key].relevance_dict)
+            results_dict = dict()
+            for prompt_number in range(n_previous_prompts+1, total_n_prompts+1):
+                results_dict[prompt_number] = chatbot_dict[iteration_id][chatbot_key].relevance_dict[prompt_number]
+        for iteration_key in results_dict.keys():
+            response_keys = sorted([text_prompt_key for text_prompt_key in results_dict[iteration_key].keys()])
+            print(f'\tAppending results for {iteration_key}: ', end='')
+            for response_key in response_keys:
+                df_list.append(pd.DataFrame(results_dict[iteration_key][response_key]).transpose())
+                print(f'{response_key}, ', end='')
+            print('')
+
+    
+    new_results = pd.concat(df_list)
+    print('New results shape:', new_results.shape)
+    
+    original_summary_columns = [
+        'article_title',
+        'choice',
+        'system_role',
+        'model',
+        'text',
+        'prep step',
+        'summarization task',
+        'full summarization task',
+        'summary',
+    ]
+    if (pivot == False) or (results_type=='simple'):
+        new_results = qna_dict[iteration_id][original_summary_columns].merge(
+            new_results, how='right', 
+            right_on=f'{"original" if results_type=="simple" else "preceding"} summary', 
+            left_on='summary'
+        )
+        if results_type=='simple':
+            columns = [
+                'article_title',
+                'choice',
+                'system_role',
+                'model',
+                'text',
+                'prep step',
+                'summarization task',
+                'full summarization task',
+                'summary',
+                'simple summary choice',
+                'audience',
+                'simplify task',
+                'full simplify task',
+                'simple summary'
+            ]
+        else:
+            columns= [
+                'article_title',
+                'choice',
+                'system_role',
+                'model',
+                'text',
+                'prep step',
+                'summarization task',
+                'full summarization task',
+                'summary',
+                'relevance choice',
+                'audience',
+                'relevance task',
+                'full relevance task',
+                'relevance statement'
+            ]
+        print(f'New results columns: {new_results.columns}')
+        new_results = new_results[columns]
+    else:
+        new_results_pivot_df = new_results.pivot(
+            columns=['audience'],
+            values='relevance statement',
+            index=['preceding summary', 'relevance task']
+        ).reset_index()
+        new_results = qna_dict[iteration_id][original_summary_columns].merge(
+            new_results_pivot_df, how='outer', suffixes=(' original', ' relevance'),
+            left_on='summary',
+            right_on=f'{"original" if results_type=="simple" else "preceding"} summary',
+            validate='m:1' if validate else None
+        ).drop(columns=['preceding summary'])
+
+    if empty_columns:
+        if pivot == False:
+            if (type(empty_columns) != dict):
+                if results_type=='simple':
+                    empty_columns = {                    
+                        "date added": "A",
+                        "original summary content rating": "K",
+                        "original summary language rating": "L",
+                        "top summary": "M",
+                    }
+                else:
+                    empty_columns = {
+                        "original summary content rating": "K",
+                        "original summary language rating": "L",
+                        "top summary": "M",
+                        # "simple summary choice": "N",
+                        "simplify audience": "O",
+                        "simplify task": "P",
+                        "full simplify task": "Q",
+                        "simple summary": "R",
+                        "simple summary content rating": "S",
+                        "simple summary language rating": "T",
+                        "top simple summary": "U",
+                    }
+        else:           
+            if (type(empty_columns) != dict):
+                empty_columns = {
+                        "original summary content rating": "K",
+                    "original summary language rating": "L",
+                    "top summary": "M",
+                    "simple summary choice": "N",
+                    "simplify audience": "O",
+                    "simplify task": "P",
+                    "full simplify task": "Q",
+                    "simple summary": "R",
+                    "simple summary content rating": "S",
+                    "simple summary language rating": "T",
+                    'top simple summary': 'u',
+                    'full add relevance task': 'w',
+                    'added relevance content rating': 'y',
+                    'added relevance language rating': 'z',
+                    'top added relevance': 'aa',
+                    'add relevance task (seniors)': 'AB',
+                    'full add relevance task (seniors)': 'AC',
+                }
+        print('\nColumns before adding empty columns:', [column for column in new_results.columns])
+        print('Inserting empty columns...', end='\n\t')
+        spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
+        alphabet_dict = {char:idx for idx, char in enumerate(spreadsheet_columns)}
+        for column_name, column_number in empty_columns.items():
+            empty_column_loc = alphabet_dict[empty_columns[column_name].upper()] -1
+            new_results.insert(loc=empty_column_loc, column=column_name, value='')
+            print(f'{empty_columns[column_name].upper()} ({empty_column_loc}): {column_name}', end=', ')
+        new_results.columns = [
+            f'{spreadsheet_columns[index+1]}: {column}' for index, column in enumerate(new_results.columns)
+            ]
+
+    print(f'\n** {"simple summaries" if results_type=="simple" else "added relevance"} dataframe shape:', new_results.shape)
+    print([column for column in new_results.columns])
+    chain_results_dict[iteration_id] = new_results
+    try:
+        original_summary_time = next(iter(chatbot_dict[iteration_id].values())).date_created
+    except:
+        original_summary_time = 'previous_summaries'
+    print(f'Original summary time: {original_summary_time}')
+    if save_df:
+        try:
+            save_output(
+                chain_results_dict[iteration_id], description=f'prompt_chain_summaries_and_relevance_{original_summary_time}_append_{results_type}',
+                csv_path=csv_path, pickle_path=pickle_path)
+            print('')
+        except Exception as error:
+            exc_type, exc_obj, tb = sys.exc_info()
+            f = tb.tb_frame
+            lineno = tb.tb_lineno
+            filename = f.f_code.co_filename
+            print("An error occurred on line", lineno, "in", filename, ":", error)
+            print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} DataFrame')
+    if save_chatbot:
+        try:
+            print('Saving Chaining object (chatbot)...')
+            save_instance_to_dict(
+                chatbot_dict[iteration_id], 
+                description=f'batch_Chaining_attributes_{original_summary_time}_append_{results_type}',
+                pickle_path=pickle_path, json_path=json_path
+                )
+        except Exception as error:
+            exc_type, exc_obj, tb = sys.exc_info()
+            f = tb.tb_frame
+            lineno = tb.tb_lineno
+            filename = f.f_code.co_filename
+            print("An error occurred on line", lineno, "in", filename, ":", error)
+            print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} chatbot')
+            
+    return chain_results_dict
