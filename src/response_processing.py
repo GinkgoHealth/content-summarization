@@ -118,7 +118,7 @@ def process_chaining_results(
             print('Saving Chaining object (chatbot)...')
             save_instance_to_dict(
                 chatbot_dict[iteration_id], 
-                description=f'batch_Chaining_attributes_{results_type}',
+                description=f'batch_Chaining_attributes',
                 pickle_path=pickle_path, json_path=json_path
                 )
         except Exception as error:
