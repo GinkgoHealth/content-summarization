@@ -282,7 +282,8 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
     temperature=0.7, pause_per_request=0, n_choices=5,
     save_outputs=False, filename=None, 
     csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
-    pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles'
+    pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
+    json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\json'
     ):
     """
     Summarize multiple texts using the same prompts.
@@ -370,11 +371,13 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
         if save_outputs:
             try:
                 save_output(
-                    qna_dict[iteration_id], description='prompt_chain_experiment',
+                    qna_dict[iteration_id], description='batch_Chaining_summaries',
                     csv_path=csv_path, pickle_path=pickle_path)
-                save_output(
-                    chaining_bot_dict[iteration_id], description='chaining_bot_dict',
-                    csv_path=None, pickle_path=pickle_path)
+                save_instance_to_dict(
+                    chaining_bot_dict[iteration_id], 
+                    description=f'batch_Chaining_attributes',
+                    pickle_path=pickle_path, json_path=json_path
+                    )
             except:
                 print('[prompt_chaining_dict()] Unable to save outputs')
     except Exception as error:
