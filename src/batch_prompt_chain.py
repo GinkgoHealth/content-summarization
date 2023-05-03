@@ -1,7 +1,6 @@
 import sys
 import pandas as pd
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
-sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\portfolio-projects\online-PT-social-media-NLP\src")
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
 from summary_chain import *
 from response_processing import *
@@ -21,14 +20,18 @@ prep_step = [
     "Take the key points and numerical descriptors to",
     # ""
 ]
+
 summarize_task = [
-    # "Summarize the article in under 300 characters",
     # "Summarize for a LinkedIn post",
+    # "Describe the interesting points to your coworker at the water cooler",
+    # "Create a Tiktok post",
+    "Create an Instagram post",
+    # "Summarize the article for a Tiktok post",
     # "Summarize for a tweet",
     # "Summarize in an engaging way",
-    "Describe the interesting points to your coworker at the water cooler"
-    # "Summarize the article for a Tiktok post"
+    # "Summarize the article in under 300 characters",
 ]
+
 simple_simplify_task = [
     # "Use terms a 12-year-old can understand.",
     "Assume your audience has no science background.",
@@ -40,33 +43,35 @@ simple_simplify_task = [
     # "Include the key take-aways for the reader.",
     # "Include the implications of the article."
 ]
-no_audience = ['']
 
 user_simplify_task = [
     "Use language appropriate for",
     # "Use terms a 12-year-old can understand.",
 ]
+
 simplify_audience = [
     # "",
-    # "a lay audience",
-    "people without a science background",
+    "a lay audience",
+    # "people without a science background",
 ]
+
 user_relevance_task = [
+    "Rewrite the summary to include an explanation of how it is relevant for",
     # "Add 1-2 sentences to make this relevant for",
-    "Write this so it is relevant for",
+    # "Update the summary with 1-2 sentences to make it relevant for",
     # "Add 1-2 sentences to make this relevant for older adults."
     # "Once you are done, add 1-2 sentences to make this relevant for older adults.",
 ]
+
 relevance_audience = [
     # "lay audience",
     # "",
     "seniors",
-    # "people new to resistance training",
-    "people who enjoy sports",
+    "people who enjoy sports"
 ]
 
 # Create text dictionary
-folder_path = '../text/2023-04-21 3'
+folder_path = '../text/2023-05-02'
 encoding='ISO-8859-1'
 subset=None
 
@@ -125,5 +130,4 @@ merged_df = merge_chaining_results(
     simple_summaries_dict, relevance_dict, iteration_id, 
     empty_columns=True, pivot=True, validate=True, 
     chatbot_id=chatbot_id, save_df=True, save_chatbot=True,
-    # json_path=r'G:\Shared drives\content summarization\raw outputs\JSON'
     )
