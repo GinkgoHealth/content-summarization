@@ -355,7 +355,7 @@ def revive_chatbot_dict(chatbot_dict, texts='all'):
     return new_chatbot_dict
 
 def process_chaining_results2(
-        chain_results_dict, qna_dict, chatbot_dict, iteration_id, results_type='simple',
+        chain_results_dict, chatbot_dict, iteration_id, results_type='simple',
         empty_columns=None, pivot=True, validate=None,
         chatbot_id=None, save_df=False, save_chatbot=False, 
         csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
@@ -363,8 +363,8 @@ def process_chaining_results2(
         json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\json'
         ):
     """
-    Merge the qna_dict and chatbot_dict into a single DataFrame. 
-    Return the dataframe grouped by rows by qna_dict[iteration_id].columns
+    Create a dataframe of new 'simple' or 'relevance' summaries from a Chaining object.
+    Merge it with the original summaries DataFrame.
 
     Parameters:
         - chain_results_dict (dict): dictionary of DataFrames.
@@ -382,6 +382,7 @@ def process_chaining_results2(
 
     """
     df_list = []
+    qna_dfs_list = []
     iteration_id = chatbot_id if chatbot_id != None else iteration_id
     for chatbot_key in chatbot_dict[iteration_id].keys():
         print(f'Processing {chatbot_key}...')
@@ -391,6 +392,9 @@ def process_chaining_results2(
         except:
             n_previous_prompts = 0
             print(f'No previous {results_type} prompts for {chatbot_key}')
+            
+        qna_dfs_list.append(pd.DataFrame(chatbot_dict[iteration_id][chatbot_key].qna))
+
         if results_type=='simple':
             total_n_prompts = len(chatbot_dict[iteration_id][chatbot_key].simple_summary_dict)
             results_dict = dict()
@@ -412,11 +416,14 @@ def process_chaining_results2(
 
     
     new_results = pd.concat(df_list)
+    qna_df = pd.concat(qna_dfs_list)
+    print(f'Original summaries DataFrame shape: {qna_df.shape}')
+    print(f'Original summaries Dataframe columns: {qna_df.columns}')
     print('New results shape:', new_results.shape)
     
     original_summary_columns = [
         'article_title',
-        'choice',
+        # 'choice',
         'system_role',
         'model',
         'text',
@@ -425,8 +432,9 @@ def process_chaining_results2(
         'full summarization task',
         'summary',
     ]
+    pivot = False if results_type=='simple' else pivot
     if (pivot == False) or (results_type=='simple'):
-        new_results = qna_dict[iteration_id][original_summary_columns].merge(
+        new_results = qna_df[original_summary_columns].merge(
             new_results, how='right', 
             right_on=f'{"original" if results_type=="simple" else "preceding"} summary', 
             left_on='summary'
@@ -434,7 +442,7 @@ def process_chaining_results2(
         if results_type=='simple':
             columns = [
                 'article_title',
-                'choice',
+                # 'choice',
                 'system_role',
                 'model',
                 'text',
@@ -474,7 +482,7 @@ def process_chaining_results2(
             index=['preceding summary', 'relevance task']
         ).reset_index()
         print(f'Shape of pivoted dataframe: {new_results_pivot_df.shape}')
-        new_results = qna_dict[iteration_id][original_summary_columns].merge(
+        new_results = qna_df[original_summary_columns].merge(
             new_results_pivot_df, how='outer', suffixes=(' original', ' relevance'),
             left_on='summary',
             right_on=f'{"original" if results_type=="simple" else "preceding"} summary',
@@ -488,18 +496,18 @@ def process_chaining_results2(
         if pivot == False:
             if (type(empty_columns) != dict):
                 if results_type=='simple':
-                    empty_columns = {                    
-                        "date added": "A",
+                    empty_columns = {
+                        "choice numnber": "C",
                         "original summary content rating": "K",
                         "original summary language rating": "L",
                         "top summary": "M",
                     }
                 else:
                     empty_columns = {
+                        "choice numnber": "C",
                         "original summary content rating": "K",
                         "original summary language rating": "L",
                         "top summary": "M",
-                        # "simple summary choice": "N",
                         "simplify audience": "O",
                         "simplify task": "P",
                         "full simplify task": "Q",
@@ -511,6 +519,7 @@ def process_chaining_results2(
         else:           
             if (type(empty_columns) != dict):
                 empty_columns = {
+                    "choice numnber": "C",
                         "original summary content rating": "K",
                     "original summary language rating": "L",
                     "top summary": "M",
@@ -529,6 +538,7 @@ def process_chaining_results2(
                     'add relevance task (seniors)': 'AB',
                     'full add relevance task (seniors)': 'AC',
                 }
+        print(f'Merged DataFrame shape: {new_results.shape}')
         print('\nColumns before adding empty columns:', [column for column in new_results.columns])
         print('Inserting empty columns...', end='\n\t')
         spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
