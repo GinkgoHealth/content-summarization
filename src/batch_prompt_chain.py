@@ -45,7 +45,8 @@ simple_simplify_task = [
 ]
 
 user_simplify_task = [
-    "Use language appropriate for",
+    # "Use language appropriate for",
+    "If needed, rewrite using terms appropriate for",
     # "Use terms a 12-year-old can understand.",
 ]
 
@@ -66,12 +67,13 @@ user_relevance_task = [
 relevance_audience = [
     # "lay audience",
     # "",
-    "seniors",
-    "people who enjoy sports"
+    # "seniors",
+    # "people who enjoy sports",
+    "people new to resistance training"
 ]
 
 # Create text dictionary
-folder_path = '../text/2023-05-02'
+folder_path = '../text/2023-05-02 2'
 encoding='ISO-8859-1'
 subset=None
 
@@ -106,23 +108,12 @@ simple_summaries = prompt_chaining_dict(simplify_prompts, audience, simple_summa
     n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
     )
 
-# simple_summaries_dict = process_chaining_results(
-#     simple_summaries_dict, qna_dict, chatbot_dict, iteration_id,
-#     results_type='simple', chatbot_id=chatbot_id, 
-#     save_df=True, save_chatbot=False
-#     )
-
 # Add relevance
 relevance_prompts = user_relevance_task
 relevance = prompt_chaining_dict(relevance_prompts, relevance_audience, relevance_dict, 
     chaining_dict[summary_iteration_id], iteration_id, prompt_column='relevance', 
     n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
     )
-# relevance_dict = process_chaining_results(
-#     relevance_dict, qna_dict, chatbot_dict, iteration_id, 
-#     results_type='relevance', chatbot_id=chatbot_id, 
-#     save_df=True, save_chatbot=True
-#     )
 
 # Merge the results
 merged_df = merge_chaining_results(
