@@ -103,7 +103,7 @@ def process_chaining_results(
     if save_df:
         try:
             save_output(
-                chain_results_dict[iteration_id], description=f'prompt_chain_simple_summaries_{results_type}',
+                chain_results_dict[iteration_id], description=f'batch_Chaining_simple_summaries_{results_type}',
                 csv_path=csv_path, pickle_path=pickle_path)
             print('')
         except Exception as error:
@@ -285,7 +285,7 @@ def merge_chaining_results(
     if save_df:
         try:
             save_output(
-                merged_df, description=f'prompt_chain_summaries',
+                merged_df, description=f'batch_Chaining_summaries',
                 csv_path=csv_path, pickle_path=pickle_path)
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
@@ -293,7 +293,7 @@ def merge_chaining_results(
             lineno = tb.tb_lineno
             filename = f.f_code.co_filename
             print("An error occurred on line", lineno, "in", filename, ":", error)
-            print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} DataFrame')
+            print(f'Unable to save DataFrame')
     
     print('\nMerged DataFrame shape:', merged_df.shape)
     print('Merged DataFrame columns: ', [column for column in merged_df.columns])
