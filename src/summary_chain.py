@@ -132,6 +132,7 @@ class Chaining:
         self.response_regex = r'response_(.*)'
         self.simple_summary_dict = dict()
         self.relevance_dict = dict()
+        self.n_previous_prompts = dict()
 
         try:
             response = chatbot.gpt(prompt, n_choices=n_choices, temperature=self.temperature)
@@ -168,6 +169,7 @@ class Chaining:
                     pause_per_request=0
                     ):
         simplify_iteration = len(self.simple_summary_dict) + 1 
+        self.n_previous_prompts['simply_summary'] = len(self.simple_summary_dict)
         self.simple_summary_dict[simplify_iteration] = dict()
         if simplify_iteration == None:
             simplify_iteration = 1
@@ -221,6 +223,7 @@ class Chaining:
                     pause_per_request=0
                     ):
         relevance_iteration = len(self.relevance_dict) + 1 
+        self.n_previous_prompts['relevance'] = len(self.relevance_dict)
         self.relevance_dict[relevance_iteration] = dict()
         if relevance_iteration == None:
             relevance_iteration = 1
