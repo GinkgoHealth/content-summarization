@@ -1,0 +1,331 @@
+,B: article_title,C: choice,D: system_role,E: model,F: text,G: prep step,H: summarization task,I: full summarization task,J: summary,K: original summary content rating,L: original summary language rating,M: top summary,N: simple summary choice,O: audience,P: simplify task,Q: full simplify task,R: simple summary,S: simple summary content rating,T: simple summary language rating,U: top simple summary,V: relevance task,W: full add relevance task,X: people who enjoy sports,Y: added relevance content rating,Z: added relevance language rating,AA: top added relevance,AB: add relevance task (seniors),AC: full add relevance task (seniors)
+0,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",1,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Describe the interesting points to your coworker at the water cooler,Take the key points and numerical descriptors to Describe the interesting points to your coworker at the water cooler,"Hey, did you know that adding milk and whey protein isolate to a moderate-carbohydrate beverage after exercise can increase muscle glycogen replenishment and promote repair and recovery of the exercised muscle? This was demonstrated in a recent study published by the International Society of Sports Nutrition. Specifically, adding 0.4g/kg of milk and whey protein isolate to a moderate-carbohydrate beverage was found to be effective, but not when the carbohydrate content was high (1.2g/kg). Additionally, whey protein was found to enhance glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion, which suggests that the addition of milk protein to a post-workout meal may help improve protein balance and speed up glycogen replenishment.",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","Hey, did you know that adding milk and whey protein isolate to a drink after exercising can help your muscles recover faster? A recent study found that adding 0.4g/kg of milk and whey protein isolate to a drink with moderate amounts of carbs can help your muscles recover, but it doesn't work as well if the drink has a lot of carbs. The study also found that whey protein is better than casein at helping your body make more energy for your muscles. This means that adding milk protein to your post-workout meal can help your muscles recover faster.",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Did you know that adding milk and whey protein isolate to a moderate-carbohydrate beverage after exercise can help increase muscle glycogen replenishment and promote repair and recovery of the exercised muscle? This recent study published by the International Society of Sports Nutrition found that adding 0.4g/kg of milk and whey protein isolate to a moderate-carbohydrate beverage was effective, but not when the carbohydrate content was high (1.2g/kg). This information is relevant for athletes and fitness enthusiasts who want to optimize their post-workout nutrition and improve their muscle recovery. Additionally, the study found that whey protein was more effective than casein in enhancing glycogen synthesis in the liver and skeletal muscle, which suggests that adding milk protein to a post-workout meal may help improve protein balance and speed up glycogen replenishment.",,,,,
+1,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",2,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Describe the interesting points to your coworker at the water cooler,Take the key points and numerical descriptors to Describe the interesting points to your coworker at the water cooler,"Hey, did you know that adding milk protein to a post-workout meal can improve recovery, speed up glycogen replenishment, and enhance protein balance? Studies have shown that adding 0.4g/kg of milk protein to a moderate carbohydrate drink (0.8g/kg) can increase muscle glycogen replenishment after hard training. It also helps repair and recover the exercised muscle due to a greater insulin response. Interestingly, whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that upregulates glycogen synthase activity. So, if you're looking to improve your post-workout recovery, consider adding milk protein to your diet!",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","The following information is about how adding milk protein to your post-workout meal can help you recover faster and improve your body's ability to store energy. Studies have shown that adding a small amount of milk protein to a drink with some carbohydrates can help your muscles recover after a hard workout. This is because milk protein helps your body produce insulin, which helps repair and recover your muscles. Whey protein is especially good at helping your body store energy in your muscles and liver. If you're looking to improve your post-workout recovery, consider adding milk protein to your diet!",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Did you know that adding milk protein to your post-workout meal can improve your recovery, speed up glycogen replenishment, and enhance protein balance? Studies have shown that adding 0.4g/kg of milk protein to a moderate carbohydrate drink (0.8g/kg) can increase muscle glycogen replenishment after hard training. This is especially relevant for athletes who want to optimize their recovery and performance. Milk protein helps repair and recover the exercised muscle due to a greater insulin response. Interestingly, whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that upregulates glycogen synthase activity. So, if you're looking to improve your post-workout recovery and performance, consider adding milk protein to your diet!",,,,,
+2,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",3,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Describe the interesting points to your coworker at the water cooler,Take the key points and numerical descriptors to Describe the interesting points to your coworker at the water cooler,"Hey, did you know that adding milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg) carbohydrate-containing beverage can promote increased rates of muscle glycogen replenishment following hard training? This is according to a recent article from the International Society of Sports Nutrition. The addition of protein also facilitates repair and recovery of the exercised muscle due to a greater insulin response following the exercise bout. What's interesting is that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity. These findings suggest that adding milk protein to a post-workout meal may improve recovery, protein balance, and speed up glycogen replenishment.",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","Hey, did you know that adding milk and whey protein isolate to a drink with some carbs can help your muscles recover faster after a tough workout? This is according to a recent article from the International Society of Sports Nutrition. Adding protein to your drink also helps your muscles repair themselves after exercise. What's interesting is that whey protein helps your body make more energy for your muscles than other types of protein. This means that adding milk protein to a meal after your workout might help you feel better and recover faster.",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Adding milk and whey protein isolate to a moderate carbohydrate-containing beverage after hard training can promote increased rates of muscle glycogen replenishment and facilitate repair and recovery of the exercised muscle. This recent finding from the International Society of Sports Nutrition suggests that adding milk protein to a post-workout meal may improve recovery, protein balance, and speed up glycogen replenishment. For sports enthusiasts, this information can help optimize their post-workout nutrition and potentially enhance their performance.",,,,,
+3,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",4,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Describe the interesting points to your coworker at the water cooler,Take the key points and numerical descriptors to Describe the interesting points to your coworker at the water cooler,"Hey! Did you know that a new research article by the International Society of Sports Nutrition has found that adding milk protein to a post-workout meal can help with muscle recovery and glycogen replenishment? Specifically, the addition of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg) carbohydrate-containing beverage promotes increased rates of muscle glycogen replenishment following hard training. It also facilitates repair and recovery of the exercised muscle, likely due to a greater insulin response following the exercise bout. Interestingly, whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity. This means that adding milk protein to a post-workout meal may be beneficial for recovery, improve protein balance, and speed up glycogen replenishment. Pretty cool, huh?",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","Hey there! Did you know that adding milk protein to your post-workout meal can help your muscles recover faster? A new research article by the International Society of Sports Nutrition found that adding milk and whey protein isolate to a moderate carbohydrate-containing beverage can promote increased rates of muscle glycogen replenishment after hard training. This means that adding milk protein to your post-workout meal may be beneficial for recovery, improve protein balance, and speed up glycogen replenishment. Pretty cool, huh?",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Hey! Did you know that adding milk protein to your post-workout meal can help with muscle recovery and glycogen replenishment? A new research article by the International Society of Sports Nutrition found that the addition of milk and whey protein isolate to a carbohydrate-containing beverage promotes increased rates of muscle glycogen replenishment following hard training. This means that adding milk protein to your post-workout meal may be beneficial for recovery, improve protein balance, and speed up glycogen replenishment. Pretty cool, huh?",,,,,
+4,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",5,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Describe the interesting points to your coworker at the water cooler,Take the key points and numerical descriptors to Describe the interesting points to your coworker at the water cooler,"Hey! Did you know that adding milk and whey protein isolate to a moderate carbohydrate-containing drink after a hard workout can increase rates of muscle glycogen replenishment? Research has shown that a protein intake of 0.4g/kg with a moderate carbohydrate intake of 0.8g/kg can facilitate repair and recovery of the exercised muscle. This is due to a greater insulin response following the exercise bout. Additionally, whey protein has been found to enhance glycogen synthesis in the liver and skeletal muscle more than casein. So, adding milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment!",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","Hey there! Did you know that adding milk and whey protein isolate to a drink with moderate carbs after a tough workout can help your muscles recover faster? Studies have shown that consuming 0.4 grams of protein per kilogram of body weight along with 0.8 grams of carbs per kilogram can help repair and recover your muscles. This happens because your body produces more insulin after exercising. Whey protein is especially helpful in replenishing glycogen in your liver and muscles compared to casein. So, adding milk protein to your post-workout meal can help you recover faster, balance your protein intake, and replenish your glycogen levels!",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Hey there sports enthusiasts! Did you know that adding milk and whey protein isolate to a moderate carbohydrate-containing drink after a hard workout can increase rates of muscle glycogen replenishment? This means that you can recover faster and get back to your favorite activities sooner! Research has shown that a protein intake of 0.4g/kg with a moderate carbohydrate intake of 0.8g/kg can facilitate repair and recovery of the exercised muscle. This is due to a greater insulin response following the exercise bout. Additionally, whey protein has been found to enhance glycogen synthesis in the liver and skeletal muscle more than casein. So, adding milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment!",,,,,
+5,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",1,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Create an Instagram post without hashtags.,Take the key points and numerical descriptors to Create an Instagram post without hashtags.,"Fuel your muscles right! 💪🏋️‍♀️
+According to the International Society of Sports Nutrition, adding milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg) carbohydrate-containing beverage can promote increased rates of muscle glycogen replenishment and facilitate repair and recovery of the exercised muscle. This is because it leads to a greater insulin response following the exercise bout. Plus, whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion! Adding milk protein to your post-workout meal can augment your recovery, improve protein balance, and speed up glycogen replenishment. 🥛🍽️",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","```Fuel your muscles right! 💪🏋️‍♀️
+After exercising, it's important to eat the right foods to help your muscles recover. Adding milk and whey protein isolate to a drink that also has some carbs can help your muscles recover faster. This is because it helps your body produce insulin, which helps your muscles store energy. Whey protein is especially good at helping your muscles store energy. Drinking milk after exercising can also help your muscles recover faster and improve your overall health. 🥛🍽️```",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Fuel your muscles right! 💪🏋️‍♀️ Did you know that adding milk and whey protein isolate to your post-workout meal can help you recover faster and improve protein balance? According to the International Society of Sports Nutrition, this combination can promote increased rates of muscle glycogen replenishment and facilitate repair and recovery of the exercised muscle. This is because it leads to a greater insulin response following the exercise bout. Plus, whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion! Adding milk protein to your post-workout meal can augment your recovery and speed up glycogen replenishment. 🥛🍽️",,,,,
+6,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",2,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Create an Instagram post without hashtags.,Take the key points and numerical descriptors to Create an Instagram post without hashtags.,"💪🥛 Milk protein can help with muscle glycogen replenishment after exercise when added to a moderate carbohydrate beverage (0.4g/kg). 
+
+💪🛡️ The addition of protein in the form of milk and whey protein isolate can also facilitate repair and recovery of exercised muscles. 
+
+💪🧪 Whey protein appears to enhance glycogen synthesis more than casein in an insulin-independent fashion, due to its ability to upregulate glycogen synthase activity. 
+
+💪🏋️‍♀️ Adding milk protein to your post-workout meal may improve recovery, protein balance, and speed up glycogen replenishment. 
+
+#sportsnutrition #proteinandexercise #milkprotein #wheyprotein #postworkoutrecovery #musclerepair #glycogenreplenishment",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","💪🥛 Milk protein can help your muscles recover after exercise when added to a drink with moderate carbs (0.4g/kg). 
+
+💪🛡️ Adding milk and whey protein isolate to your diet can also help your muscles repair and recover after exercise. 
+
+💪🧪 Whey protein can help your muscles store energy better than casein, which means you can exercise longer and harder. 
+
+💪🏋️‍♀️ Drinking a milk protein drink after your workout can help you recover faster, keep your muscles healthy, and give you more energy for your next workout. 
+
+#sportsnutrition #proteinandexercise #milkprotein #wheyprotein #postworkoutrecovery #musclerepair #glycogenreplenishment",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Adding milk protein to a moderate carbohydrate beverage after exercise can help with muscle glycogen replenishment and facilitate repair and recovery of exercised muscles. Whey protein, in particular, appears to enhance glycogen synthesis more than casein. This information is relevant for sports enthusiasts who want to improve their post-workout recovery, protein balance, and speed up glycogen replenishment. #sportsnutrition #proteinandexercise #milkprotein #wheyprotein #postworkoutrecovery #musclerepair #glycogenreplenishment",,,,,
+7,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",3,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Create an Instagram post without hashtags.,Take the key points and numerical descriptors to Create an Instagram post without hashtags.,"🏋️‍♂️ Want to replenish your muscles after a tough workout? 🥛 Milk and whey protein isolate (0.4 g/kg) added to a moderate (0.8 g/kg) carbohydrate-containing drink can help increase muscle glycogen replenishment and facilitate muscle repair and recovery. 💪 It's all thanks to a greater insulin response following exercise. Plus, whey protein enhances glycogen synthesis more than casein in an insulin-independent fashion. 🤔 So, consider adding milk protein to your post-workout meal to speed up recovery and improve protein balance. #sportsnutrition #postworkout #musclerecovery",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","🏋️‍♂️ After a tough workout, it's important to replenish your muscles. 🥛 Drinking milk and adding whey protein isolate (about 1/4 cup per 50 pounds of body weight) to a drink with some carbs (like a banana) can help your muscles recover faster. 💪 This is because it helps your body produce insulin, which helps your muscles store energy and repair themselves. Plus, whey protein helps your muscles store energy better than other types of protein. 🤔 So, if you want to recover faster after a workout, try adding some milk and whey protein to your post-workout snack. #sportsnutrition #postworkout #musclerecovery",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"If you're someone who enjoys sports, you might be interested in learning how to replenish your muscles after a tough workout. Adding milk and whey protein isolate to a moderate carbohydrate-containing drink can help increase muscle glycogen replenishment and facilitate muscle repair and recovery. This is all thanks to a greater insulin response following exercise, and whey protein enhances glycogen synthesis more than casein in an insulin-independent fashion. Consider adding milk protein to your post-workout meal to speed up recovery and improve protein balance. #sportsnutrition #postworkout #musclerecovery",,,,,
+8,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",4,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Create an Instagram post without hashtags.,Take the key points and numerical descriptors to Create an Instagram post without hashtags.,"🔬 NEW RESEARCH ALERT 🔬 
+
+Adding milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg) carbohydrate-containing beverage can increase muscle glycogen replenishment post-exercise, according to a new study by the International Society of Sports Nutrition. The addition of protein also aids in muscle repair and recovery. 
+
+#ScienceCommunication #SportsNutrition #ProteinAndExercise #MuscleRecovery #GlycogenReplenishment #MilkProtein #WheyProteinIsolate",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","🔬 NEW RESEARCH ALERT 🔬 
+
+A recent study by the International Society of Sports Nutrition found that adding milk and whey protein isolate to a sports drink can help your muscles recover after exercise. This is because the protein helps repair your muscles and the drink also helps replenish your body's energy stores. So, if you're looking to recover faster after a workout, try adding some protein to your sports drink! 
+
+#ScienceCommunication #SportsNutrition #ProteinAndExercise #MuscleRecovery #GlycogenReplenishment #MilkProtein #WheyProteinIsolate",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"🔬 NEW RESEARCH ALERT 🔬 
+
+Attention all sports enthusiasts! A recent study by the International Society of Sports Nutrition has found that adding milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg) carbohydrate-containing beverage can help replenish muscle glycogen after exercise. This not only aids in muscle repair and recovery but also helps improve overall athletic performance. So, if you're looking to enhance your workout routine, consider adding milk and whey protein isolate to your post-workout drink! 
+
+#SportsNutrition #ProteinAndExercise #MuscleRecovery #GlycogenReplenishment #MilkProtein #WheyProteinIsolate",,,,,
+9,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage",5,You are an expert at science communication.,gpt-3.5-turbo,"Abstract
+International Society of Sports Nutrition Position Stand protein and exercise 2022 article Effects of milk proteins on glycogen replenishment and skeletal muscle damage
+* Skeletal muscle glycogen stores are a critical element to both prolonged and high-intensity exercise. In skeletal muscle, glycogen synthase activity is considered one of the key regulatory factors for glycogen synthesis. Research has demonstrated that the addition of protein in the form of milk and whey protein isolate (0.4 g/kg) to a moderate (0.8 g/kg), but not high (1.2 g/kg) carbohydrate-containing (dextrose-maltodextrin) beverage promotes increased rates of muscle glycogen replenishment following hard training []. Further, the addition of protein facilitates repair and recovery of the exercised muscle []. These effects are thought to be related to a greater insulin response following the exercise bout. Intriguingly, it has also been demonstrated that whey protein enhances glycogen synthesis in the liver and skeletal muscle more than casein in an insulin-independent fashion that appears to be due to its capacity to upregulate glycogen synthase activity []. Therefore, the addition of milk protein to a post-workout meal may augment recovery, improve protein balance, and speed glycogen replenishment.
+
+Page 1 of 1
+
+",Take the key points and numerical descriptors to,Create an Instagram post without hashtags.,Take the key points and numerical descriptors to Create an Instagram post without hashtags.,"💪🥛 Protein and exercise go hand in hand! Research shows that adding milk and whey protein isolate to a moderate carbohydrate beverage can increase muscle glycogen replenishment after hard training. 💪🏋️‍♀️ This also helps repair and recover exercised muscles, and may improve protein balance. 🏋️‍♂️🥛 So next time after your workout, consider adding some milk protein to your post-workout meal! #nutrition #fitness #protein #exercise #recovery",,,,1,people without a science background,"If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is","If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the summary to be shown to the audience.     
+
+Your audience is for people without a science background","💪🥛 Did you know that drinking milk and adding whey protein to your post-workout drink can help your muscles recover and repair after exercise? This can also improve your protein balance and help your muscles store energy for your next workout. 🏋️‍♂️🥛 So next time after your workout, consider adding some milk protein to your post-workout meal! #nutrition #fitness #protein #exercise #recovery",,,,"Rewrite this summary to include a statement of how it is relevant for the audience.         Follow these steps to accomplish this:         
+1. Think about why this might be relevant for the audience in the grand scheme of things.        
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,         add a sentence to inform the audience. Otherwise, keep it the same.         
+3. Modify the summary if needed to reduce redundancy.         
+4. Check if the content and language are appropriate for the audience.         If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+        
+5. Return the final version of the summary to be shown to the audience.         
+6. Remove the backticks.
+        
+
+Your audience consists of",,"Adding milk and whey protein isolate to a moderate carbohydrate beverage after exercise can help repair and recover exercised muscles, increase muscle glycogen replenishment, and improve protein balance. This is especially relevant for sports enthusiasts who want to optimize their post-workout recovery and performance. So, consider adding some milk protein to your post-workout meal to enhance your nutrition and fitness goals. #nutrition #fitness #protein #exercise #recovery",,,,,

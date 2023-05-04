@@ -1,0 +1,142 @@
+Homeostatic and non-homeostatic appetite control along the spectrum of physical activity levels an updated perspective
+
+201 4. Energy intake and appetite control along the spectrum of physical activity levels 
+202 While there is evidence for the negative feedback mechanisms involved in satiation 
+203 and satiety based on the interaction between tonic adiposity and episodic gut signals, less is 
+204 known on the factors that drive hunger and food intake. Whether EE and PA are drivers of EI
+205 has not been well understood [58]. The relationship between EE, PA and EI in humans was 
+206 examined over 50 years ago [59-61]. Mayer et al. demonstrated a relationship between 
+207 occupational PA and daily EI in Bengali jute mill workers whose daily occupations ranged from 
+208 “sedentary” to “very heavy work” whereby those performing very heavy work consumed more 
+209 than those performing light work [61]. In line with Mayer, Edholm et al. [60] found a strong 
+210 relationship between TDEE and daily EI in army cadets over three weeks. Despite providing 
+211 initial evidence for physiological processes and behavioural activities impacting on appetite 
+212 and providing a demand for food intake, this concept was left dormant for several decades. 
+213 The roles of body composition and EE in driving food intake have recently been re214 examined and have gathered attention within the scientific community [62, 63]. Fat-free mass 
+215 has been found to be strongly positively associated with EI in lean and overweight/obese 
+216 individuals [64, 65], corroborating findings from earlier but less known studies [66, 67]. In 
+10
+217 contrast, an inverse relationship between fat mass and EI, and hunger and EI was found in 
+218 lean but these associations were weaker and less consistent in overweight and obese 
+219 individuals [64, 66-68]. These findings are in line with the proposition that negative feedback 
+220 signals reflecting energy stores inhibiting food intake are blunted with higher body fat [14, 31]. 
+221 In addition to fat-free mass, RMR has also been shown to predict EI and hunger [1], which led 
+222 to the suggestion that RMR (largely determined by fat-free mass) exerts a tonic day-to-day 
+223 signal for hunger and the drive to eat [69]. It has recently been shown that the associations 
+224 between fat-free mass and EI are mediated by RMR [3] and TDEE [70], suggesting that the
+225 associations between fat-free mass and EI reflect the energetic demands of metabolically 
+226 active tissue. 
+227 In the 70 individuals from Figure 1, we found that both fat-free mass and fat mass were 
+228 significantly positively and inversely associated with meal size, respectively, corroborating 
+229 prior studies in lean individuals [62, 66]. Interestingly, exploratory analyses suggested that the 
+230 strength of the association between fat mass and meal size may be moderated by PA level as 
+231 the association was strongest in those with the highest time spent in moderate-to-vigorous PA 
+232 (MVPA) when divided by sex-stratified tertiles (Figure 2) [Beaulieu et al., unpublished results]. 
+233 However, the mechanisms responsible for this effect are unknown and whether these stem 
+234 from a direct effect of PA on fat mass or indirectly though other physiological, behavioural or 
+235 psychological factors remains to be elucidated.
+
+242 The contribution of PA per se towards the drive to eat is less apparent. In comparison 
+243 to RMR, PAEE makes up a smaller portion of TDEE and is more variable; therefore, its impact 
+244 on EI may be harder to quantify. However, it can be proposed that PAEE (behavioural EE) will 
+245 be a determinant of EI just like RMR (but weaker overall and with great individual variability –
+246 see Figure 1). Recently, a systematic review and a meta-analysis concluded that there is little 
+247 evidence that PA or exercise, whether acute or chronic, leads to changes in EI [71, 72]. 
+248 However, the acute or relatively short-term nature of these studies may not have been long 
+249 enough to demonstrate a compensatory rise in EI with habitual PA [73] and as originally 
+250 demonstrated by Mayer et al. [61]. Indeed, a strong relationship was found between 
+12
+251 objectively-measured PA (activity counts) and EI (food records) in 300 middle-aged women 
+252 [74]. It is important to note that the study by Mayer et al. revealed two separate effects of 
+253 habitual PA level on EI, characterised by a J-shape relationship. In the jute mill workers with 
+254 higher levels of occupational PA (e.g. “medium” to “very heavy” work), daily EE and EI were 
+255 closely matched, but at low levels of occupational PA where body mass was also greater, this 
+256 coupling was lost, such that daily EI exceeded EE in those performing “sedentary” to “light”
+257 work [61]. 
+258
+259 4.1 The zones of appetite control 
+260 Based on the study by Mayer et al. [61], Blundell proposed that appetite control is 
+261 enhanced with increasing levels of PA [75]. In contrast, physical inactivity could not only 
+262 reduce TDEE but also lead to appetite dysregulation, overconsumption and eventually weight 
+263 gain [75]. Indeed, according to Jacobs [76], “the late Henry L Taylor favoured a model that 
+264 linked EI to EE in a J-shaped curve (personal communication, late 1970s). The first part of his 
+265 concept was that EI is in exact homeostasis with EE under conditions of high EE. The second 
+266 part was that there is a failure of homeostasis in a sedentary lifestyle because of its 
+267 accompanying low EE. He postulated that body signals go awry in sedentary lifestyles; when 
+268 a person does no physical work, the body will not recognize that it is being overfed. Sedentary 
+269 persons may lose the innate ability to compensate for inactivity by reducing their eating” 
+270 (p.189). It is important to note here that “sedentary” lifestyles used by this author should in fact 
+271 be interpreted as inactive lifestyle in light of current definitions. Thus, Blundell revisited the 
+272 Mayer J-shaped curve and suggested that individuals with low levels of PA could be 
+273 considered as being within a “non-regulated zone” of appetite control, whereas those with
+274 higher levels of PA could be within a “regulated zone” of appetite control [75]. 
+275 While this model of appetite control and EI along the spectrum of PA levels was 
+276 originally based on limited evidence, it has recently been supported [7, 77]. In a systematic 
+13
+277 review using data from 10 cross-sectional studies that compared EI in active and inactive 
+278 individuals, we plotted standardized EI (z-scores) according to four PA levels ranging from low 
+279 to very high. This analysis revealed a clear J-shape relationship between PA level and EI [7]. 
+280 Similarly, Shook et al. estimated EI based on changes in body composition across quintiles of 
+281 PA in a large sample of young adults and again demonstrated appetite dysregulation in those 
+282 with the lowest PA [77]. 
+283
+284 5. The impact of physical activity and exercise on the mechanisms of appetite control 
+285 Emerging studies are shedding light on the mechanisms contributing to the proposed 
+286 dysregulation of appetite at lower levels of PA and more sensitive appetite control at higher 
+287 levels of PA. These mechanisms may not necessarily be the same along the whole spectrum 
+288 of PA levels. Acutely, exercise has been shown to influence gastric emptying [78], attenuate 
+289 the release of ghrelin and increase the secretion of PYY, GLP-1 and pancreatic polypeptide 
+290 [79]. Chronic exercise may increase the postprandial secretion of GLP-1 and PYY [80]. 
+291 Therefore, habitual PA (and exercise) may interact with food intake to enhance hormonal 
+292 satiety signalling [81]. Moreover, regular PA and exercise training are associated with several 
+293 other physiological adaptations such as improved sensitivity to insulin [82] and leptin [83, 84], 
+294 substrate metabolism [85], and body composition [86], which have been proposed as 
+295 mechanisms involved in food intake and eating behaviour [87, 88]. Evidence suggests that PA 
+296 influences appetite control through a dual-process action which increases the drive to eat but 
+297 also post-meal satiety [89]. Several studies have now demonstrated that physically active 
+298 individuals show better energy compensation than their less active counterparts following 
+299 consumption of preloads differing in energy content such that they reduce EI to offset the 
+300 difference in energy consumed from the preloads [10, 90-94]. This preload-test meal paradigm 
+301 is effective in measuring the strength of satiety [95]. These improvements in satiety may be 
+302 associated with exercise-induced adaptations in episodic satiety signalling [80, 91, 96] or
+303 gastric emptying [97]. In contrast, we have shown that satiation does not appear to be 
+14
+304 influenced by PA level in non-obese individuals when measured with a passive 
+305 overconsumption paradigm comparing ad libitum EI at meals high in fat or carbohydrate [9]. 
+306 However, in overweight and obese individuals, Caudwell et al. [1] showed that exercise 
+307 training led to a reduction in EI at a high-fat/energy dense test meal. This may be associated 
+308 with enhanced satiation, but given the homeostatic and non-homeostatic determinants of food 
+309 intake, may also reflect changes in food hedonics or behavioural traits. 
+310 While there is strong support that habitual PA affects homeostatic mechanisms 
+311 controlling food intake, less is known on its effect on non-homeostatic processes, and their 
+312 contribution to appetite control along the spectrum of PA levels. Indeed, secondary analyses 
+313 from the study from Caudwell et al. [1] revealed a reduction in hedonic wanting for high-fat 
+314 foods relative to low-fat foods (Leeds Food Preference Questionnaire), disinhibition and binge 
+315 eating following exercise training [Beaulieu et al., unpublished results]. Furthermore, another 
+316 study from our group found inverse associations between time spent in MVPA and disinhibition 
+317 and binge eating, but these did not remain significant after controlling for body fat [24]. This 
+318 corroborates a study by Shook et al. who found greater disinhibition in their lowest quintile of 
+319 MVPA but not when controlling for body weight [77], and the aforementioned reduction in 
+320 disinhibition and binge eating score following 12 weeks of exercise training which did not 
+321 remain significant after controlling for change in body fat [Beaulieu et al., unpublished results]. 
+322 These differences in disinhibition and binge eating were not apparent in non-obese individuals 
+323 varying in PA levels [9, 10], suggesting the influence of habitual PA on eating behaviour traits 
+324 may be more strongly influenced by body composition. In terms of food hedonics, differences 
+325 in the rewarding value of foods (liking and wanting) have been observed in lean active 
+326 compared to overweight inactive males [98], but in non-obese individuals, PA level did not 
+327 influence liking and wanting for high-fat food in the hungry or fed states [9, 10]. In inactive 
+328 individuals with overweight and obesity, 12 weeks of exercise training (125-250 kcal per 
+329 exercise session) did not affect liking or wanting [99], whereas another 12-week intervention 
+330 at a higher dose of exercise (500 kcal per exercise session) reduced the hedonic wanting for 
+15
+331 high-fat food independent of changes in body fat [Beaulieu et al. unpublished results]. 
+332 Moreover, habitual (self-reported) PA may differently impact food cravings depending on 
+333 exercise type and sex [100]. These studies suggest there may be differing effects of PA on
+334 non-homeostatic appetite control according to an individual’s body fat status, sex, and dose 
+335 and type of PA. 
+336 Therefore, we can propose that in addition to individuals with non-regulated appetite 
+337 having blunted satiety signalling, excess body fat in these individuals may amplify non338 homeostatic inputs favouring overconsumption. In contrast, individuals with regulated appetite 
+339 with higher levels of PA have enhanced postprandial sensitivity, allowing for EI to be better 
+340 matched to EE in response to hunger and satiety signals. This is demonstrated in an updated 
+341 perspective of the zones of appetite control in Figure 3.
+
