@@ -58,7 +58,7 @@ class Chaining:
             A list of dictionaries representing the system and user messages in the prompt.
         """
         system_role = f'{self.system_role}'
-        user_input = f"""Given the following text: {text} \n {task}"""
+        user_input = f"""Given the following text delimited by triple backticks: ```{text}``` \n {task}"""
         messages = [
         {"role": "system", "content": system_role},
         {"role": "user", "content": user_input},]
