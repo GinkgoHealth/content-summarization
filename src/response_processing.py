@@ -394,8 +394,8 @@ def merge_all_chaining_results(
         ).drop(columns='original summary')
     if pivot == False:
         spreadsheet_columns = [
-            "choice",
             "article_title",
+            "choice",
             "system_role",
             "model",
             "text",
@@ -424,8 +424,8 @@ def merge_all_chaining_results(
             ).drop(columns='preceding summary')
     else:
         spreadsheet_columns = [
-            "choice",
             "article_title",
+            "choice",
             "system_role",
             "model",
             "text",
