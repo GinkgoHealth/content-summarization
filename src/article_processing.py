@@ -88,19 +88,25 @@ def grab_references(
     """
     
     # Create a list of unique article titles in kl_df[kl_reference_column]
-    kl_article_titles = kl_df[kl_reference_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
-    
-    # Filter the references DataFrame based on the article titles in kl_df[kl_reference_column]
-    references_filter = references_df[references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).apply(lambda x: any(article in x.lower() for article in kl_article_titles))
-    
+    kl_article_titles = kl_df[kl_reference_column].str.replace(r'(.+) \d{4} article .*', r'\1', regex=True)
+    kl_article_titles = kl_article_titles.str.replace(r'(.+) \d{4} section .*', r'\1', regex=True)
+    kl_article_titles = kl_article_titles.str.replace(r'(.+) article .*', r'\1', regex=True)
+    kl_article_titles = kl_article_titles.str.replace(r'(.+) section .*', r'\1', regex=True)
+    kl_article_titles = kl_article_titles.str.strip()
+    kl_article_titles = kl_article_titles.str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).str.replace('-', ' ').unique().tolist()
+    print(f'Number of unique articles summarized: {len(kl_article_titles)}')
+    # Filter the references DataFrame based on the article titles in kl_df[kl_reference_column]. Strip colon, extra white space, and hyphens.
+    references_filter = references_df[references_df_column].str.lower().str.replace(
+        ':', '').str.replace('\s+', ' ', regex=True).str.replace('-', ' ').apply(
+        lambda x: any(article in x.lower() for article in kl_article_titles))    
     if type == 'new':
         # Create a list of article titles in references that do not correspond to article titles in kl_df[kl_reference_column]
-        new_references = references_df.loc[~references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
+        new_references = references_df.loc[~references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).str.replace('-', ' ').unique().tolist()
     else:
-        new_references = references_df.loc[references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).unique().tolist()
+        new_references = references_df.loc[references_filter, references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).str.replace('-', ' ').unique().tolist()
     
     # Filter the references DataFrame to show only the rows corresponding to new_references
-    new_references_df = references_df.loc[references_df[references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).isin(new_references)]
+    new_references_df = references_df.loc[references_df[references_df_column].str.lower().str.replace(':', '').str.replace('\s+', ' ', regex=True).str.replace('-', ' ').isin(new_references)]
     
     # If filter_column and filter_string are provided, filter the new_references_df based on the provided criteria
     if filter_string is not None:
