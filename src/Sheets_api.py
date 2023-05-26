@@ -7,7 +7,9 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-
+import json
+import pandas as pd
+import sys
 
 def pull_from_Sheet(data=None, sheet_name='Master', cell_range='', 
     sheets_id_json='../content-summarization/notebooks/google_sheet_id.json',
@@ -119,3 +121,28 @@ def pull_from_Sheet(data=None, sheet_name='Master', cell_range='',
                 filename = f.f_code.co_filename
                 print("An error occurred on line", lineno, "in", filename, ":", error)
         return df
+    
+def pull_kl_results(save=True,
+    pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
+    csv_path=None
+    ):
+    """
+    Get the most updated data from the 'prompt chain results' Google Sheet.
+    
+    Parameters:
+        - save (bool): Whether or not to save the results as pickle/CSV. If True, 
+            runs the `save_output` function.
+        - pickle_path, csv_path (raw string): Where to save the results.
+
+    Returns: DataFrame containing knowledge library prompt chain results.
+    """
+    kl_df = pull_from_Sheet(sheet_name='results', 
+        sheets_id_json='google_sheet_id.json',
+        sheet_key='prompt_chain_sheet')
+    try:
+        if save:
+            save_output(kl_df, description='prompt_chain_results_sheet',
+                pickle_path=pickle_path, csv_path=csv_path)
+    except:
+        print('Unable to save outputs')
+    return kl_df
