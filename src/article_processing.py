@@ -107,6 +107,6 @@ def grab_references(
         # Filter the new_references_df based on the provided criteria
         new_references_df = new_references_df.query(f"{filter_string}")
     
-    print(f'Number of {type} references where {filter_column} {filter_string}: {len(new_references_df)}')
+    print(f'Number of {type} references where {filter_string}: {len(new_references_df)}')
     
     return new_references_df
