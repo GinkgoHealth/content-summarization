@@ -14,6 +14,21 @@ from itertools import product
 import time
 import string
 
+# Create text dictionary
+folder_path = '../text/2023-05-04 2' # ** UPDATE REQUIRED**
+
+encoding='ISO-8859-1'
+subset=None
+
+text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=subset)
+
+# Set parameters
+iteration_id = 1
+n_choices = 5
+pause_per_request=0
+summary_iteration_id = iteration_id
+chatbot_id = iteration_id
+
 # Create prompt lists
 prep_step = [
     "Take the key points and numerical descriptors to",
@@ -58,20 +73,6 @@ relevance_audience = [
     "people who enjoy sports",
     # "people new to resistance training"
 ]
-
-# Create text dictionary
-folder_path = '../text/2023-05-04 2'
-encoding='ISO-8859-1'
-subset=None
-
-text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=subset)
-
-# Set parameters
-iteration_id = 1
-n_choices = 5
-pause_per_request=0
-summary_iteration_id = iteration_id
-chatbot_id = iteration_id
 
 qna_dict = dict()
 chatbot_dict = dict()
