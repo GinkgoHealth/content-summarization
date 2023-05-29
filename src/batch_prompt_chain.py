@@ -16,56 +16,30 @@ import string
 
 # Create prompt lists
 prep_step = [
-    # "Take the key points to",
     "Take the key points and numerical descriptors to",
-    # ""
 ]
 
 summarize_task = [
     "Summarize for a LinkedIn post.",
     "Describe the interesting points to your coworker at the water cooler",
-    # "Create a Tiktok post",
     "Create an Instagram post without hashtags.",
-    # "Summarize the article for a Tiktok post",
-    # "Summarize for a tweet",
-    # "Summarize in an engaging way",
-    # "Summarize the article in under 300 characters",
-]
-
-simple_simplify_task = [
-    # "Use terms a 12-year-old can understand.",
-    "Assume your audience has no science background.",
-    # "Use a fun tone."
-    # "Include the most interesting findings.",
-    # "Include the key take-aways for the reader.",
-    # "Include the implications of the article."
-    # "Include the most interesting findings.",
-    # "Include the key take-aways for the reader.",
-    # "Include the implications of the article."
 ]
 
 user_simplify_task = [
-    # "Use language appropriate for",
-    # "If needed rewrite using terms appropriate for the audience. If not keep it the same. Your audience is",
     """If needed, rewrite the text using terms appropriate for the audience. If not keep it the same.\
     Follow these steps to accomplish this: \
     \n1. Check if the content and language are appropriate for the audience. \
     \n2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
     \n3. Return the final version of the summary to be shown to the audience. \
     \n\nYour audience is""",
-    # "If needed, rewrite using terms appropriate for",
-    # "Use terms a 12-year-old can understand.",
 ]
 
 simplify_audience = [
-    # "",
     # "a lay audience",
     "people without a science background",
 ]
 
 user_relevance_task = [
-    # "Rewrite the summary to include an explanation of how it is relevant for",
-    # "Rewrite the summary to include a statement of how it is relevant for the audience"""
     """Rewrite this summary to include a statement of how it is relevant for the audience. \
         Follow these steps to accomplish this: \
         \n1. Think about why this might be relevant for the audience in the grand scheme of things.\
@@ -77,15 +51,9 @@ user_relevance_task = [
         \n5. Return the final version of the summary to be shown to the audience. \
         \n6. Remove the backticks.
         \n\nYour audience consists of""",
-    # "Add 1-2 sentences to make this relevant for",
-    # "Update the summary with 1-2 sentences to make it relevant for",
-    # "Add 1-2 sentences to make this relevant for older adults."
-    # "Once you are done, add 1-2 sentences to make this relevant for older adults.",
 ]
 
 relevance_audience = [
-    # "lay audience",
-    # "",
     "seniors",
     "people who enjoy sports",
     # "people new to resistance training"
