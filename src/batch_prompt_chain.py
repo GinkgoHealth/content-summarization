@@ -5,6 +5,7 @@ from response_processing import *
 from article_processing import create_text_dict_from_folder
 from file_functions import *
 import time
+import traceback
 
 # Create text dictionary
 folder_path = '../text/2023-06-02 2' # ** UPDATE REQUIRED**
@@ -105,7 +106,9 @@ try:
             csv_path=folder_path,
     )
     print(f'\nCompleted merge_all_chaining_results!:)')
-except:
+except Exception as e:
+    traceback.print_exc()
+    print(f'\nError occurred in line {traceback.extract_tb(sys.exc_info()[2])[-1][1]}: {e}')
     merged_df = merge_chaining_results(
         qna_dict, chatbot_dict, 
         simple_summaries_dict, relevance_dict, iteration_id, 
