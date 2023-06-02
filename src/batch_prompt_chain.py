@@ -7,7 +7,7 @@ from file_functions import *
 import time
 
 # Create text dictionary
-folder_path = '../text/2023-05-04 2' # ** UPDATE REQUIRED**
+folder_path = '../text/2023-06-02 1' # ** UPDATE REQUIRED**
 
 encoding='ISO-8859-1'
 subset=None
@@ -28,8 +28,8 @@ prep_step = [
 
 summarize_task = [
     "Summarize for a LinkedIn post.",
-    "Describe the interesting points to your coworker at the water cooler",
-    "Create an Instagram post without hashtags.",
+    # "Describe the interesting points to your coworker at the water cooler",
+    # "Create an Instagram post without hashtags.",
 ]
 
 user_simplify_task = [
@@ -61,7 +61,7 @@ user_relevance_task = [
 ]
 
 relevance_audience = [
-    "seniors",
+    # "seniors",
     "people who enjoy sports",
     # "people new to resistance training"
 ]

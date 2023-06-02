@@ -1,4 +1,3 @@
-import os
 
 def create_text_dict(text, text_dict=None):
     """

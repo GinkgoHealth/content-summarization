@@ -1,10 +1,8 @@
 import pandas as pd
 import sys
 from file_functions import *
-from datetime import datetime
 import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
-import traceback
 import time
 import re
 from itertools import product
