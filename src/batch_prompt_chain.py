@@ -1,17 +1,10 @@
 import sys
-import pandas as pd
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
 from summary_chain import *
 from response_processing import *
 from article_processing import create_text_dict_from_folder
 from file_functions import *
-from datetime import datetime
-import openai
-import os
-import re
-from itertools import product
 import time
-import string
 
 # Create text dictionary
 folder_path = '../text/2023-05-04 2' # ** UPDATE REQUIRED**
