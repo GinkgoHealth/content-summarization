@@ -63,7 +63,7 @@ user_relevance_task = [
 relevance_audience = [
     # "seniors",
     "people who enjoy sports",
-    "people new to resistance training"
+    # "people new to resistance training"
 ]
 
 qna_dict = dict()
