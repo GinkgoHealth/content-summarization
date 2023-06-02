@@ -7,7 +7,7 @@ from file_functions import *
 import time
 
 # Create text dictionary
-folder_path = '../text/2023-06-02 1' # ** UPDATE REQUIRED**
+folder_path = '../text/2023-06-02 2' # ** UPDATE REQUIRED**
 
 encoding='ISO-8859-1'
 subset=None
