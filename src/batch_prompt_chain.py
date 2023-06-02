@@ -1,11 +1,10 @@
 import sys
 import pandas as pd
-sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
 from summary_chain import *
 from response_processing import *
 from article_processing import create_text_dict_from_folder
-from silvhua import *
+from file_functions import *
 from datetime import datetime
 import openai
 import os

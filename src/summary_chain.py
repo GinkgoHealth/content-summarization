@@ -1,8 +1,6 @@
 import pandas as pd
 import sys
-sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
-sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\portfolio-projects\online-PT-social-media-NLP\src")
-from silvhua import *
+from file_functions import *
 from datetime import datetime
 import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
