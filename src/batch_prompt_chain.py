@@ -17,7 +17,7 @@ text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=
 
 # Set parameters
 iteration_id = 1
-n_choices = 5
+n_choices = 2
 pause_per_request=0
 summary_iteration_id = iteration_id
 chatbot_id = iteration_id
