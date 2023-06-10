@@ -8,7 +8,7 @@ import time
 import traceback
 
 # Create text dictionary
-folder_path = '../text/2023-06-02 2' # ** UPDATE REQUIRED**
+folder_path = '../text/2023-06-02 5' # ** UPDATE REQUIRED**
 
 encoding='ISO-8859-1'
 subset=None
@@ -62,9 +62,9 @@ user_relevance_task = [
 ]
 
 relevance_audience = [
-    # "seniors",
-    "people who enjoy sports",
-    # "people new to resistance training"
+    "seniors",
+    # "people who enjoy sports",
+    "people new to resistance training"
 ]
 
 qna_dict = dict()
