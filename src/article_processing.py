@@ -30,6 +30,7 @@ def create_text_dict(text, text_dict=None):
         for value in text:
             text_dict[text_id] = value
             text_id += 1
+    print(f'\nKeys for text dict: {text_dict.keys()}\n')
     return text_dict
 
 def create_text_dict_from_folder(folder_path, encoding='ISO-8859-1', subset=None):
@@ -58,6 +59,7 @@ def create_text_dict_from_folder(folder_path, encoding='ISO-8859-1', subset=None
                 all_files.append(f.read())  # read the entire file
             else:
                 all_files.append(f.read(subset))  # read the specified subset of the file
+
     return create_text_dict(all_files)
 
 def grab_references(
