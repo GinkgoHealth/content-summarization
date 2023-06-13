@@ -366,67 +366,6 @@ def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edi
 
     return chaining_bot_dict
 
-def create_qna_df(
-    qna_dict, chatbot_dict, iteration_id, chatbot_id=None, 
-    ):
-    """
-    Create DataFrame from initial ChatGPT summaries.
-    """
-    dfs_list = []
-    chatbot_id = iteration_id if chatbot_id == None else chatbot_id
-    for chatbot_key in chatbot_dict[chatbot_id].keys():
-        print(f'Processing {chatbot_key}...')
-        dfs_list.append(pd.DataFrame(
-            chatbot_dict[chatbot_id][chatbot_key].qna, 
-            index=[choice for choice in range(1, len(chatbot_dict[chatbot_id][chatbot_key].qna['summary'])+1)])
-            )
-    
-    qna_df = pd.concat(dfs_list).reset_index(names=['choice'])
-    columns = qna_df.columns.tolist()
-    columns.remove('choice')
-    columns.insert(3, 'choice') # Move 'choice' column
-
-    # qna_df['date'] = pd.Series('2023-06-12', index=qna_df.index)
-    # columns.insert(0, 'date')
-
-    qna_dict[iteration_id] = qna_df[columns]
-    print(f'Original summaries DataFrame shape: {qna_df.shape}')
-    print(f'\tOriginal summaries Dataframe columns: {qna_df.columns}')
-    return qna_dict
-
-def spreadsheet_columns(qna_dict, chatbot_dict, iteration_id, chatbot_id=None,
-    save=False, filename=None, path=folder_path
-    ):
-    """
-    Update column names to include corresponding column in a spreadsheet (e.g. A, B, C)
-    """
-    qna_dict = create_qna_df(
-        qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, 
-        )
-    qna_dict[iteration_id]['date'] = qna_dict[iteration_id]['date'].str.replace(r'_\d*', r'', regex=True)
-    spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
-    qna_dict[iteration_id].columns = [
-        f'{spreadsheet_columns[index]}: {column}' for index, column in enumerate(qna_dict[iteration_id].columns)
-        ]
-    str_columns = qna_dict[iteration_id].dtypes[qna_dict[iteration_id].dtypes == 'O'].index.tolist()
-    for column in str_columns:
-        qna_dict[iteration_id][column] = qna_dict[iteration_id][column].str.strip()
-    if save:
-        description = filename if filename else 'batch_Chaining_summaries_initial'
-        try:
-            save_csv(
-                qna_dict[iteration_id], filename=description, append_version=True,
-                path=path, index=False
-                )
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            file = f.f_code.co_filename
-            print(f'An error occurred on line {lineno} in {file}: {error}')
-            print('[spreadsheet_columns()] Unable to save original summaries DataFrame')
-    return qna_dict
-
 def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chaining_bot_dict, iteration_id,
     summary_iteration_id=None, n_choices=None, pause_per_request=0,
     prompt_column='simplify', 
