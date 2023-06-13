@@ -157,7 +157,7 @@ def create_qna_df(
     return qna_dict
 
 def spreadsheet_columns(qna_dict, chatbot_dict, iteration_id, chatbot_id=None,
-    save=False, filename=None, path=folder_path
+    save=False, filename=None, path=''
     ):
     """
     Update column names to include corresponding column in a spreadsheet (e.g. A, B, C)
@@ -550,11 +550,11 @@ def merge_all_chaining_results(
             
     return chain_results_dict
 
-def revive_chatbot(chatbot):
+def revive_chatbot(chatbot, folder_path):
     """
     Convert the dictionary of a chatbot attributes into a Chaining object.
     """
-    new_chatbot = Chaining(chatbot['text'])
+    new_chatbot = Chaining(chatbot['text'], folder_path)
     print(f'Article title: {chatbot["article_title"]}')
     for key in chatbot.keys():
         setattr(new_chatbot, key, chatbot[key])
@@ -582,7 +582,7 @@ def revive_chatbot(chatbot):
     return new_chatbot
 
 
-def revive_chatbot_dict(chatbot_dict, texts='all'):
+def revive_chatbot_dict(chatbot_dict, folder_path, texts='all'):
     """
     Convert the dictionary of dictionaries of chatbot attributes into a dictionary of Chaining objects.
 
@@ -601,9 +601,29 @@ def revive_chatbot_dict(chatbot_dict, texts='all'):
     else:
         raise TypeError("The `texts` parameter must be 'all' or a list of integers")
 
-    new_chatbot_dict = {text_prompt: revive_chatbot(chatbot_dict[text_prompt]) for text_prompt in text_prompts_to_revive}
+    new_chatbot_dict = {text_prompt: revive_chatbot(chatbot_dict[text_prompt], folder_path) for text_prompt in text_prompts_to_revive}
     print(f'\n\nNew chatbot dict keys: {[key for key in new_chatbot_dict]}')
     return new_chatbot_dict
+
+def revive_chatbot_dict_json(filename, filepath, iteration_id=0, chatbot_dict=None, texts='all'):
+    """
+    Convert the json file of chatbot attributes into a dictionary of Chaining objects.
+
+    Parameters:
+        - filename (str): Filename of JSON file.
+        - filepath (raw string or str): Use the format r'<path>' or relative path.
+        - iteration_id (numeric or str): Key for the loaded chatbot dictionary. Default is 0.
+        - chatbot_dict (dict): dictionary of dictionaries of chatbot attributes. If None, new one created.
+        - texts (list or 'all'): list of integers corresponding to the text prompts to revive. 
+            If 'all', all text prompts will be revived.
+
+    See "2023-05-01 test new prompts" notebook for example usage.
+    
+    """
+    jsonfile = load_json(filename, filepath)
+    chatbot_dict = dict() if chatbot_dict == None else chatbot_dict
+    chatbot_dict[iteration_id] = revive_chatbot_dict(jsonfile, folder_path)
+    return chatbot_dict
 
 def process_chaining_results2(
         chain_results_dict, chatbot_dict, iteration_id, results_type='simple',
@@ -841,7 +861,7 @@ def process_chaining_results2(
             
     return chain_results_dict
 
-def sample_Chaining_attr(chaining_dict=chaining_dict, iteration_id=iteration_id):
+def sample_Chaining_attr(chaining_dict, iteration_id):
     """
     Look at the first set of attributes/results from the Chaining instances.
 
