@@ -24,13 +24,27 @@ chatbot_id = iteration_id
 
 # Create prompt lists
 prep_step = [
-    "Take the key points and numerical descriptors to",
+    "Think about why this might be relevant for the audience in the grand scheme of things.\
+    \nIdentify 1 or 2 key concepts from this article that would make interesting or helpful health content. \
+    Exclude details that do not add value to the audience.\
+    \nBased on the key concepts from the previous steps, extract the key points and numerical descriptors to",
 ]
 
 summarize_task = [
-    "Summarize for a LinkedIn post.",
+    "summarize for a LinkedIn post.",
     # "Describe the interesting points to your coworker at the water cooler",
     # "Create an Instagram post without hashtags.",
+]
+edit_task = [
+    "\nIf applicable, include a brief description of the research participants, such as age and sex.\
+    Otherwise, you can skip this step.\
+    \nEvaluate whether or not your writing may be confusing or redundant. \
+    \nIf so, re-write it so it is clear and concise. Otherwise, keep it the same. \
+    \nCreate a journalistic headline to hook the audience.\
+    \nReturn your response in this format:\
+    \n<headline>\n\n<summary>\
+    \nwhere the summary is in paragraph form.\
+    \nDo not label the headline and summary.",
 ]
 
 user_simplify_task = [
@@ -61,6 +75,8 @@ user_relevance_task = [
         \n\nYour audience consists of""",
 ]
 
+system_role = "You are a helpful assistant."
+
 relevance_audience = [
     "seniors",
     # "people who enjoy sports",
@@ -74,10 +90,15 @@ relevance_dict = dict()
 chain_results_dict = dict()
 
 # Create initial summaries
-qna_dict, chaining_dict = batch_summarize_chain(
-    text_dict, prep_step, summarize_task, qna_dict, chatbot_dict, 
+chatbot_dict = batch_summarize_chain(
+    text_dict, folder_path, prep_step, summarize_task, edit_task, chatbot_dict,
+    system_role=system_role, 
     n_choices=n_choices, pause_per_request=pause_per_request,
-    iteration_id=iteration_id
+    iteration_id=iteration_id, save_outputs=False
+    )
+
+qna_dict = spreadsheet_columns(
+    qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, save=False
     )
 
 time.sleep(pause_per_request)
@@ -86,14 +107,14 @@ time.sleep(pause_per_request)
 simplify_prompts = user_simplify_task
 audience = simplify_audience
 simple_summaries = prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, 
-    chaining_dict[iteration_id], iteration_id,
+    chatbot_dict[iteration_id], iteration_id,
     n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
     )
 
 # Add relevance
 relevance_prompts = user_relevance_task
 relevance = prompt_chaining_dict(relevance_prompts, relevance_audience, relevance_dict, 
-    chaining_dict[summary_iteration_id], iteration_id, prompt_column='relevance', 
+    chatbot_dict[summary_iteration_id], iteration_id, prompt_column='relevance', 
     n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
     )
 
