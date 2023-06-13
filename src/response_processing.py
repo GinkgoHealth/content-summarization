@@ -128,62 +128,6 @@ def process_chaining_results(
             
     return chain_results_dict
 
-def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='batch_Chaining_attributes', 
-        ext='sav', save_json=True, append_version=True, 
-        pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
-        json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\jsons'
-    ):
-    """
-    Convert the class instance to a dictionary whose values are the instance attributes.
-    Export object as a pickle and/or JSON file.
-    Parameters:
-    - chatbot_dict_iteration: A dictionary whose items are class instances.
-    - filename (str): Root of the filename.
-    - description (str): Parameter in `save_output` function.
-    - ext (str): Extension to append (do not include dot as it will be added). Default is 'sav'.
-    - pickle_path, json_path (raw string): Use the format r'<path>'. If None, file is saved in same director.
-    - append_version (bool): If true, append date and time to end of filename.
-    """
-    chatbot_dictionary = {}
-
-
-    for key, item in chatbot_dict_iteration.items():
-        chatbot_dictionary[key] = dict()
-        print(key)
-        for attr, value in vars(item).items():
-            print(f'\t{attr}')
-            chatbot_dictionary[key][attr] = value
-        chatbot_dictionary[key]['date_created'] = f'{datetime.now().strftime("%Y-%m-%d_%H%M")}'
-    if ext:
-        try:
-            save_output(
-                chatbot_dictionary, filename=filename, description=description,
-                append_version=append_version, csv_path=None, pickle_path=pickle_path
-            )
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print(f'Unable to pickle chatbot dictionary')
-        print('Dictionary keys:', chatbot_dictionary.keys())
-    if save_json==True:
-        try:
-            save_to_json(
-                chatbot_dictionary, 
-                filename=filename, description=description,
-                append_version=append_version, path=json_path
-            )
-        except Exception as error:
-            exc_type, exc_obj, tb = sys.exc_info()
-            f = tb.tb_frame
-            lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print(f'Unable to save chatbot dictionary to JSON')
-    return chatbot_dictionary
-
 def merge_chaining_results(
         qna_dict, chatbot_dict, 
         simple_summaries_dict, relevance_dict, iteration_id, 
