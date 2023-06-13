@@ -1,12 +1,14 @@
 import pandas as pd
 import sys
-from file_functions import *
 import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
+from file_functions import *
 import time
 import re
 from itertools import product
 import openai
+import string
+
 
 class Chaining:
     """
@@ -29,9 +31,11 @@ class Chaining:
         ChatGPT model to use. Default is "gpt-3.5-turbo".
     """
 
-    def __init__(self, text, model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
-        system_role="You are an expert at science communication."):
+    def __init__(self, text, folder_path, system_role="You are a helpful assistant.", 
+            model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
+        ):
         self.text = text
+        self.folder = re.sub(r'(?:.*\/)?(.*)$', r'\1', folder_path)
         self.system_role = system_role
         self.temperature = temperature
         self.max_tokens = max_tokens
@@ -92,7 +96,7 @@ class Chaining:
         print('\tDone sending request to GPT-3')
         return response
 
-    def summarize(self, task, prep_step=None, n_choices=5):
+    def summarize(self, task, prep_step=None, edit_task=None, n_choices=5):
         """
         Generates summaries from the text using ChatGPT.
 
@@ -102,6 +106,8 @@ class Chaining:
             The task to include in the ChatGPT prompt.
         prep_step : str, optional
             A preparatory step for the task, if applicable.
+        edit_task : str, optional
+            The final step for the task, if applicable.
         n_choices : int, optional
             Number of ChatGPT responses to generate. Default is 5.
 
@@ -110,18 +116,21 @@ class Chaining:
         qna : dict
             A dictionary representing the summarization task and the generated summaries.
         """
-        chatbot = Chaining(self.text)
-        full_task = f'{prep_step} {task}'
+        chatbot = Chaining(self.text, self.folder)
+        full_task = f'{prep_step} {task} {edit_task}'
         prompt = chatbot.create_prompt(full_task, self.text)
         firstline_pattern = r'\s?(\S*)(\n*)(.+)'
         title = re.match(firstline_pattern, self.text)[0]
         self.qna = dict() 
+        self.qna['date'] = datetime.now().strftime("%Y-%m-%d %H%M")
+        self.qna['folder'] = self.folder
         self.qna['article_title'] = title
         self.qna['system_role'] = self.system_role
         self.qna['model'] = self.model
         self.qna[f'text'] = self.text
         self.qna['prep step'] = prep_step
         self.qna['summarization task'] = task
+        self.qna['edit task'] = edit_task
         self.qna['full summarization task'] = full_task
         self.summaries_dict = dict()
         self.article_title = title
@@ -145,10 +154,10 @@ class Chaining:
                 self.summaries_dict[f'response_{"{:02d}".format(index+1)}'] = choice["message"]["content"]
             self.qna.setdefault('summary', [])
             self.qna['summary'].extend([value for value in self.summaries_dict.values()])
-            self.summaries_dict['prep_step'] = prep_step
-            self.summaries_dict['task'] = task
-            self.summaries_dict['prompt'] = full_task
-            return self.qna
+            # self.summaries_dict['prep_step'] = prep_step
+            # self.summaries_dict['task'] = task
+            # self.summaries_dict['edit_task'] = edit_task
+            # self.summaries_dict['prompt'] = full_task
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
@@ -156,8 +165,6 @@ class Chaining:
             filename = f.f_code.co_filename
             print("An error occurred on line", lineno, "in", filename, ":", error)
             print('\t**Error with response parsing**')
-            return self.qna
-
 
     def simplify(self, simplify_task, audience, 
                     model="gpt-3.5-turbo", temperature=0.0, n_choices=1, 
@@ -274,19 +281,16 @@ class Chaining:
                 time.sleep(pause_per_request)
         return self.relevance_dict
     
-def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaining_bot_dict, iteration_id, 
-    temperature=0.7, pause_per_request=0, n_choices=5,
-    save_outputs=False, filename=None, 
-    csv_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output',
-    pickle_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\pickles',
-    json_path=r'C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\output\json'
+def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edit_task, chaining_bot_dict, iteration_id, 
+    system_role=None, temperature=0.7, pause_per_request=0, n_choices=5,
+    save_outputs=False, csv_path=folder_path, pickle_path=folder_path, json_path=folder_path
     ):
     """
     Summarize multiple texts using the same prompts.
     Parameters:
         - text_dict (dict) A dictionary containing the text data to be summarized. 
             The keys of the dictionary are the text IDs and the values are the full texts.
-        - prep_step, summarize_task (list)
+        - prep_step, summarize_task, edit task (list)
         - qna_dict: Dictionary to store the input and outputs.
         - iteration_id (int, float, or string): Unique ID serving as the key for results in the qna_dict
 
@@ -307,29 +311,30 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
 
         Returns:
         --------
-        qna_dict: dict
-            A dictionary containing the results of the summarization process. The keys of the dictionary are the iteration IDs and the values are pandas dataframes containing the summaries for each text ID
+        chaining_bot_dict: dict
+            A dictionary containing the Chaining instances. 
+                The keys of the dictionary are the iteration IDs and the values are dictionaries whose
+                values are the Chaining instances.
 
     """
-    temp_qna_dict = dict()
-    qna_dfs_list = []
-    prompts_df = pd.DataFrame(product(prep_step, summarize_task), 
-        columns=['prep_step', 'summarize_task'])
+    prompts_df = pd.DataFrame(product(prep_step, summarize_task, edit_task), 
+        columns=['prep_step', 'summarize_task', 'edit_task'])
 
     chaining_bot_dict[iteration_id] = dict()
     for key in text_dict:
         text = text_dict[key]
-        temp_qna_dict[key] = dict()
         for index in prompts_df.index:
             print(f'**Text #{key} prompt #{index} of {prompts_df.index.max()}**')
             task = prompts_df.loc[index, 'summarize_task']
             prep_step = prompts_df.loc[index, 'prep_step']
+            edit_task = prompts_df.loc[index, 'edit_task']
             try:
                 print('Creating Chaining class instance')
-                chatbot = Chaining(text, temperature=temperature)
+                chatbot = Chaining(
+                    text, folder_path=folder_path, temperature=temperature, system_role=system_role)
                 print('Chaining class instance created')
-                temp_qna_dict[key][index] = chatbot.summarize(
-                    task=task, prep_step=prep_step, n_choices=n_choices,
+                chatbot.summarize(
+                    task=task, prep_step=prep_step, edit_task=edit_task, n_choices=n_choices
                     )
                 chaining_bot_dict[iteration_id][f'text{key}_prompt{"{:02d}".format(index)}'] = chatbot
                 print('\t...Success!')
@@ -340,51 +345,87 @@ def batch_summarize_chain(text_dict, prep_step, summarize_task, qna_dict, chaini
                 exc_type, exc_obj, tb = sys.exc_info()
                 f = tb.tb_frame
                 lineno = tb.tb_lineno
-                filename = f.f_code.co_filename
-                print("An error occurred on line", lineno, "in", filename, ":", error)
+                file = f.f_code.co_filename
+                print("An error occurred on line", lineno, "in", file, ":", error)
                 print('\t...Error making chatbot request')
                 break
-        
+    if save_outputs:
         try:
-            updated_qna_dict = (temp_qna_dict[key])
+            save_instance_to_dict(
+                chaining_bot_dict[iteration_id], 
+                description=f'batch_Chaining_attributes_initial',
+                ext=None, json_path=json_path
+                )
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
             lineno = tb.tb_lineno
-            filename = f.f_code.co_filename
-            print("An error occurred on line", lineno, "in", filename, ":", error)
-            print('Error concatenating prompts DataFrame')
-            return temp_qna_dict, chaining_bot_dict
-        qna_dfs_list.append(updated_qna_dict)
-    try:
-        qna_dict[iteration_id] = pd.concat([
-            pd.DataFrame(
-                data, index=[choice for choice in range(1, len(data['summary'])+1)]
-            ) for dictionary in qna_dfs_list for data in dictionary.values()
-        ])
-        qna_dict[iteration_id].reset_index(inplace=True, names=['choice'])
-        print('DataFrame shape:', qna_dict[iteration_id].shape)
-        if save_outputs:
-            try:
-                save_output(
-                    qna_dict[iteration_id], description='batch_Chaining_summaries',
-                    csv_path=csv_path, pickle_path=pickle_path)
-                save_instance_to_dict(
-                    chaining_bot_dict[iteration_id], 
-                    description=f'batch_Chaining_attributes',
-                    pickle_path=pickle_path, json_path=json_path
-                    )
-            except:
-                print('[prompt_chaining_dict()] Unable to save outputs')
-    except Exception as error:
-        exc_type, exc_obj, tb = sys.exc_info()
-        f = tb.tb_frame
-        lineno = tb.tb_lineno
-        filename = f.f_code.co_filename
-        print("An error occurred on line", lineno, "in", filename, ":", error)
-        qna_dict[iteration_id] = qna_dfs_list
-        print('Error creating DataFrame; dictionary returned instead')
-    return qna_dict, chaining_bot_dict
+            file = f.f_code.co_filename
+            print(f'An error occurred on line {lineno} in {file}: {error}')
+            print('[batch_summarize_chain()] Unable to save API response')
+
+    return chaining_bot_dict
+
+def create_qna_df(
+    qna_dict, chatbot_dict, iteration_id, chatbot_id=None, 
+    ):
+    """
+    Create DataFrame from initial ChatGPT summaries.
+    """
+    dfs_list = []
+    chatbot_id = iteration_id if chatbot_id == None else chatbot_id
+    for chatbot_key in chatbot_dict[chatbot_id].keys():
+        print(f'Processing {chatbot_key}...')
+        dfs_list.append(pd.DataFrame(
+            chatbot_dict[chatbot_id][chatbot_key].qna, 
+            index=[choice for choice in range(1, len(chatbot_dict[chatbot_id][chatbot_key].qna['summary'])+1)])
+            )
+    
+    qna_df = pd.concat(dfs_list).reset_index(names=['choice'])
+    columns = qna_df.columns.tolist()
+    columns.remove('choice')
+    columns.insert(3, 'choice') # Move 'choice' column
+
+    # qna_df['date'] = pd.Series('2023-06-12', index=qna_df.index)
+    # columns.insert(0, 'date')
+
+    qna_dict[iteration_id] = qna_df[columns]
+    print(f'Original summaries DataFrame shape: {qna_df.shape}')
+    print(f'\tOriginal summaries Dataframe columns: {qna_df.columns}')
+    return qna_dict
+
+def spreadsheet_columns(qna_dict, chatbot_dict, iteration_id, chatbot_id=None,
+    save=False, filename=None, path=folder_path
+    ):
+    """
+    Update column names to include corresponding column in a spreadsheet (e.g. A, B, C)
+    """
+    qna_dict = create_qna_df(
+        qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, 
+        )
+    qna_dict[iteration_id]['date'] = qna_dict[iteration_id]['date'].str.replace(r'_\d*', r'', regex=True)
+    spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
+    qna_dict[iteration_id].columns = [
+        f'{spreadsheet_columns[index]}: {column}' for index, column in enumerate(qna_dict[iteration_id].columns)
+        ]
+    str_columns = qna_dict[iteration_id].dtypes[qna_dict[iteration_id].dtypes == 'O'].index.tolist()
+    for column in str_columns:
+        qna_dict[iteration_id][column] = qna_dict[iteration_id][column].str.strip()
+    if save:
+        description = filename if filename else 'batch_Chaining_summaries_initial'
+        try:
+            save_csv(
+                qna_dict[iteration_id], filename=description, append_version=True,
+                path=path, index=False
+                )
+        except Exception as error:
+            exc_type, exc_obj, tb = sys.exc_info()
+            f = tb.tb_frame
+            lineno = tb.tb_lineno
+            file = f.f_code.co_filename
+            print(f'An error occurred on line {lineno} in {file}: {error}')
+            print('[spreadsheet_columns()] Unable to save original summaries DataFrame')
+    return qna_dict
 
 def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chaining_bot_dict, iteration_id,
     summary_iteration_id=None, n_choices=None, pause_per_request=0,
