@@ -840,3 +840,20 @@ def process_chaining_results2(
             print(f'Unable to save {"simple summaries" if results_type=="simple" else "added relevance"} chatbot')
             
     return chain_results_dict
+
+def sample_Chaining_attr(chaining_dict=chaining_dict, iteration_id=iteration_id):
+    """
+    Look at the first set of attributes/results from the Chaining instances.
+
+    Parameters:
+        - chaining_dict (dict): Dictionary of Chaining instances, 
+            simple_summaries, or added relevance summaries.
+        - iteration_id (int or float): iteration_id of when the scripts were run.
+
+    Returns: 
+        (dict) Results from the first text and prompt combination.
+    """
+    if type(chaining_dict[iteration_id]) == dict:
+        return (vars(chaining_dict[iteration_id][next(iter(chaining_dict[iteration_id]))]))
+    elif type(chaining_dict[iteration_id]) == list:
+        return (chaining_dict[iteration_id][0][next(iter(chaining_dict[iteration_id][0]))])
