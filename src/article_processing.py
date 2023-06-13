@@ -30,7 +30,7 @@ def create_text_dict(text, text_dict=None):
         for value in text:
             text_dict[text_id] = value
             text_id += 1
-    print(f'\nKeys for text dict: {text_dict.keys()}\n')
+    print(f'\nKeys for text_dict: {text_dict.keys()}\n')
     return text_dict
 
 def create_text_dict_from_folder(folder_path, encoding='ISO-8859-1', subset=None):
@@ -53,7 +53,8 @@ def create_text_dict_from_folder(folder_path, encoding='ISO-8859-1', subset=None
     """
     import os
     all_files = []
-    for filename in os.listdir(folder_path):
+    files_to_get = [file for file in os.listdir(folder_path) if file.endswith(".txt")]
+    for filename in files_to_get:
         with open(os.path.join(folder_path, filename), 'r', encoding=encoding) as f:
             if subset is None:
                 all_files.append(f.read())  # read the entire file
