@@ -399,3 +399,18 @@ def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chai
   
     simple_summaries_dict[iteration_id] = simple_summaries_master_list
     return simple_summaries_dict
+
+def openai_models(env="api_openai", query='gpt'):
+    """
+    List the availabel OpenAI models.
+    Parameters:
+        - env (str): Name of environmental variable storing the OpenAI API key.
+        - query (str): Search term for filtering models.
+    """
+    openai.api_key = os.getenv(env)
+    response = openai.Model.list()
+    filtered_models = [model for model in response['data'] if model['id'].find(query) != -1]
+
+    for item in filtered_models:
+        print(item['id'])
+    return filtered_models
