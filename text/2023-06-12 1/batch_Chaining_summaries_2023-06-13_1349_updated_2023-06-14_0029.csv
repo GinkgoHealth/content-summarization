@@ -1,0 +1,1113 @@
+A: date,B: folder,C: article_title,D: choice,E: system_role,F: model,G: text,H: prep step,I: summarization task,J: edit task,K: full summarization task,L: summary,M: original summary content rating,N: original summary language rating,O: top summary,P: simple summary choice,Q: audience,R: simplify task,S: full simplify task,T: simple summary,U: simple summary content rating,V: simple summary language rating,W: top simple summary,X: relevance audience 1,Y: add relevance task people who enjoy sports,Z: full relevance task people who enjoy sports,AA: summary: people who enjoy sports,AB: added relevance content rating,AC: added relevance language rating,AD: top added relevance,AE: relevance audience 2,AF: add relevance task seniors,AG: full add relevance task seniors,AH: summary: seniors
+2023-06-14 0029,2023-06-12 1,Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial,1,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial
+Discussion
+This nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalised older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. We found no group difference in all cause mortality.
+Most interventions aimed at reducing fracture risk target a drug therapy to people with osteoporosis because they are at high risk of fracture. This approach confers a large benefit to the individual and does so cost effectively, because few people need to be treated to avert one event. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community.
+The population burden of fracturesthe number of events, morbidity, mortality, and cost to the communityarises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual.17 For example, most fragility fractures in the community arise among women with osteopenia (bone mineral density T score 2.5 to 1 SD) because they form the largest segment of the community.18 Likewise, most fractures attributable to nutritional inadequacy arise among the great many people with intakes of calcium and protein that are below recommended levels.19 This nutritional inadequacy confers a small attributable risk to the individual but accounts for a large attributable fraction of the fracture burden in the community as a whole. This is the Geoffrey Rose prevention paradoxa community based approach producing a small benefit to an individual may still confer a large benefit to the community.17 Safety is essential because most individuals treated may derive little or no benefit from the intervention. For example, the Dietary Approach to Stop Hypertension study reduced blood pressure by replacing a western diet with a diet rich in fruit, vegetables, and low fat dairy foodsan approach associated with fewer cardiovascular events.20
+Comparison with other studies
+Most nutrition based studies assessing antifracture efficacy in aged care residents and people in the community used pharmacological doses of calcium with or without vitamin D.21 In a meta-analysis of 17 of these studies, only two studies reported a reduction in fracture riska study of nursing home residents with calcium intakes <600 mg/day and vitamin D concentrations <50 nmol/L and a community based study in women and men ?65 years of age with mean calcium intakes of 700 mg/day.21 In the remaining 15 studies, poor compliance, large numbers of dropouts, and a low prevalence of the risk factor may have contributed to the null findings.2223 Benefits are unlikely if the prevalence of a risk factor (such as inadequate calcium and protein intakes) is low.24 For example, in the meta-analysis, reduction in fracture risk reported with treatment was confined to the 7272 individuals with calcium intakes <700 mg/day (risk ratio 0.80, 95% confidence interval 0.71 to 0.89), not the 45?241 individuals with calcium intakes above 700 mg daily.21 The reduction in fracture risk observed with calcium and protein rich foods in this study may have been the result of attention to several of the above factors. Compliance was optimised by supervised provision and consumption of the foods. Participants lost to follow-up were replaced by newly admitted residents. We intentionally targeted a cohort at high risk for fracture in whom low calcium and protein intakes were common and so were likely to partly contribute to the already high fracture burden in this community.
+Mechanisms of fracture risk reduction
+This nutritional intervention produced two unanticipated novel observations. The risk reduction for falls and fractures was detected by three and five months, respectively, and the relative risk reduction for fractures was similar to that found in trials using potent antiresorptive therapy to treat people at high risk due to osteoporosis. The two most likely explanations for each of these observations is a risk reduction for falls and slowing progression of bone fragility. Insulin-like growth factor 1 increased in the intervention group only, whereas the decrease in appendicular lean mass was confined to controls, consistent with the notion that protein intakes of 1-1.5 g/kg/day is needed to prevent protein catabolism and preserve or increase muscle mass in older adults, particularly those at risk of malnutrition or frailty.25 The increase in serum C terminal telopeptide of type 1 collagen and deterioration in tibial and radial total volumetric bone mineral density in controls was not seen in the intervention group, consistent with slowing of bone loss and slowing of microstructural deterioration.26 These changes were modest, but slowing microstructural deterioration disproportionately reduces progression of bone fragility because fragility increases as a power function to the bone loss producing it.27
+Mortality did not differ between the groups. Some, but not all, studies suggest that milk consumption is associated with increased mortality but consumption of yoghurt and cheese (fermented foods) with reduced mortality and favourable blood lipid profiles.282930 Fermented and non-fermented dairy foods were used during the intervention. Milk consumption did not differ between the intervention and control groups (data not shown).
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","High calcium and protein intake in institutionalised older adults reduces risk of fractures and falls
+
+A study found that increasing calcium and protein intake in institutionalised older adults with sufficient vitamin D levels was associated with a 33% reduction in risk of fractures, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls compared to controls. The intervention used high calcium and high protein dairy foods. Most interventions for reducing fracture risk target those with osteoporosis, but this approach may not reduce the burden of fractures in the community. The study targeted a cohort at high risk for fractures and low calcium and protein intake. Compliance was optimised by supervised provision and consumption of the foods. The risk reduction for falls and fractures was detected by three and five months, respectively. The increase in protein intake may help prevent protein catabolism and preserve or increase muscle mass in older adults.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","High Calcium and Protein Intake Can Reduce Fracture and Fall Risk in Older Adults
+
+A recent study found that increasing calcium and protein intake in older adults living in care homes, who have sufficient vitamin D levels, can reduce the risk of fractures by 33%, hip fractures by 46%, and falls by 11% compared to those who did not receive the intervention. The study used high calcium and high protein dairy foods, which were provided and consumed under supervision to ensure compliance. The risk reduction for falls and fractures was detected within three and five months, respectively. This approach may be more effective in reducing the burden of fractures in the community than interventions that target only those with osteoporosis. Additionally, the increase in protein intake may help prevent protein breakdown and preserve or increase muscle mass in older adults.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","High Calcium and Protein Intake Reduces Fracture and Fall Risk in Older Adults: A Study Relevant for Active Individuals
+
+A recent study found that increasing calcium and protein intake in institutionalised older adults with sufficient vitamin D levels was associated with a significant reduction in the risk of fractures and falls. The intervention used high calcium and high protein dairy foods, which may help prevent protein catabolism and preserve or increase muscle mass in older adults. This study is particularly relevant for active individuals who want to maintain their bone health and reduce their risk of fractures and falls. The risk reduction for falls and fractures was detected by three and five months, respectively, making this a promising approach for those at high risk for fractures and low calcium and protein intake. Compliance was optimised by supervised provision and consumption of the foods. This approach may be more effective than targeting only those with osteoporosis, as it addresses a cohort at high risk for fractures and low calcium and protein intake.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","High Calcium and Protein Intake Reduces Fracture and Fall Risk in Older Adults
+
+A recent study found that increasing calcium and protein intake in institutionalized older adults can significantly reduce the risk of fractures and falls. The intervention used high calcium and high protein dairy foods, which resulted in a 33% reduction in fracture risk, a 46% reduction in hip fracture risk, and an 11% reduction in fall risk compared to controls. This is particularly relevant for seniors who are at a higher risk of falls and fractures. The increase in protein intake may also help preserve or increase muscle mass in older adults. The study targeted a cohort at high risk for fractures and low calcium and protein intake, and compliance was optimized by supervised provision and consumption of the foods. The risk reduction for falls and fractures was detected by three and five months, respectively."
+2023-06-14 0029,2023-06-12 1,Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial,1,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial
+Discussion
+This nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalised older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. We found no group difference in all cause mortality.
+Most interventions aimed at reducing fracture risk target a drug therapy to people with osteoporosis because they are at high risk of fracture. This approach confers a large benefit to the individual and does so cost effectively, because few people need to be treated to avert one event. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community.
+The population burden of fracturesthe number of events, morbidity, mortality, and cost to the communityarises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual.17 For example, most fragility fractures in the community arise among women with osteopenia (bone mineral density T score 2.5 to 1 SD) because they form the largest segment of the community.18 Likewise, most fractures attributable to nutritional inadequacy arise among the great many people with intakes of calcium and protein that are below recommended levels.19 This nutritional inadequacy confers a small attributable risk to the individual but accounts for a large attributable fraction of the fracture burden in the community as a whole. This is the Geoffrey Rose prevention paradoxa community based approach producing a small benefit to an individual may still confer a large benefit to the community.17 Safety is essential because most individuals treated may derive little or no benefit from the intervention. For example, the Dietary Approach to Stop Hypertension study reduced blood pressure by replacing a western diet with a diet rich in fruit, vegetables, and low fat dairy foodsan approach associated with fewer cardiovascular events.20
+Comparison with other studies
+Most nutrition based studies assessing antifracture efficacy in aged care residents and people in the community used pharmacological doses of calcium with or without vitamin D.21 In a meta-analysis of 17 of these studies, only two studies reported a reduction in fracture riska study of nursing home residents with calcium intakes <600 mg/day and vitamin D concentrations <50 nmol/L and a community based study in women and men ?65 years of age with mean calcium intakes of 700 mg/day.21 In the remaining 15 studies, poor compliance, large numbers of dropouts, and a low prevalence of the risk factor may have contributed to the null findings.2223 Benefits are unlikely if the prevalence of a risk factor (such as inadequate calcium and protein intakes) is low.24 For example, in the meta-analysis, reduction in fracture risk reported with treatment was confined to the 7272 individuals with calcium intakes <700 mg/day (risk ratio 0.80, 95% confidence interval 0.71 to 0.89), not the 45?241 individuals with calcium intakes above 700 mg daily.21 The reduction in fracture risk observed with calcium and protein rich foods in this study may have been the result of attention to several of the above factors. Compliance was optimised by supervised provision and consumption of the foods. Participants lost to follow-up were replaced by newly admitted residents. We intentionally targeted a cohort at high risk for fracture in whom low calcium and protein intakes were common and so were likely to partly contribute to the already high fracture burden in this community.
+Mechanisms of fracture risk reduction
+This nutritional intervention produced two unanticipated novel observations. The risk reduction for falls and fractures was detected by three and five months, respectively, and the relative risk reduction for fractures was similar to that found in trials using potent antiresorptive therapy to treat people at high risk due to osteoporosis. The two most likely explanations for each of these observations is a risk reduction for falls and slowing progression of bone fragility. Insulin-like growth factor 1 increased in the intervention group only, whereas the decrease in appendicular lean mass was confined to controls, consistent with the notion that protein intakes of 1-1.5 g/kg/day is needed to prevent protein catabolism and preserve or increase muscle mass in older adults, particularly those at risk of malnutrition or frailty.25 The increase in serum C terminal telopeptide of type 1 collagen and deterioration in tibial and radial total volumetric bone mineral density in controls was not seen in the intervention group, consistent with slowing of bone loss and slowing of microstructural deterioration.26 These changes were modest, but slowing microstructural deterioration disproportionately reduces progression of bone fragility because fragility increases as a power function to the bone loss producing it.27
+Mortality did not differ between the groups. Some, but not all, studies suggest that milk consumption is associated with increased mortality but consumption of yoghurt and cheese (fermented foods) with reduced mortality and favourable blood lipid profiles.282930 Fermented and non-fermented dairy foods were used during the intervention. Milk consumption did not differ between the intervention and control groups (data not shown).
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","High calcium and protein intake in institutionalised older adults reduces risk of fractures and falls
+
+A study found that increasing calcium and protein intake in institutionalised older adults with sufficient vitamin D levels was associated with a 33% reduction in risk of fractures, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls compared to controls. The intervention used high calcium and high protein dairy foods. Most interventions for reducing fracture risk target those with osteoporosis, but this approach may not reduce the burden of fractures in the community. The study targeted a cohort at high risk for fractures and low calcium and protein intake. Compliance was optimised by supervised provision and consumption of the foods. The risk reduction for falls and fractures was detected by three and five months, respectively. The increase in protein intake may help prevent protein catabolism and preserve or increase muscle mass in older adults.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","High Calcium and Protein Intake Can Reduce Fracture and Fall Risk in Older Adults
+
+A recent study found that increasing calcium and protein intake in older adults living in care homes, who have sufficient vitamin D levels, can reduce the risk of fractures by 33%, hip fractures by 46%, and falls by 11% compared to those who did not receive the intervention. The study used high calcium and high protein dairy foods, which were provided and consumed under supervision to ensure compliance. The risk reduction for falls and fractures was detected within three and five months, respectively. This approach may be more effective in reducing the burden of fractures in the community than interventions that target only those with osteoporosis. Additionally, the increase in protein intake may help prevent protein breakdown and preserve or increase muscle mass in older adults.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","High Calcium and Protein Intake Reduces Fracture and Fall Risk in Older Adults: A Study Relevant for Active Individuals
+
+A recent study found that increasing calcium and protein intake in institutionalised older adults with sufficient vitamin D levels was associated with a significant reduction in the risk of fractures and falls. The intervention used high calcium and high protein dairy foods, which may help prevent protein catabolism and preserve or increase muscle mass in older adults. This study is particularly relevant for active individuals who want to maintain their bone health and reduce their risk of fractures and falls. The risk reduction for falls and fractures was detected by three and five months, respectively, making this a promising approach for those at high risk for fractures and low calcium and protein intake. Compliance was optimised by supervised provision and consumption of the foods. This approach may be more effective than targeting only those with osteoporosis, as it addresses a cohort at high risk for fractures and low calcium and protein intake.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","High Calcium and Protein Intake Reduces Fracture and Fall Risk in Older Adults
+
+A recent study found that increasing calcium and protein intake in institutionalized older adults can significantly reduce the risk of fractures and falls. The intervention used high calcium and high protein dairy foods, which resulted in a 33% reduction in fracture risk, a 46% reduction in hip fracture risk, and an 11% reduction in fall risk compared to controls. This is particularly relevant for seniors who are at a higher risk of falls and fractures. The increase in protein intake may also help preserve or increase muscle mass in older adults. The study targeted a cohort at high risk for fractures and low calcium and protein intake, and compliance was optimized by supervised provision and consumption of the foods. The risk reduction for falls and fractures was detected by three and five months, respectively."
+2023-06-14 0029,2023-06-12 1,Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial,2,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial
+Discussion
+This nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalised older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. We found no group difference in all cause mortality.
+Most interventions aimed at reducing fracture risk target a drug therapy to people with osteoporosis because they are at high risk of fracture. This approach confers a large benefit to the individual and does so cost effectively, because few people need to be treated to avert one event. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community.
+The population burden of fracturesthe number of events, morbidity, mortality, and cost to the communityarises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual.17 For example, most fragility fractures in the community arise among women with osteopenia (bone mineral density T score 2.5 to 1 SD) because they form the largest segment of the community.18 Likewise, most fractures attributable to nutritional inadequacy arise among the great many people with intakes of calcium and protein that are below recommended levels.19 This nutritional inadequacy confers a small attributable risk to the individual but accounts for a large attributable fraction of the fracture burden in the community as a whole. This is the Geoffrey Rose prevention paradoxa community based approach producing a small benefit to an individual may still confer a large benefit to the community.17 Safety is essential because most individuals treated may derive little or no benefit from the intervention. For example, the Dietary Approach to Stop Hypertension study reduced blood pressure by replacing a western diet with a diet rich in fruit, vegetables, and low fat dairy foodsan approach associated with fewer cardiovascular events.20
+Comparison with other studies
+Most nutrition based studies assessing antifracture efficacy in aged care residents and people in the community used pharmacological doses of calcium with or without vitamin D.21 In a meta-analysis of 17 of these studies, only two studies reported a reduction in fracture riska study of nursing home residents with calcium intakes <600 mg/day and vitamin D concentrations <50 nmol/L and a community based study in women and men ?65 years of age with mean calcium intakes of 700 mg/day.21 In the remaining 15 studies, poor compliance, large numbers of dropouts, and a low prevalence of the risk factor may have contributed to the null findings.2223 Benefits are unlikely if the prevalence of a risk factor (such as inadequate calcium and protein intakes) is low.24 For example, in the meta-analysis, reduction in fracture risk reported with treatment was confined to the 7272 individuals with calcium intakes <700 mg/day (risk ratio 0.80, 95% confidence interval 0.71 to 0.89), not the 45?241 individuals with calcium intakes above 700 mg daily.21 The reduction in fracture risk observed with calcium and protein rich foods in this study may have been the result of attention to several of the above factors. Compliance was optimised by supervised provision and consumption of the foods. Participants lost to follow-up were replaced by newly admitted residents. We intentionally targeted a cohort at high risk for fracture in whom low calcium and protein intakes were common and so were likely to partly contribute to the already high fracture burden in this community.
+Mechanisms of fracture risk reduction
+This nutritional intervention produced two unanticipated novel observations. The risk reduction for falls and fractures was detected by three and five months, respectively, and the relative risk reduction for fractures was similar to that found in trials using potent antiresorptive therapy to treat people at high risk due to osteoporosis. The two most likely explanations for each of these observations is a risk reduction for falls and slowing progression of bone fragility. Insulin-like growth factor 1 increased in the intervention group only, whereas the decrease in appendicular lean mass was confined to controls, consistent with the notion that protein intakes of 1-1.5 g/kg/day is needed to prevent protein catabolism and preserve or increase muscle mass in older adults, particularly those at risk of malnutrition or frailty.25 The increase in serum C terminal telopeptide of type 1 collagen and deterioration in tibial and radial total volumetric bone mineral density in controls was not seen in the intervention group, consistent with slowing of bone loss and slowing of microstructural deterioration.26 These changes were modest, but slowing microstructural deterioration disproportionately reduces progression of bone fragility because fragility increases as a power function to the bone loss producing it.27
+Mortality did not differ between the groups. Some, but not all, studies suggest that milk consumption is associated with increased mortality but consumption of yoghurt and cheese (fermented foods) with reduced mortality and favourable blood lipid profiles.282930 Fermented and non-fermented dairy foods were used during the intervention. Milk consumption did not differ between the intervention and control groups (data not shown).
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","High Calcium and High Protein Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults
+
+In a cluster randomized controlled trial, a nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalized older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. Most interventions aimed at reducing fracture risk target drug therapies to people with osteoporosis because they are at high risk of fracture. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community. The population burden of fractures arises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual. This is the Geoffrey Rose prevention paradox – a community-based approach producing a small benefit to an individual may still confer a large benefit to the community. 
+
+Key concepts: nutritional intervention, high calcium and high protein dairy foods, reduction in risk of fractures and falls in older adults.
+
+Research participants: institutionalized older adults.
+
+Note: None. 
+
+Overall, the post is clear and concise. 
+
+Headline: Nutritional Intervention May Reduce Risk of Fractures and Falls in Older Adults",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Nutritional Intervention May Reduce Risk of Fractures and Falls in Older Adults
+
+A recent study found that increasing calcium and protein intake through high calcium and high protein dairy foods can reduce the risk of fractures and falls in institutionalized older adults. The study showed a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls compared to the control group. This approach may be more effective in reducing the overall burden of fractures in the community compared to drug therapies targeting only those with osteoporosis. The study highlights the importance of a community-based approach to reducing fracture risk in older adults.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Nutritional Intervention Using Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults Who Enjoy Sports
+
+A cluster randomized controlled trial found that a nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalized older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. This finding is relevant for older adults who enjoy sports as it highlights the importance of proper nutrition in reducing the risk of fractures and falls, which can be detrimental to an active lifestyle. The study also emphasizes the population burden of fractures and the potential benefits of a community-based approach to prevention.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Nutritional Intervention with High Calcium and High Protein Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults
+
+A recent study found that increasing calcium and protein intake through high calcium and high protein dairy foods can reduce the risk of fractures and falls in institutionalized older adults. This approach was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls. This is particularly relevant for seniors as falls and fractures are a major concern for this population. The study highlights the importance of a community-based approach to reducing the burden of fractures, which can benefit individuals and the community as a whole."
+2023-06-14 0029,2023-06-12 1,Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial,2,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Effect of dietary sources of calcium and protein on hip fractures and falls in older adults in residential care cluster randomised controlled trial
+Discussion
+This nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalised older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. We found no group difference in all cause mortality.
+Most interventions aimed at reducing fracture risk target a drug therapy to people with osteoporosis because they are at high risk of fracture. This approach confers a large benefit to the individual and does so cost effectively, because few people need to be treated to avert one event. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community.
+The population burden of fracturesthe number of events, morbidity, mortality, and cost to the communityarises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual.17 For example, most fragility fractures in the community arise among women with osteopenia (bone mineral density T score 2.5 to 1 SD) because they form the largest segment of the community.18 Likewise, most fractures attributable to nutritional inadequacy arise among the great many people with intakes of calcium and protein that are below recommended levels.19 This nutritional inadequacy confers a small attributable risk to the individual but accounts for a large attributable fraction of the fracture burden in the community as a whole. This is the Geoffrey Rose prevention paradoxa community based approach producing a small benefit to an individual may still confer a large benefit to the community.17 Safety is essential because most individuals treated may derive little or no benefit from the intervention. For example, the Dietary Approach to Stop Hypertension study reduced blood pressure by replacing a western diet with a diet rich in fruit, vegetables, and low fat dairy foodsan approach associated with fewer cardiovascular events.20
+Comparison with other studies
+Most nutrition based studies assessing antifracture efficacy in aged care residents and people in the community used pharmacological doses of calcium with or without vitamin D.21 In a meta-analysis of 17 of these studies, only two studies reported a reduction in fracture riska study of nursing home residents with calcium intakes <600 mg/day and vitamin D concentrations <50 nmol/L and a community based study in women and men ?65 years of age with mean calcium intakes of 700 mg/day.21 In the remaining 15 studies, poor compliance, large numbers of dropouts, and a low prevalence of the risk factor may have contributed to the null findings.2223 Benefits are unlikely if the prevalence of a risk factor (such as inadequate calcium and protein intakes) is low.24 For example, in the meta-analysis, reduction in fracture risk reported with treatment was confined to the 7272 individuals with calcium intakes <700 mg/day (risk ratio 0.80, 95% confidence interval 0.71 to 0.89), not the 45?241 individuals with calcium intakes above 700 mg daily.21 The reduction in fracture risk observed with calcium and protein rich foods in this study may have been the result of attention to several of the above factors. Compliance was optimised by supervised provision and consumption of the foods. Participants lost to follow-up were replaced by newly admitted residents. We intentionally targeted a cohort at high risk for fracture in whom low calcium and protein intakes were common and so were likely to partly contribute to the already high fracture burden in this community.
+Mechanisms of fracture risk reduction
+This nutritional intervention produced two unanticipated novel observations. The risk reduction for falls and fractures was detected by three and five months, respectively, and the relative risk reduction for fractures was similar to that found in trials using potent antiresorptive therapy to treat people at high risk due to osteoporosis. The two most likely explanations for each of these observations is a risk reduction for falls and slowing progression of bone fragility. Insulin-like growth factor 1 increased in the intervention group only, whereas the decrease in appendicular lean mass was confined to controls, consistent with the notion that protein intakes of 1-1.5 g/kg/day is needed to prevent protein catabolism and preserve or increase muscle mass in older adults, particularly those at risk of malnutrition or frailty.25 The increase in serum C terminal telopeptide of type 1 collagen and deterioration in tibial and radial total volumetric bone mineral density in controls was not seen in the intervention group, consistent with slowing of bone loss and slowing of microstructural deterioration.26 These changes were modest, but slowing microstructural deterioration disproportionately reduces progression of bone fragility because fragility increases as a power function to the bone loss producing it.27
+Mortality did not differ between the groups. Some, but not all, studies suggest that milk consumption is associated with increased mortality but consumption of yoghurt and cheese (fermented foods) with reduced mortality and favourable blood lipid profiles.282930 Fermented and non-fermented dairy foods were used during the intervention. Milk consumption did not differ between the intervention and control groups (data not shown).
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","High Calcium and High Protein Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults
+
+In a cluster randomized controlled trial, a nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalized older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. Most interventions aimed at reducing fracture risk target drug therapies to people with osteoporosis because they are at high risk of fracture. However, averting fractures in small numbers of people at high risk does not reduce the burden of fractures in the community. The population burden of fractures arises from the vast numbers of people with risk factors that confer a modest attributable risk to the individual. This is the Geoffrey Rose prevention paradox – a community-based approach producing a small benefit to an individual may still confer a large benefit to the community. 
+
+Key concepts: nutritional intervention, high calcium and high protein dairy foods, reduction in risk of fractures and falls in older adults.
+
+Research participants: institutionalized older adults.
+
+Note: None. 
+
+Overall, the post is clear and concise. 
+
+Headline: Nutritional Intervention May Reduce Risk of Fractures and Falls in Older Adults",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Nutritional Intervention May Reduce Risk of Fractures and Falls in Older Adults
+
+A recent study found that increasing calcium and protein intake through high calcium and high protein dairy foods can reduce the risk of fractures and falls in institutionalized older adults. The study showed a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls compared to the control group. This approach may be more effective in reducing the overall burden of fractures in the community compared to drug therapies targeting only those with osteoporosis. The study highlights the importance of a community-based approach to reducing fracture risk in older adults.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Nutritional Intervention Using Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults Who Enjoy Sports
+
+A cluster randomized controlled trial found that a nutritional approach using high calcium and high protein dairy foods to increase calcium and protein intakes in institutionalized older adults replete in vitamin D was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls relative to controls. This finding is relevant for older adults who enjoy sports as it highlights the importance of proper nutrition in reducing the risk of fractures and falls, which can be detrimental to an active lifestyle. The study also emphasizes the population burden of fractures and the potential benefits of a community-based approach to prevention.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Nutritional Intervention with High Calcium and High Protein Dairy Foods May Reduce Risk of Fractures and Falls in Older Adults
+
+A recent study found that increasing calcium and protein intake through high calcium and high protein dairy foods can reduce the risk of fractures and falls in institutionalized older adults. This approach was associated with a 33% reduction in risk of fractures of any type, a 46% reduction in risk of hip fractures, and an 11% reduction in risk of falls. This is particularly relevant for seniors as falls and fractures are a major concern for this population. The study highlights the importance of a community-based approach to reducing the burden of fractures, which can benefit individuals and the community as a whole."
+2023-06-14 0029,2023-06-12 1,Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity,1,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity
+
+Discussion
+The present study employed a two-stage research investigation to examine the relationship between weight stigma and several health behaviors in a large sample of U.S. adults. As predicted, weight stigma was significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, after controlling for covariates. No such relationship was observed for physical activity.
+Targeting health behaviors (e.g., eating) to achieve weight loss is common in weight-focused health promotion policies. These policies assume that individuals can improve their health by losing weight, employing weight stigma as one strategy for motivating behavior change [5]. However, our findings indicate that weight stigma is associated with poorer health behaviors, independent of BMI. Given that physical health and weight are largely shaped by factors outside of an individuals control (i.e., genetics and social determinants like socioeconomic status) [5], it is concerning that multiple behaviors, for which individuals have some control over, may be undermined by weight stigma.
+Furthermore, a lower BMI may not necessarily be protective against weight stigma. In our sample, individuals across the weight spectrum, not only those with overweight or obese BMIs, reported weight stigma. In fact, moderation analyses indicated that individuals with lower BMIs showed greater disordered eating and alcohol use in the face of weight stigma. These results emerged despite individuals with higher weight reporting greater daily weight stigma. One explanation for the observed differences in health behavioral outcomes across the weight spectrum is that infrequent health behaviors may be less likely to be enacted as coping strategies. For instance, previous research has shown that alcohol use decreases as BMI increases among females with higher weight [44]. Thus, using food, instead of alcohol, may be the more common coping strategy among individuals with higher BMIs, as previous research suggests [45]. Nonetheless, the sizes of the moderation effects were very small, with some confidence intervals functionally at zero, and thus further interpretation of the present findings should only be done with caution.
+Prior research has found conflicting evidence for the relationship between weight stigma and physical activity. Some studies have found that greater weight stigma is associated with short-term increases in reported exercise behavior [16, 46]. Others have shown that weight stigma is positively correlated with increased exercise avoidance, but has no direct link to self-reported exercise [14, 47]. The current study adds to the latter base of evidence showing no relationship between weight stigma and physical activity. One possible explanation is that participants were asked about their daily experiences with weight stigma, which may not correspond to their level of physical activity over the past month. Ecological momentary assessment methodology may provide better insight into this relationship, as demonstrated by Vartanian et al. who examined health motivations following stigmatizing events in daily life [48].
+Despite emerging evidence that weight stigma is prevalent among men [28], there is a lack of research on mens health outcomes related to weight stigma. In this study, moderation by gender was not observed for any outcome. These results are consistent with previous research reporting no gender differences in poor health outcomes such as mortality and obesity due to weight stigma [3, 49]. Men may also feel pressured to meet societal body standards and thus may display the same magnitude of associations between weight stigma and health behaviors. It is recommended that the null gender findings are interpreted with caution, as more research is needed.
+How might weight stigma influence an individuals health behaviors? One potential mechanism is stress. Previous work suggests that weight stigma is stressful [6, 50] and experimental lab studies manipulating weight stigma have shown that individuals with higher weight, as well as those who perceive themselves as overweight, show elevated levels of the stress hormone cortisol following exposure to a weight-stigmatizing event [51, 52]. Additionally, some research has found that individuals who experience more weight-based discrimination have higher hair cortisol levelsa finding most pronounced in those at the highest BMI [53]. Individuals who experience greater stress may engage in more unhealthy coping behaviors. Indeed, stress can drive changes in behaviors such as eating, physical activity, and sleep [54]. For example, Tataranni et al. administered synthetic cortisol vs. placebo and found greater food consumption in the cortisol group [55]. This early work is supported by accumulating evidence that cortisol is associated with increased caloric intake and greater abdominal fat storage [56]. The health behavior pathway may not be independent from that of stress but rather reflect a serial mediation model, wherein weight stigma increases stress that in turn causes decrements in health behaviors.
+The present study contributes to the weight stigma literature in several ways. As noted, a key strength of this study is the assessment of several health behaviors within a large, national census-matched sample. Previous studies that have examined weight stigma in relation to different health behaviors have often had small sample sizes or were limited to female subjects. Thus, the present study may provide more generalizable information about health behaviors in the U.S. A related strength of the study is that higher BMI scores were well-represented in the sample, with 31.4% meeting BMI criteria for obesity. This is a closer estimate of the proportion of the American population that is classified with obesity (42%) compared to previous studies [57]. Therefore, there is greater confidence that these findings reflect the experiences of individuals with obesity in the population, aiding generalizability. Lastly, we enhance reproducibility by presenting a two-stage research program of exploratory and confirmatory analyses based on recommended open science practices.
+There are some limitations to consider. First, a composite weight stigma score was used due to survey constraints. While early tests indicate good construct validity, additional psychometric testing is warranted (see Online Supplementary Materials 4). Another limitation is the use of self-reported weight, which is subject to inaccuracies. Additionally, the data collection period overlapped with winter holidays. Individuals may have made new years health resolutions, and therefore the self-reported health behaviors may be more indicative of newly established goals rather than typical health habits. However, such resolutions would likely dampen, rather than magnify, the relationship between weight stigma and poor health behaviors. Lastly, the study is cross-sectional and therefore causal direction cannot be determined. Weight stigma may operate as a feedback loop that leads to weight gain through certain behaviors such as comfort eating [6], but further investigation is required. Given survey constraints, weight bias internalization was not assessed. Future research should build on these findings to determine the potential role of weight bias internalization in these health behaviors.
+Despite these limitations, these studys findings show that weight stigma is significantly associated with several health behaviors. If future research confirms that this is indeed a causal relationship, weight stigma could cumulatively undermine physical health over time. Taken together, these findings highlight weight stigma as a potential barrier to healthy behaviors, and suggest that one strategy to improve population health may be to reduce weight stigma. Though more research is needed, it may be important to employ more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives [5].
+
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Weight Stigma Associated with Poor Health Behaviors, Study Finds
+
+Weight stigma is significantly associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a study published in the International Journal of Obesity. The study found that weight stigma may be a potential barrier to healthy behaviors, suggesting that one strategy to improve population health may be to reduce weight stigma. The research also indicates that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study used a large, national census-matched sample of US adults and found that weight stigma was prevalent across the weight spectrum. The study calls for more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Weight Bias Linked to Unhealthy Behaviors, Study Shows
+
+A recent study published in the International Journal of Obesity found that weight bias is strongly associated with disordered eating, comfort eating, alcohol consumption, and sleep problems. The study suggests that weight bias may hinder healthy behaviors, indicating that reducing weight stigma could be a potential strategy to improve overall health. The research also suggests that targeting health behaviors to achieve weight loss may not be effective, as weight bias is linked to poorer health behaviors regardless of BMI. The study used a large, national sample of US adults and found that weight bias was prevalent across all weight categories. The study calls for more inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Weight Stigma May Hinder Healthy Behaviors in Sports, Study Finds
+
+Weight stigma can negatively impact disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a study published in the International Journal of Obesity. The study suggests that weight stigma may be a potential barrier to healthy behaviors in sports, indicating that reducing weight stigma could improve the overall health of athletes. The research also shows that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study calls for more weight-inclusive approaches to health promotion in sports, such as removing stigmatizing language or weight outcomes from sports policies and program objectives. The study used a large, national census-matched sample of US adults and found that weight stigma was prevalent across the weight spectrum.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Weight Stigma Linked to Unhealthy Behaviors in Seniors, Study Shows
+
+Weight stigma can lead to disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a recent study published in the International Journal of Obesity. The study, which used a large, national census-matched sample of US adults, found that weight stigma was prevalent across the weight spectrum, including among seniors. The research suggests that weight stigma may be a potential barrier to healthy behaviors, indicating that reducing weight stigma could be a strategy to improve population health. The study also found that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study calls for more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives, to improve the health and well-being of seniors."
+2023-06-14 0029,2023-06-12 1,Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity,1,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity
+
+Discussion
+The present study employed a two-stage research investigation to examine the relationship between weight stigma and several health behaviors in a large sample of U.S. adults. As predicted, weight stigma was significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, after controlling for covariates. No such relationship was observed for physical activity.
+Targeting health behaviors (e.g., eating) to achieve weight loss is common in weight-focused health promotion policies. These policies assume that individuals can improve their health by losing weight, employing weight stigma as one strategy for motivating behavior change [5]. However, our findings indicate that weight stigma is associated with poorer health behaviors, independent of BMI. Given that physical health and weight are largely shaped by factors outside of an individuals control (i.e., genetics and social determinants like socioeconomic status) [5], it is concerning that multiple behaviors, for which individuals have some control over, may be undermined by weight stigma.
+Furthermore, a lower BMI may not necessarily be protective against weight stigma. In our sample, individuals across the weight spectrum, not only those with overweight or obese BMIs, reported weight stigma. In fact, moderation analyses indicated that individuals with lower BMIs showed greater disordered eating and alcohol use in the face of weight stigma. These results emerged despite individuals with higher weight reporting greater daily weight stigma. One explanation for the observed differences in health behavioral outcomes across the weight spectrum is that infrequent health behaviors may be less likely to be enacted as coping strategies. For instance, previous research has shown that alcohol use decreases as BMI increases among females with higher weight [44]. Thus, using food, instead of alcohol, may be the more common coping strategy among individuals with higher BMIs, as previous research suggests [45]. Nonetheless, the sizes of the moderation effects were very small, with some confidence intervals functionally at zero, and thus further interpretation of the present findings should only be done with caution.
+Prior research has found conflicting evidence for the relationship between weight stigma and physical activity. Some studies have found that greater weight stigma is associated with short-term increases in reported exercise behavior [16, 46]. Others have shown that weight stigma is positively correlated with increased exercise avoidance, but has no direct link to self-reported exercise [14, 47]. The current study adds to the latter base of evidence showing no relationship between weight stigma and physical activity. One possible explanation is that participants were asked about their daily experiences with weight stigma, which may not correspond to their level of physical activity over the past month. Ecological momentary assessment methodology may provide better insight into this relationship, as demonstrated by Vartanian et al. who examined health motivations following stigmatizing events in daily life [48].
+Despite emerging evidence that weight stigma is prevalent among men [28], there is a lack of research on mens health outcomes related to weight stigma. In this study, moderation by gender was not observed for any outcome. These results are consistent with previous research reporting no gender differences in poor health outcomes such as mortality and obesity due to weight stigma [3, 49]. Men may also feel pressured to meet societal body standards and thus may display the same magnitude of associations between weight stigma and health behaviors. It is recommended that the null gender findings are interpreted with caution, as more research is needed.
+How might weight stigma influence an individuals health behaviors? One potential mechanism is stress. Previous work suggests that weight stigma is stressful [6, 50] and experimental lab studies manipulating weight stigma have shown that individuals with higher weight, as well as those who perceive themselves as overweight, show elevated levels of the stress hormone cortisol following exposure to a weight-stigmatizing event [51, 52]. Additionally, some research has found that individuals who experience more weight-based discrimination have higher hair cortisol levelsa finding most pronounced in those at the highest BMI [53]. Individuals who experience greater stress may engage in more unhealthy coping behaviors. Indeed, stress can drive changes in behaviors such as eating, physical activity, and sleep [54]. For example, Tataranni et al. administered synthetic cortisol vs. placebo and found greater food consumption in the cortisol group [55]. This early work is supported by accumulating evidence that cortisol is associated with increased caloric intake and greater abdominal fat storage [56]. The health behavior pathway may not be independent from that of stress but rather reflect a serial mediation model, wherein weight stigma increases stress that in turn causes decrements in health behaviors.
+The present study contributes to the weight stigma literature in several ways. As noted, a key strength of this study is the assessment of several health behaviors within a large, national census-matched sample. Previous studies that have examined weight stigma in relation to different health behaviors have often had small sample sizes or were limited to female subjects. Thus, the present study may provide more generalizable information about health behaviors in the U.S. A related strength of the study is that higher BMI scores were well-represented in the sample, with 31.4% meeting BMI criteria for obesity. This is a closer estimate of the proportion of the American population that is classified with obesity (42%) compared to previous studies [57]. Therefore, there is greater confidence that these findings reflect the experiences of individuals with obesity in the population, aiding generalizability. Lastly, we enhance reproducibility by presenting a two-stage research program of exploratory and confirmatory analyses based on recommended open science practices.
+There are some limitations to consider. First, a composite weight stigma score was used due to survey constraints. While early tests indicate good construct validity, additional psychometric testing is warranted (see Online Supplementary Materials 4). Another limitation is the use of self-reported weight, which is subject to inaccuracies. Additionally, the data collection period overlapped with winter holidays. Individuals may have made new years health resolutions, and therefore the self-reported health behaviors may be more indicative of newly established goals rather than typical health habits. However, such resolutions would likely dampen, rather than magnify, the relationship between weight stigma and poor health behaviors. Lastly, the study is cross-sectional and therefore causal direction cannot be determined. Weight stigma may operate as a feedback loop that leads to weight gain through certain behaviors such as comfort eating [6], but further investigation is required. Given survey constraints, weight bias internalization was not assessed. Future research should build on these findings to determine the potential role of weight bias internalization in these health behaviors.
+Despite these limitations, these studys findings show that weight stigma is significantly associated with several health behaviors. If future research confirms that this is indeed a causal relationship, weight stigma could cumulatively undermine physical health over time. Taken together, these findings highlight weight stigma as a potential barrier to healthy behaviors, and suggest that one strategy to improve population health may be to reduce weight stigma. Though more research is needed, it may be important to employ more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives [5].
+
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Weight Stigma Associated with Poor Health Behaviors, Study Finds
+
+Weight stigma is significantly associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a study published in the International Journal of Obesity. The study found that weight stigma may be a potential barrier to healthy behaviors, suggesting that one strategy to improve population health may be to reduce weight stigma. The research also indicates that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study used a large, national census-matched sample of US adults and found that weight stigma was prevalent across the weight spectrum. The study calls for more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Weight Bias Linked to Unhealthy Behaviors, Study Shows
+
+A recent study published in the International Journal of Obesity found that weight bias is strongly associated with disordered eating, comfort eating, alcohol consumption, and sleep problems. The study suggests that weight bias may hinder healthy behaviors, indicating that reducing weight stigma could be a potential strategy to improve overall health. The research also suggests that targeting health behaviors to achieve weight loss may not be effective, as weight bias is linked to poorer health behaviors regardless of BMI. The study used a large, national sample of US adults and found that weight bias was prevalent across all weight categories. The study calls for more inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Weight Stigma May Hinder Healthy Behaviors in Sports, Study Finds
+
+Weight stigma can negatively impact disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a study published in the International Journal of Obesity. The study suggests that weight stigma may be a potential barrier to healthy behaviors in sports, indicating that reducing weight stigma could improve the overall health of athletes. The research also shows that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study calls for more weight-inclusive approaches to health promotion in sports, such as removing stigmatizing language or weight outcomes from sports policies and program objectives. The study used a large, national census-matched sample of US adults and found that weight stigma was prevalent across the weight spectrum.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Weight Stigma Linked to Unhealthy Behaviors in Seniors, Study Shows
+
+Weight stigma can lead to disordered eating, comfort eating, alcohol use, and sleep disturbance, according to a recent study published in the International Journal of Obesity. The study, which used a large, national census-matched sample of US adults, found that weight stigma was prevalent across the weight spectrum, including among seniors. The research suggests that weight stigma may be a potential barrier to healthy behaviors, indicating that reducing weight stigma could be a strategy to improve population health. The study also found that targeting health behaviors to achieve weight loss may not be effective, as weight stigma is associated with poorer health behaviors independent of BMI. The study calls for more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives, to improve the health and well-being of seniors."
+2023-06-14 0029,2023-06-12 1,Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity,2,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity
+
+Discussion
+The present study employed a two-stage research investigation to examine the relationship between weight stigma and several health behaviors in a large sample of U.S. adults. As predicted, weight stigma was significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, after controlling for covariates. No such relationship was observed for physical activity.
+Targeting health behaviors (e.g., eating) to achieve weight loss is common in weight-focused health promotion policies. These policies assume that individuals can improve their health by losing weight, employing weight stigma as one strategy for motivating behavior change [5]. However, our findings indicate that weight stigma is associated with poorer health behaviors, independent of BMI. Given that physical health and weight are largely shaped by factors outside of an individuals control (i.e., genetics and social determinants like socioeconomic status) [5], it is concerning that multiple behaviors, for which individuals have some control over, may be undermined by weight stigma.
+Furthermore, a lower BMI may not necessarily be protective against weight stigma. In our sample, individuals across the weight spectrum, not only those with overweight or obese BMIs, reported weight stigma. In fact, moderation analyses indicated that individuals with lower BMIs showed greater disordered eating and alcohol use in the face of weight stigma. These results emerged despite individuals with higher weight reporting greater daily weight stigma. One explanation for the observed differences in health behavioral outcomes across the weight spectrum is that infrequent health behaviors may be less likely to be enacted as coping strategies. For instance, previous research has shown that alcohol use decreases as BMI increases among females with higher weight [44]. Thus, using food, instead of alcohol, may be the more common coping strategy among individuals with higher BMIs, as previous research suggests [45]. Nonetheless, the sizes of the moderation effects were very small, with some confidence intervals functionally at zero, and thus further interpretation of the present findings should only be done with caution.
+Prior research has found conflicting evidence for the relationship between weight stigma and physical activity. Some studies have found that greater weight stigma is associated with short-term increases in reported exercise behavior [16, 46]. Others have shown that weight stigma is positively correlated with increased exercise avoidance, but has no direct link to self-reported exercise [14, 47]. The current study adds to the latter base of evidence showing no relationship between weight stigma and physical activity. One possible explanation is that participants were asked about their daily experiences with weight stigma, which may not correspond to their level of physical activity over the past month. Ecological momentary assessment methodology may provide better insight into this relationship, as demonstrated by Vartanian et al. who examined health motivations following stigmatizing events in daily life [48].
+Despite emerging evidence that weight stigma is prevalent among men [28], there is a lack of research on mens health outcomes related to weight stigma. In this study, moderation by gender was not observed for any outcome. These results are consistent with previous research reporting no gender differences in poor health outcomes such as mortality and obesity due to weight stigma [3, 49]. Men may also feel pressured to meet societal body standards and thus may display the same magnitude of associations between weight stigma and health behaviors. It is recommended that the null gender findings are interpreted with caution, as more research is needed.
+How might weight stigma influence an individuals health behaviors? One potential mechanism is stress. Previous work suggests that weight stigma is stressful [6, 50] and experimental lab studies manipulating weight stigma have shown that individuals with higher weight, as well as those who perceive themselves as overweight, show elevated levels of the stress hormone cortisol following exposure to a weight-stigmatizing event [51, 52]. Additionally, some research has found that individuals who experience more weight-based discrimination have higher hair cortisol levelsa finding most pronounced in those at the highest BMI [53]. Individuals who experience greater stress may engage in more unhealthy coping behaviors. Indeed, stress can drive changes in behaviors such as eating, physical activity, and sleep [54]. For example, Tataranni et al. administered synthetic cortisol vs. placebo and found greater food consumption in the cortisol group [55]. This early work is supported by accumulating evidence that cortisol is associated with increased caloric intake and greater abdominal fat storage [56]. The health behavior pathway may not be independent from that of stress but rather reflect a serial mediation model, wherein weight stigma increases stress that in turn causes decrements in health behaviors.
+The present study contributes to the weight stigma literature in several ways. As noted, a key strength of this study is the assessment of several health behaviors within a large, national census-matched sample. Previous studies that have examined weight stigma in relation to different health behaviors have often had small sample sizes or were limited to female subjects. Thus, the present study may provide more generalizable information about health behaviors in the U.S. A related strength of the study is that higher BMI scores were well-represented in the sample, with 31.4% meeting BMI criteria for obesity. This is a closer estimate of the proportion of the American population that is classified with obesity (42%) compared to previous studies [57]. Therefore, there is greater confidence that these findings reflect the experiences of individuals with obesity in the population, aiding generalizability. Lastly, we enhance reproducibility by presenting a two-stage research program of exploratory and confirmatory analyses based on recommended open science practices.
+There are some limitations to consider. First, a composite weight stigma score was used due to survey constraints. While early tests indicate good construct validity, additional psychometric testing is warranted (see Online Supplementary Materials 4). Another limitation is the use of self-reported weight, which is subject to inaccuracies. Additionally, the data collection period overlapped with winter holidays. Individuals may have made new years health resolutions, and therefore the self-reported health behaviors may be more indicative of newly established goals rather than typical health habits. However, such resolutions would likely dampen, rather than magnify, the relationship between weight stigma and poor health behaviors. Lastly, the study is cross-sectional and therefore causal direction cannot be determined. Weight stigma may operate as a feedback loop that leads to weight gain through certain behaviors such as comfort eating [6], but further investigation is required. Given survey constraints, weight bias internalization was not assessed. Future research should build on these findings to determine the potential role of weight bias internalization in these health behaviors.
+Despite these limitations, these studys findings show that weight stigma is significantly associated with several health behaviors. If future research confirms that this is indeed a causal relationship, weight stigma could cumulatively undermine physical health over time. Taken together, these findings highlight weight stigma as a potential barrier to healthy behaviors, and suggest that one strategy to improve population health may be to reduce weight stigma. Though more research is needed, it may be important to employ more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives [5].
+
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Weight stigma associated with poorer health behaviors, according to study in US adults
+
+A recent study published in the International Journal of Obesity found that weight stigma is significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, independent of BMI. The study, which examined a large sample of US adults, also found no relationship between weight stigma and physical activity. The authors suggest that weight stigma could undermine physical health over time and recommend employing more weight-inclusive approaches to health promotion. The study's findings highlight weight stigma as a potential barrier to healthy behaviors and suggest that reducing weight stigma may be important for improving population health.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Weight stigma linked to unhealthy behaviors in US adults, study finds
+
+A recent study published in the International Journal of Obesity discovered that weight stigma is significantly associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, regardless of BMI. The study, which examined a large sample of US adults, found no connection between weight stigma and physical activity. The authors suggest that weight stigma could harm physical health over time and recommend using more weight-inclusive approaches to health promotion. The study's findings highlight weight stigma as a potential obstacle to healthy behaviors and suggest that reducing weight stigma may be important for improving population health.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Weight Stigma Linked to Unhealthy Behaviors in US Adults, According to Study
+
+A recent study published in the International Journal of Obesity found that weight stigma is significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, independent of BMI. The study, which examined a large sample of US adults, also found no relationship between weight stigma and physical activity. These findings are relevant for sports enthusiasts as weight stigma could undermine physical health over time, potentially affecting their athletic performance. The authors recommend employing more weight-inclusive approaches to health promotion to reduce weight stigma and improve population health.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Weight stigma linked to unhealthy behaviors in US adults, study finds
+
+A recent study published in the International Journal of Obesity reveals that weight stigma is associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, regardless of BMI. The study, which examined a large sample of US adults, found no relationship between weight stigma and physical activity. The authors suggest that weight stigma could negatively impact physical health over time and recommend using more weight-inclusive approaches to health promotion. These findings highlight weight stigma as a potential barrier to healthy behaviors, which is especially relevant for seniors who may face weight stigma in healthcare settings. Reducing weight stigma may be crucial for improving population health and promoting healthy behaviors among seniors."
+2023-06-14 0029,2023-06-12 1,Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity,2,You are a journalist writing content based on science research articles.,gpt-3.5-turbo,"Weight stigma and health behaviors: evidence from the Eating in America Study. International Journal of Obesity
+
+Discussion
+The present study employed a two-stage research investigation to examine the relationship between weight stigma and several health behaviors in a large sample of U.S. adults. As predicted, weight stigma was significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, after controlling for covariates. No such relationship was observed for physical activity.
+Targeting health behaviors (e.g., eating) to achieve weight loss is common in weight-focused health promotion policies. These policies assume that individuals can improve their health by losing weight, employing weight stigma as one strategy for motivating behavior change [5]. However, our findings indicate that weight stigma is associated with poorer health behaviors, independent of BMI. Given that physical health and weight are largely shaped by factors outside of an individuals control (i.e., genetics and social determinants like socioeconomic status) [5], it is concerning that multiple behaviors, for which individuals have some control over, may be undermined by weight stigma.
+Furthermore, a lower BMI may not necessarily be protective against weight stigma. In our sample, individuals across the weight spectrum, not only those with overweight or obese BMIs, reported weight stigma. In fact, moderation analyses indicated that individuals with lower BMIs showed greater disordered eating and alcohol use in the face of weight stigma. These results emerged despite individuals with higher weight reporting greater daily weight stigma. One explanation for the observed differences in health behavioral outcomes across the weight spectrum is that infrequent health behaviors may be less likely to be enacted as coping strategies. For instance, previous research has shown that alcohol use decreases as BMI increases among females with higher weight [44]. Thus, using food, instead of alcohol, may be the more common coping strategy among individuals with higher BMIs, as previous research suggests [45]. Nonetheless, the sizes of the moderation effects were very small, with some confidence intervals functionally at zero, and thus further interpretation of the present findings should only be done with caution.
+Prior research has found conflicting evidence for the relationship between weight stigma and physical activity. Some studies have found that greater weight stigma is associated with short-term increases in reported exercise behavior [16, 46]. Others have shown that weight stigma is positively correlated with increased exercise avoidance, but has no direct link to self-reported exercise [14, 47]. The current study adds to the latter base of evidence showing no relationship between weight stigma and physical activity. One possible explanation is that participants were asked about their daily experiences with weight stigma, which may not correspond to their level of physical activity over the past month. Ecological momentary assessment methodology may provide better insight into this relationship, as demonstrated by Vartanian et al. who examined health motivations following stigmatizing events in daily life [48].
+Despite emerging evidence that weight stigma is prevalent among men [28], there is a lack of research on mens health outcomes related to weight stigma. In this study, moderation by gender was not observed for any outcome. These results are consistent with previous research reporting no gender differences in poor health outcomes such as mortality and obesity due to weight stigma [3, 49]. Men may also feel pressured to meet societal body standards and thus may display the same magnitude of associations between weight stigma and health behaviors. It is recommended that the null gender findings are interpreted with caution, as more research is needed.
+How might weight stigma influence an individuals health behaviors? One potential mechanism is stress. Previous work suggests that weight stigma is stressful [6, 50] and experimental lab studies manipulating weight stigma have shown that individuals with higher weight, as well as those who perceive themselves as overweight, show elevated levels of the stress hormone cortisol following exposure to a weight-stigmatizing event [51, 52]. Additionally, some research has found that individuals who experience more weight-based discrimination have higher hair cortisol levelsa finding most pronounced in those at the highest BMI [53]. Individuals who experience greater stress may engage in more unhealthy coping behaviors. Indeed, stress can drive changes in behaviors such as eating, physical activity, and sleep [54]. For example, Tataranni et al. administered synthetic cortisol vs. placebo and found greater food consumption in the cortisol group [55]. This early work is supported by accumulating evidence that cortisol is associated with increased caloric intake and greater abdominal fat storage [56]. The health behavior pathway may not be independent from that of stress but rather reflect a serial mediation model, wherein weight stigma increases stress that in turn causes decrements in health behaviors.
+The present study contributes to the weight stigma literature in several ways. As noted, a key strength of this study is the assessment of several health behaviors within a large, national census-matched sample. Previous studies that have examined weight stigma in relation to different health behaviors have often had small sample sizes or were limited to female subjects. Thus, the present study may provide more generalizable information about health behaviors in the U.S. A related strength of the study is that higher BMI scores were well-represented in the sample, with 31.4% meeting BMI criteria for obesity. This is a closer estimate of the proportion of the American population that is classified with obesity (42%) compared to previous studies [57]. Therefore, there is greater confidence that these findings reflect the experiences of individuals with obesity in the population, aiding generalizability. Lastly, we enhance reproducibility by presenting a two-stage research program of exploratory and confirmatory analyses based on recommended open science practices.
+There are some limitations to consider. First, a composite weight stigma score was used due to survey constraints. While early tests indicate good construct validity, additional psychometric testing is warranted (see Online Supplementary Materials 4). Another limitation is the use of self-reported weight, which is subject to inaccuracies. Additionally, the data collection period overlapped with winter holidays. Individuals may have made new years health resolutions, and therefore the self-reported health behaviors may be more indicative of newly established goals rather than typical health habits. However, such resolutions would likely dampen, rather than magnify, the relationship between weight stigma and poor health behaviors. Lastly, the study is cross-sectional and therefore causal direction cannot be determined. Weight stigma may operate as a feedback loop that leads to weight gain through certain behaviors such as comfort eating [6], but further investigation is required. Given survey constraints, weight bias internalization was not assessed. Future research should build on these findings to determine the potential role of weight bias internalization in these health behaviors.
+Despite these limitations, these studys findings show that weight stigma is significantly associated with several health behaviors. If future research confirms that this is indeed a causal relationship, weight stigma could cumulatively undermine physical health over time. Taken together, these findings highlight weight stigma as a potential barrier to healthy behaviors, and suggest that one strategy to improve population health may be to reduce weight stigma. Though more research is needed, it may be important to employ more weight-inclusive approaches to health promotion, such as removing stigmatizing language or weight outcomes from health policies and program objectives [5].
+
+","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to",summarize for a LinkedIn post.,"
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Think about why this might be relevant for the audience in the grand scheme of things.    
+Identify 1 or 2 key concepts from this article that would make interesting or helpful health content.     Exclude details that do not add value to the audience.    
+Based on the key concepts from the previous steps, extract the key points and numerical descriptors to summarize for a LinkedIn post. 
+If applicable, include a brief description of the research participants, such as age and sex.    Otherwise, you can skip this step.    
+Evaluate whether or not your writing may be confusing or redundant.     
+If so, re-write it so it is clear and concise. Otherwise, keep it the same.     
+Create a journalistic headline to hook the audience.    
+Return your response in this format:    
+<headline>
+
+<summary>    
+where the summary is in paragraph form.    
+Do not label the headline and summary.","Weight stigma associated with poorer health behaviors, according to study in US adults
+
+A recent study published in the International Journal of Obesity found that weight stigma is significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, independent of BMI. The study, which examined a large sample of US adults, also found no relationship between weight stigma and physical activity. The authors suggest that weight stigma could undermine physical health over time and recommend employing more weight-inclusive approaches to health promotion. The study's findings highlight weight stigma as a potential barrier to healthy behaviors and suggest that reducing weight stigma may be important for improving population health.",,,,1,people who are not science experts,"If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is","If needed, rewrite the headline and text using terms appropriate for the audience. If not keep it the same.    Follow these steps to accomplish this:     
+1. Check if the content and language are appropriate for the audience.     
+2. If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+3. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+4. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience is for people who are not science experts","Weight stigma linked to unhealthy behaviors in US adults, study finds
+
+A recent study published in the International Journal of Obesity discovered that weight stigma is significantly associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, regardless of BMI. The study, which examined a large sample of US adults, found no connection between weight stigma and physical activity. The authors suggest that weight stigma could harm physical health over time and recommend using more weight-inclusive approaches to health promotion. The study's findings highlight weight stigma as a potential obstacle to healthy behaviors and suggest that reducing weight stigma may be important for improving population health.",,,,people who enjoy sports,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of people who enjoy sports","Weight Stigma Linked to Unhealthy Behaviors in US Adults, According to Study
+
+A recent study published in the International Journal of Obesity found that weight stigma is significantly associated with greater disordered eating, comfort eating, alcohol use, and sleep disturbance, independent of BMI. The study, which examined a large sample of US adults, also found no relationship between weight stigma and physical activity. These findings are relevant for sports enthusiasts as weight stigma could undermine physical health over time, potentially affecting their athletic performance. The authors recommend employing more weight-inclusive approaches to health promotion to reduce weight stigma and improve population health.",,,,seniors,"Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of","Rewrite the headline and text to include a statement of how it is relevant for the audience.     Follow these steps to accomplish this:     
+1. Think about why this might be relevant for the audience in the grand scheme of things.    
+2. If it is not evident why the text is relevant for the audience in the grand scheme of things,     add a sentence to inform the audience. Otherwise, keep it the same.     
+3. Modify the content if needed to reduce redundancy.     
+4. Check if the content and language are appropriate for the audience.     If it is suitable for the audience, keep it the same. If not, rewrite using terms appropriate for the audience. \ 
+    
+5. Return the final version of the headline and text to be shown to the audience.     
+It should be in this format:    
+<headline>
+
+<summary>    
+
+where the summary is in paragraph form.    
+6. Remove the backticks. Do not label the headline and summary. "",
+    
+
+Your audience consists of seniors","Weight stigma linked to unhealthy behaviors in US adults, study finds
+
+A recent study published in the International Journal of Obesity reveals that weight stigma is associated with disordered eating, comfort eating, alcohol use, and sleep disturbance, regardless of BMI. The study, which examined a large sample of US adults, found no relationship between weight stigma and physical activity. The authors suggest that weight stigma could negatively impact physical health over time and recommend using more weight-inclusive approaches to health promotion. These findings highlight weight stigma as a potential barrier to healthy behaviors, which is especially relevant for seniors who may face weight stigma in healthcare settings. Reducing weight stigma may be crucial for improving population health and promoting healthy behaviors among seniors."
