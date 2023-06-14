@@ -32,7 +32,7 @@ class Chaining:
     """
 
     def __init__(self, text, folder_path, system_role="You are a helpful assistant.", 
-            model="gpt-3.5-turbo", temperature=0.7, max_tokens=1000, 
+            model="gpt-3.5-turbo", temperature=0.7, max_tokens=9000, 
         ):
         self.text = text
         self.folder = re.sub(r'(?:.*\/)?(.*)$', r'\1', folder_path)
@@ -40,6 +40,7 @@ class Chaining:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.model = model
+        print(f'***OpenAI model: {self.model}')
 
     def create_prompt(self, task, text):
         """
@@ -84,7 +85,7 @@ class Chaining:
         response : dict
             A dictionary representing the ChatGPT response.
         """
-        print('\tSending request to GPT-3')
+        print(f'\tSending request to {self.model}')
         print(f'\t\tRequesting {n_choices} choices using {self.model}')
         openai.api_key = os.getenv('api_openai')
         response = openai.ChatCompletion.create(
@@ -116,9 +117,9 @@ class Chaining:
         qna : dict
             A dictionary representing the summarization task and the generated summaries.
         """
-        chatbot = Chaining(self.text, self.folder)
+        # chatbot = Chaining(self.text, self.folder)
         full_task = f'{prep_step} {task} {edit_task}'
-        prompt = chatbot.create_prompt(full_task, self.text)
+        prompt = self.create_prompt(full_task, self.text)
         firstline_pattern = r'\s?(\S*)(\n*)(.+)'
         title = re.match(firstline_pattern, self.text)[0]
         self.qna = dict() 
@@ -140,7 +141,7 @@ class Chaining:
         self.n_previous_prompts = dict()
 
         try:
-            response = chatbot.gpt(prompt, n_choices=n_choices, temperature=self.temperature)
+            response = self.gpt(prompt, n_choices=n_choices, temperature=self.temperature)
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
             f = tb.tb_frame
@@ -281,7 +282,7 @@ class Chaining:
         return self.relevance_dict
     
 def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edit_task, chaining_bot_dict, iteration_id, 
-    system_role=None, temperature=0.7, pause_per_request=0, n_choices=5,
+    system_role=None, model='gpt-3.5-turbo', temperature=0.7, pause_per_request=0, n_choices=5,
     save_outputs=False
     ):
     """
@@ -323,14 +324,15 @@ def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edi
     for key in text_dict:
         text = text_dict[key]
         for index in prompts_df.index:
-            print(f'**Text #{key} prompt #{index} of {prompts_df.index.max()}**')
+            print(f'**Text #{key} prompt #{index+1} of {prompts_df.index.max()+1}**')
             task = prompts_df.loc[index, 'summarize_task']
             prep_step = prompts_df.loc[index, 'prep_step']
             edit_task = prompts_df.loc[index, 'edit_task']
             try:
                 print('Creating Chaining class instance')
                 chatbot = Chaining(
-                    text, folder_path=folder_path, temperature=temperature, system_role=system_role)
+                    text, folder_path=folder_path, system_role=system_role, 
+                    model=model, temperature=temperature)
                 print('Chaining class instance created')
                 chatbot.summarize(
                     task=task, prep_step=prep_step, edit_task=edit_task, n_choices=n_choices
