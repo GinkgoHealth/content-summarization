@@ -201,3 +201,16 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
             print("An error occurred on line", lineno, "in", filename, ":", error)
             print(f'Unable to save chatbot dictionary to JSON')
     return chatbot_dictionary
+
+def load_json(filename, filepath):
+    """
+    Load a JSON file using specified file path copied from windows file explorer.
+    Back slashes in file path will be converted to forward slashes.
+
+    Arguments:
+    - filepath (raw string): Use the format r'<path>'.
+    - filename (string).
+    """
+    filename = f'{filepath}/'.replace('\\','/')+filename
+    with open(filename) as file:
+        return json.load(file)
