@@ -168,7 +168,6 @@ class Chaining:
 
     def simplify(self, simplify_task, audience, 
                     model="gpt-3.5-turbo", temperature=0.0, n_choices=1, 
-                    # simplify_iteration=None, 
                     pause_per_request=0
                     ):
         simplify_iteration = len(self.simple_summary_dict) + 1 
@@ -264,10 +263,10 @@ class Chaining:
                         'relevance task': relevance_task,
                         'audience': audience,
                         'full relevance task': full_relevance_task,
-                        'relevance statement': choice["message"]["content"],
+                        'relevance summary': choice["message"]["content"],
                         'preceding summary': input_summary_dict[key]
                     }
-                    print(f'\t...Relevance statement given')
+                    print(f'\t...Relevance summary given')
             except Exception as error:
                 exc_type, exc_obj, tb = sys.exc_info()
                 f = tb.tb_frame
@@ -283,7 +282,7 @@ class Chaining:
     
 def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edit_task, chaining_bot_dict, iteration_id, 
     system_role=None, temperature=0.7, pause_per_request=0, n_choices=5,
-    save_outputs=False, csv_path=folder_path, pickle_path=folder_path, json_path=folder_path
+    save_outputs=False
     ):
     """
     Summarize multiple texts using the same prompts.
@@ -354,7 +353,7 @@ def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edi
             save_instance_to_dict(
                 chaining_bot_dict[iteration_id], 
                 description=f'batch_Chaining_attributes_initial',
-                ext=None, json_path=json_path
+                ext=None, json_path=folder_path
                 )
         except Exception as error:
             exc_type, exc_obj, tb = sys.exc_info()
