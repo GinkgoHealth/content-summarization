@@ -23,6 +23,8 @@ summary_iteration_id = iteration_id
 chatbot_id = iteration_id
 
 # Create prompt lists
+
+system_role = "You are a helpful assistant."
 prep_step = [
     "Think about why this might be relevant for the audience in the grand scheme of things.\
     \nIdentify 1 or 2 key concepts from this article that would make interesting or helpful health content. \
@@ -75,8 +77,6 @@ user_relevance_task = [
         \n\nYour audience consists of""",
 ]
 
-system_role = "You are a helpful assistant."
-
 relevance_audience = [
     "seniors",
     # "people who enjoy sports",
@@ -88,7 +88,7 @@ chatbot_dict = dict()
 simple_summaries_dict = dict()
 relevance_dict = dict()
 chain_results_dict = dict()
-
+save = True
 # Create initial summaries
 chatbot_dict = batch_summarize_chain(
     text_dict, folder_path, prep_step, summarize_task, edit_task, chatbot_dict,
