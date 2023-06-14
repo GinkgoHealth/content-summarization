@@ -622,7 +622,7 @@ def revive_chatbot_dict_json(filename, filepath, iteration_id=0, chatbot_dict=No
     """
     jsonfile = load_json(filename, filepath)
     chatbot_dict = dict() if chatbot_dict == None else chatbot_dict
-    chatbot_dict[iteration_id] = revive_chatbot_dict(jsonfile, folder_path)
+    chatbot_dict[iteration_id] = revive_chatbot_dict(jsonfile, filepath)
     return chatbot_dict
 
 def process_chaining_results2(
