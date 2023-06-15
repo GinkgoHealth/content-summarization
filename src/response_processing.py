@@ -305,7 +305,7 @@ def merge_all_chaining_results(
     chatbot_dict, qna_dict, iteration_id, relevance_audiences=1,
     empty_columns=None, pivot=True, validate=None,
     chatbot_id=None, save_df=False, save_chatbot=False, 
-    csv_path=folder_path,
+    csv_path='',
     pickle_path=None,
     json_path=None
     ):

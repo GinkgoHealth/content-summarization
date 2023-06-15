@@ -67,7 +67,7 @@ class Chaining:
         print('\tDone creating prompt')
         return messages
 
-    def gpt(self, messages, n_choices, temperature):
+    def gpt(self, messages, n_choices, temperature, model=None):
         """
         Sends a request to the ChatGPT API with the given messages.
 
@@ -85,11 +85,12 @@ class Chaining:
         response : dict
             A dictionary representing the ChatGPT response.
         """
-        print(f'\tSending request to {self.model}')
-        print(f'\t\tRequesting {n_choices} choices using {self.model}')
+        model = self.model if model == None else model
+        print(f'\tSending request to {model}')
+        print(f'\t\tRequesting {n_choices} choices using {model}')
         openai.api_key = os.getenv('api_openai')
         response = openai.ChatCompletion.create(
-            model=self.model, messages=messages, 
+            model=model, messages=messages, 
             temperature=temperature, 
             max_tokens=self.max_tokens,
             n=n_choices
@@ -186,7 +187,7 @@ class Chaining:
             print(f'\t\t...Preparing to summarize {key}')
             simplify_prompt = self.create_prompt(full_simplify_task, self.summaries_dict[key])
             try:
-                response = self.gpt(simplify_prompt, n_choices=n_choices, temperature=temperature)
+                response = self.gpt(simplify_prompt, n_choices=n_choices, temperature=temperature, model=model)
             except Exception as error:
                 exc_type, exc_obj, tb = sys.exc_info()
                 f = tb.tb_frame
@@ -247,7 +248,7 @@ class Chaining:
             print(f'\t\t...Preparing to add relevance to {key}')
             relevance_prompt = self.create_prompt(full_relevance_task, input_summary_dict[key])
             try:
-                response = self.gpt(relevance_prompt, n_choices=n_choices, temperature=temperature)
+                response = self.gpt(relevance_prompt, n_choices=n_choices, temperature=temperature, model=model)
             except Exception as error:
                 exc_type, exc_obj, tb = sys.exc_info()
                 f = tb.tb_frame
@@ -282,7 +283,7 @@ class Chaining:
         return self.relevance_dict
     
 def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edit_task, chaining_bot_dict, iteration_id, 
-    system_role=None, model='gpt-3.5-turbo', temperature=0.7, pause_per_request=0, n_choices=5,
+    system_role=None, model='gpt-3.5-turbo', max_tokens=1000, temperature=0.7, pause_per_request=0, n_choices=5,
     save_outputs=False
     ):
     """
@@ -332,13 +333,13 @@ def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edi
                 print('Creating Chaining class instance')
                 chatbot = Chaining(
                     text, folder_path=folder_path, system_role=system_role, 
-                    model=model, temperature=temperature)
+                    model=model, max_tokens=max_tokens, temperature=temperature)
                 print('Chaining class instance created')
                 chatbot.summarize(
                     task=task, prep_step=prep_step, edit_task=edit_task, n_choices=n_choices
                     )
                 chaining_bot_dict[iteration_id][f'text{key}_prompt{"{:02d}".format(index)}'] = chatbot
-                print('\t...Success!')
+                print('\t...Completed')
                 if pause_per_request > 0:
                     print(f'[batch_summarize()] Sleeping {pause_per_request} sec to avoid exceeding API rate limit')
                     time.sleep(pause_per_request) # Account for API rate limit of 3 API requests/limit 
@@ -368,15 +369,15 @@ def batch_summarize_chain(text_dict, folder_path, prep_step, summarize_task, edi
     return chaining_bot_dict
 
 def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chaining_bot_dict, iteration_id,
-    summary_iteration_id=None, n_choices=None, pause_per_request=0,
-    prompt_column='simplify', 
+    chatbot_id=None, n_choices=None, pause_per_request=0,
+    prompt_column='simplify', model='gpt-3.5-turbo'
     # simplify_iteration=None
     ):
     """
     Simplify or add context to a summary.
     """
-    summary_iteration_id = summary_iteration_id if summary_iteration_id else iteration_id
-    print('summary_iteration_id:', summary_iteration_id)
+    # chatbot_id = chatbot_id if chatbot_id else iteration_id
+    print('chatbot_id:', chatbot_id)
     prompts_df = pd.DataFrame(product(simplify_prompts, audience), columns=[prompt_column, 'audience'])
     if n_choices == None:
         n_choices = 1 if prompt_column == 'simplify' else 5
@@ -391,11 +392,13 @@ def prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, chai
             audience = prompts_df.loc[index, 'audience']
             if prompt_column == 'simplify':
                 summary_dict = chaining_bot_dict[text_prompt_key].simplify(
-                    prompt, audience, n_choices=n_choices, pause_per_request=pause_per_request, 
+                    prompt, audience, model=model,
+                    n_choices=n_choices, pause_per_request=pause_per_request, 
                     )
             else: 
                 summary_dict = chaining_bot_dict[text_prompt_key].add_relevance(
-                    prompt, audience, n_choices=n_choices, pause_per_request=pause_per_request, 
+                    prompt, audience, model=model,
+                    n_choices=n_choices, pause_per_request=pause_per_request, 
                     )
             simple_summaries_master_list.append(summary_dict)
   
