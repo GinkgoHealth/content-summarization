@@ -158,7 +158,8 @@ def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='ba
     - chatbot_dict_iteration: A dictionary whose items are class instances.
     - filename (str): Root of the filename.
     - description (str): Parameter in `save_output` function.
-    - ext (str): Extension to append (do not include dot as it will be added). Default is 'sav'.
+    - ext (str): Extension to append (do not include dot as it will be added). Default is 'sav'. If None, 
+        object is not pickled.
     - pickle_path, json_path (raw string): Use the format r'<path>'. If None, file is saved in same director.
     - append_version (bool): If true, append date and time to end of filename.
     """
