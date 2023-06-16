@@ -21,6 +21,7 @@ n_choices = 2
 pause_per_request=0
 summary_iteration_id = iteration_id
 chatbot_id = iteration_id
+model = 'gpt-3.5-turbo-16k-0613'
 
 # Create prompt lists
 
@@ -89,52 +90,50 @@ simple_summaries_dict = dict()
 relevance_dict = dict()
 chain_results_dict = dict()
 save = True
+save_outputs = False
+empty_columns = True
+
 # Create initial summaries
 chatbot_dict = batch_summarize_chain(
     text_dict, folder_path, prep_step, summarize_task, edit_task, chatbot_dict,
-    system_role=system_role, 
+    system_role=system_role, model=model,
     n_choices=n_choices, pause_per_request=pause_per_request,
-    iteration_id=iteration_id, save_outputs=False
+    iteration_id=iteration_id, save_outputs=save_outputs
     )
-
-qna_dict = spreadsheet_columns(
-    qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, save=False
-    )
+# qna_dict = spreadsheet_columns(
+#     qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, save=save
+#     )
 
 time.sleep(pause_per_request)
 
 # Create simple summaries
-simplify_prompts = user_simplify_task
-audience = simplify_audience
-simple_summaries = prompt_chaining_dict(simplify_prompts, audience, simple_summaries_dict, 
-    chatbot_dict[iteration_id], iteration_id,
-    n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
+simple_summaries = prompt_chaining_dict(user_simplify_task, simplify_audience, simple_summaries_dict, 
+    chatbot_dict[chatbot_id], iteration_id,
+    n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
     )
 
 # Add relevance
-relevance_prompts = user_relevance_task
-relevance = prompt_chaining_dict(relevance_prompts, relevance_audience, relevance_dict, 
-    chatbot_dict[summary_iteration_id], iteration_id, prompt_column='relevance', 
-    n_choices=1, pause_per_request=pause_per_request, summary_iteration_id=summary_iteration_id
+relevance = prompt_chaining_dict(user_relevance_task, relevance_audience, relevance_dict, 
+    chatbot_dict[chatbot_id], iteration_id, prompt_column='relevance', 
+    n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
     )
 
 # Merge the results
 try:
-    chain_results_dict = merge_all_chaining_results(
-        chain_results_dict, chatbot_dict, iteration_id, pivot=True,
-        empty_columns=True,
-        save_df=True, save_chatbot=True, 
+    qna_dict = merge_all_chaining_results(
+        chatbot_dict, qna_dict, iteration_id=iteration_id, relevance_audiences=2, pivot=True,
+        empty_columns=empty_columns, chatbot_id=chatbot_id,
+        save_df=save, save_chatbot=save, 
             csv_path=folder_path,
     )
     print(f'\nCompleted merge_all_chaining_results!:)')
-except Exception as e:
-    traceback.print_exc()
-    print(f'\nError occurred in line {traceback.extract_tb(sys.exc_info()[2])[-1][1]}: {e}')
-    merged_df = merge_chaining_results(
-        qna_dict, chatbot_dict, 
-        simple_summaries_dict, relevance_dict, iteration_id, 
-        empty_columns=True, pivot=True, validate=True, 
-        chatbot_id=chatbot_id, save_df=True, save_chatbot=True,
-        csv_path=folder_path, pickle_path=folder_path, json_path=folder_path
-        )
-    print(f'\nCompleted merge_chaining_results.')
+except Exception as error:
+    exc_type, exc_obj, tb = sys.exc_info()
+    f = tb.tb_frame
+    lineno = tb.tb_lineno
+    file = f.f_code.co_filename
+    print(f'An error occurred on line {lineno} in {file}: {error}')
+    print('Unable to merge results')
+    if save:
+        save_instance_to_dict(chatbot_dict[chatbot_id], ext=None, json_path=folder_path)
+        print(f'\nCould not merge; saved Chaining instances as JSON.')
