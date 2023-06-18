@@ -121,7 +121,9 @@ def grab_references(
     
     return new_references_df
 
-def trim_text(text, regex=r'(.*)'):
+def trim_text(text, regex=None):
+    if regex==None:
+        regex = '.*<h2>Abstract</h2>.*(?:Introduction.*)?(<h2.*?>Introduction</h2>.*References)<.*' 
     try:
         processed = re.search(regex, text, re.DOTALL).group(1)
         html_display = display.HTML(processed)
@@ -132,7 +134,7 @@ def trim_text(text, regex=r'(.*)'):
     return processed, html_display
 
 def text_dict_from_web(article_dict, header=2, to_display=0,
-        regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction)?.*(<h\d.*?>Introduction</h\d>.*References)<.*'
+        regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*'
         ):
     """
     Create a text dictionary from a dictionary containing web-scraped articles.
