@@ -1,3 +1,5 @@
+import re
+from IPython import display
 
 def create_text_dict(text, text_dict=None):
     """
@@ -118,3 +120,41 @@ def grab_references(
     print(f'Number of {type} references where {filter_string}: {len(new_references_df)}')
     
     return new_references_df
+
+def trim_text(text, regex=r'(.*)'):
+    try:
+        processed = re.search(regex, text, re.DOTALL).group(1)
+        html_display = display.HTML(processed)
+    except: 
+        print('Unable to parse article text')
+        processed = '<Error parsing article text>' 
+        html_display = processed
+    return processed, html_display
+
+def text_dict_from_web(article_dict, header=2, to_display=0,
+        regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction)?.*(<h\d.*?>Introduction</h\d>.*References)<.*'
+        ):
+    """
+    Create a text dictionary from a dictionary containing web-scraped articles.
+
+    Parameters:
+        article_dict (dict): Values of each dictionary item are a dictionary representing the data from a 
+            single article: 'url', 'text', and 'title'.
+
+    Returns:
+        text_dict: Dictionary where each item is a string of the text of an article, starting with the title.
+    """
+    regex_str = regex_str.replace('\d', f'{header}')
+    regex = rf'{regex_str}'
+    print(f'Regex pattern: {regex}')
+    text_dict = dict()
+    display_dict = dict()
+    if type(to_display) != list:
+        to_display = [to_display] 
+    for article_key in article_dict:
+        trimmed_text, display = trim_text(article_dict[article_key]['text'], regex)
+        text_dict[article_key] = f"{article_dict[article_key]['title']}\n\n{trimmed_text}"
+        if article_key in to_display:
+            display_dict[article_key] = display
+    print(f'text_dict keys: {[key for key in text_dict.keys()]}')
+    return text_dict, display_dict
