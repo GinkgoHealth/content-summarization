@@ -144,7 +144,7 @@ def save_to_json(obj, filename=None, description='output_dictionary', append_ver
     filename += '.json'
     with open(path+filename, 'w') as f:
         json.dump(obj, f)
-    print(f'Object saved as JSON: {filename}')
+    print(f'Object saved as JSON: {path}/{filename}')
 
 def save_instance_to_dict(chatbot_dict_iteration, filename=None, description='batch_Chaining_attributes', 
         ext='sav', save_json=True, append_version=True, 
