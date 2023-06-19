@@ -35,7 +35,7 @@ class Chaining:
             model="gpt-3.5-turbo", temperature=0.7, max_tokens=9000, 
         ):
         self.text = text
-        self.folder = re.sub(r'(?:.*\/)?(.*)$', r'\1', folder_path)
+        self.folder = re.sub(r'(?:.*\/)?(.*\/.*)\/?$', r'\1', folder_path)
         self.system_role = system_role
         self.temperature = temperature
         self.max_tokens = max_tokens
