@@ -26,28 +26,36 @@ model = 'gpt-3.5-turbo-16k-0613'
 # Create prompt lists
 
 system_role = "You are a helpful assistant."
-prep_step = [
-    "Think about why this might be relevant for the audience in the grand scheme of things.\
-    \nIdentify 1 or 2 key concepts from this article that would make interesting or helpful health content. \
-    Exclude details that do not add value to the audience.\
-    \nBased on the key concepts from the previous steps, extract the key points and numerical descriptors to",
+summarize_task = [
+    # "Tell your friend about the research in a text message.",
+    "In the summary, cover the following information: \
+    \n- Identify the key points and statistics from this text that would make interesting or helpful health content. \
+    \n- If available, include the effect sizes found in the research. \
+    Otherwise, skip this step. \
+    \n- If applicable, get a brief description of the research participants, \
+    such as age, sex, and health conditions. Otherwise, you can skip this step.\
+    \n- Think about why the general population should care about the research.",
 ]
 
-summarize_task = [
-    "summarize for a LinkedIn post.",
+prep_step = [
+    "Summarize the text for a LinkedIn post.",
+    # "1. Tell your friend about the research in a text message.",
+    # "Take the key points and numerical descriptors to",
+    # "summarize the research in a text message to someone you know",
+    # "summarize for a LinkedIn post.",
     # "Describe the interesting points to your coworker at the water cooler",
     # "Create an Instagram post without hashtags.",
 ]
 edit_task = [
-    "\nIf applicable, include a brief description of the research participants, such as age and sex.\
-    Otherwise, you can skip this step.\
-    \nEvaluate whether or not your writing may be confusing or redundant. \
+    """
+    \nOnce you have written your text message: \
+    \nEvaluate your text message to see if it may be confusing or redundant. \
     \nIf so, re-write it so it is clear and concise. Otherwise, keep it the same. \
-    \nCreate a journalistic headline to hook the audience.\
-    \nReturn your response in this format:\
-    \n<headline>\n\n<summary>\
-    \nwhere the summary is in paragraph form.\
-    \nDo not label the headline and summary.",
+    \n2. Create an intriguing subject line for the text.\
+    \n3. Return your final response in a JSON format with the following format: \
+    \n{"headline": <subject line from step 2>, \
+    \n"body": <text from step 1>} \
+    """,
 ]
 
 user_simplify_task = [
