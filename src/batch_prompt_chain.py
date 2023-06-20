@@ -8,7 +8,7 @@ import time
 import traceback
 
 # Create text dictionary
-folder_path = '../text/2023-06-02 5' # ** UPDATE REQUIRED**
+folder_path = '../text/2023-06-20 discussion' # ** UPDATE REQUIRED**
 
 encoding='ISO-8859-1'
 subset=None
@@ -19,7 +19,7 @@ text_dict = create_text_dict_from_folder(folder_path, encoding=encoding, subset=
 iteration_id = 1
 n_choices = 2
 pause_per_request=0
-summary_iteration_id = iteration_id
+# summary_iteration_id = iteration_id
 chatbot_id = iteration_id
 model = 'gpt-3.5-turbo-16k-0613'
 
@@ -90,50 +90,51 @@ simple_summaries_dict = dict()
 relevance_dict = dict()
 chain_results_dict = dict()
 save = True
-save_outputs = False
+# save_outputs = False
+save_outputs = True
 empty_columns = True
 
 # Create initial summaries
-chatbot_dict = batch_summarize_chain(
+chaining_dict = batch_summarize_chain(
     text_dict, folder_path, prep_step, summarize_task, edit_task, chatbot_dict,
-    system_role=system_role, model=model,
+    system_role=system_role, model=model, max_tokens=1000,
     n_choices=n_choices, pause_per_request=pause_per_request,
     iteration_id=iteration_id, save_outputs=save_outputs
     )
-# qna_dict = spreadsheet_columns(
-#     qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, save=save
-#     )
+qna_dict = spreadsheet_columns(
+    qna_dict, chatbot_dict, iteration_id, chatbot_id=chatbot_id, save=save, path=folder_path
+    )
 
 time.sleep(pause_per_request)
 
-# Create simple summaries
-simple_summaries = prompt_chaining_dict(user_simplify_task, simplify_audience, simple_summaries_dict, 
-    chatbot_dict[chatbot_id], iteration_id,
-    n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
-    )
+# # Create simple summaries
+# simple_summaries = prompt_chaining_dict(user_simplify_task, simplify_audience, simple_summaries_dict, 
+#     chatbot_dict[chatbot_id], iteration_id,
+#     n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
+#     )
 
-# Add relevance
-relevance = prompt_chaining_dict(user_relevance_task, relevance_audience, relevance_dict, 
-    chatbot_dict[chatbot_id], iteration_id, prompt_column='relevance', 
-    n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
-    )
+# # Add relevance
+# relevance = prompt_chaining_dict(user_relevance_task, relevance_audience, relevance_dict, 
+#     chatbot_dict[chatbot_id], iteration_id, prompt_column='relevance', 
+#     n_choices=1, pause_per_request=pause_per_request, chatbot_id=chatbot_id
+#     )
 
-# Merge the results
-try:
-    qna_dict = merge_all_chaining_results(
-        chatbot_dict, qna_dict, iteration_id=iteration_id, relevance_audiences=2, pivot=True,
-        empty_columns=empty_columns, chatbot_id=chatbot_id,
-        save_df=save, save_chatbot=save, 
-            csv_path=folder_path,
-    )
-    print(f'\nCompleted merge_all_chaining_results!:)')
-except Exception as error:
-    exc_type, exc_obj, tb = sys.exc_info()
-    f = tb.tb_frame
-    lineno = tb.tb_lineno
-    file = f.f_code.co_filename
-    print(f'An error occurred on line {lineno} in {file}: {error}')
-    print('Unable to merge results')
-    if save:
-        save_instance_to_dict(chatbot_dict[chatbot_id], ext=None, json_path=folder_path)
-        print(f'\nCould not merge; saved Chaining instances as JSON.')
+# # Merge the results
+# try:
+#     qna_dict = merge_all_chaining_results(
+#         chatbot_dict, qna_dict, iteration_id=iteration_id, relevance_audiences=2, pivot=True,
+#         empty_columns=empty_columns, chatbot_id=chatbot_id,
+#         save_df=save, save_chatbot=save, 
+#             csv_path=folder_path,
+#     )
+#     print(f'\nCompleted merge_all_chaining_results!:)')
+# except Exception as error:
+#     exc_type, exc_obj, tb = sys.exc_info()
+#     f = tb.tb_frame
+#     lineno = tb.tb_lineno
+#     file = f.f_code.co_filename
+#     print(f'An error occurred on line {lineno} in {file}: {error}')
+#     print('Unable to merge results')
+#     if save:
+#         save_instance_to_dict(chatbot_dict[chatbot_id], ext=None, json_path=folder_path)
+#         print(f'\nCould not merge; saved Chaining instances as JSON.')
