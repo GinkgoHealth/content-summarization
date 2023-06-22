@@ -47,7 +47,127 @@ def run_spider():
     d = crawler.crawl(spider_BMJO)
     return d
 
+class crawler_RSS1(scrapy.Spider):
+    name = "crawler_RSS1"
+    
+    def __init__(self, n_articles):
+        self.n_articles = n_articles
+    
+    def start_requests(self):
+        journals = {
+            'PLOS One': 'https://journals.plos.org/plosone/feed/atom',
+            'BMJ Open': 'https://bmjopen.bmj.com/rss/current.xml',
+            'Journal of Medical Internet Research': 'https://www.jmir.org/feed/atom',
+            'PLOS Medicine': 'https://journals.plos.org/plosmedicine/feed/atom'
 
+            # 'Annual Review of Medicine': 'https://www.annualreviews.org/action/showFeed?ui=45mu4&mi=3fndc3&ai=sm&jc=med&type=etoc&feed=atom' # response code 403
+            }
+        for index, journal in enumerate(journals):
+            # article_dict[index] = dict()
+            yield scrapy.Request(
+                url=journals[journal], callback=self.parse_front, 
+                cb_kwargs={'journal': journal, 'journal_index': index, 'article_dict': article_dict}
+                )
+    
+    def parse_front(self, response, journal, journal_index, article_dict):
+        response.selector.remove_namespaces() # This is needed for any Atom feeds
+        # print('Initiation')
+        try:
+            if self.n_articles != 1:
+                article_title = response.xpath('//entry/title/text()').getall()
+                article_url = response.css('entry > link[rel="alternate"]::attr(href)').getall()
+                if article_url == []:
+                    print(f'\tExtracting using method 2 for {journal}')
+                    article_title = response.xpath('//item/title/text()').getall()
+                    article_url = response.css('item > link::text').getall()
+            else:
+                article_title = [response.xpath('//entry/title/text()').get()]
+                article_url = [response.css('entry > link[rel="alternate"]::attr(href)').get()]
+                if article_url[0] is None:
+                    print(f'\tExtracting using method 2 for {journal}')
+                    article_title = [response.xpath('//item/title/text()').get()]
+                    article_url = [response.css('item > link::text').get()]
+        except:
+            print('fail')
+        print(f'Found {len(article_title)} articles and {len(article_url)} URLs for {journal}')
+
+        # This is required for BMJ Open, which for some reason repeats each article title.
+        if len(article_title) == len(article_url) * 2:
+            unique_article_title = []
+            [unique_article_title.append(article) for article in article_title if article not in unique_article_title]
+            article_title = unique_article_title
+            print(f'\tCorrected number of article titles: {len(article_title)}')
+        if type(n_articles) == int:
+            article_url = article_url[:n_articles]
+
+        for index, url in enumerate(article_url):
+            # print(url)
+            key = round(journal_index + index/100, 2)
+            article_dict[key] = {
+                'journal': journal,
+                'title': article_title[index],
+                'url': url
+            }
+            yield response.follow(
+                url=url, callback=self.parse_pages, 
+                cb_kwargs={'key': key, 'article_dict': article_dict})
+                
+    
+    def parse_pages(self, response, key, article_dict):
+        # print(f'Journal #{key}')
+        text = response.xpath('//h2|//p|//h3|//h4').extract()
+        article_dict[key]['text'] = ''.join(['\n'+line for line in text])
+        if key - int(key) == 0:
+            print(f'\t{article_dict[key]["journal"]}')
+            print(f'\t\tArticle attributes: {[key for key in article_dict[key].keys()]}')
+        
+@wait_for(40)
+def run_RSS_spider(n_articles='all'):
+    """
+    Scrape articles from RSS feeds. Must instantiate a blank dictionary as `article_dict` before running the script.
+    Parameters:
+        - n_articles (int): Number of articles to scrape from each journal. 
+            If 'all' or other non-integer value, scrape all articles. Default is 'all'.
+
+    How to call the function:
+    ```
+    article_dict = dict()
+    run_RSS_spider(n_articles)
+
+    ```
+    """
+    crawler = CrawlerRunner()
+    d = crawler.crawl(crawler_RSS1, n_articles)
+    return d
+
+def article_titles(article_dict):
+    """
+    Print the titles of the articles in a dictionary of articles.
+    """
+    for article in sorted(article_dict):
+        print(f"{article}: {article_dict[article]['title']}")
+        print(f"\t{article_dict[article]['journal']} {article_dict[article]['url']}\n")
+
+def save_article_dict(article_dict, path, description='scraped_articles_dict', append_version=True,
+    save_pickle=True, save_json=False, to_csv=False):
+    """
+    Save a dictionary of articles to a file. Default behaviour is to save as a pickle only.
+    Parameters:
+        - article_dict (dict): Dictionary of articles.
+        - path (str): Path to save the file.
+        - description (str): Description of the file for the filename.
+        - append_version (bool): If True, append the date to the filename.
+        - save_pickle (bool): If True, save the dictionary as a pickle file.
+        - save_json (bool): If True, save the dictionary as a JSON file.
+        - to_csv (bool): If True, convert the dictionary to a DataFrame to save as a CSV file.
+    """
+    if save_pickle == True:
+        savepickle(article_dict, filename=f'{description}_', path=path, append_version=append_version)
+    if save_json == True:
+        save_to_json(article_dict, description=description, path=path, append_version=append_version)
+    if to_csv == True:
+        save_csv(pd.DataFrame(article_dict).transpose(), path=path, filename=f'{description}_',
+            index=False, append_version=append_version)
 
 
 
