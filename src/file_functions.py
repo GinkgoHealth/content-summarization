@@ -215,3 +215,24 @@ def load_json(filename, filepath):
     filename = f'{filepath}/'.replace('\\','/')+filename
     with open(filename) as file:
         return json.load(file)
+
+def save_article_dict(article_dict, path, description='scraped_articles_dict', append_version=True,
+    save_pickle=True, save_json=False, to_csv=False):
+    """
+    Save a dictionary of articles to a file. Default behaviour is to save as a pickle only.
+    Parameters:
+        - article_dict (dict): Dictionary of articles.
+        - path (str): Path to save the file.
+        - description (str): Description of the file for the filename.
+        - append_version (bool): If True, append the date to the filename.
+        - save_pickle (bool): If True, save the dictionary as a pickle file.
+        - save_json (bool): If True, save the dictionary as a JSON file.
+        - to_csv (bool): If True, convert the dictionary to a DataFrame to save as a CSV file.
+    """
+    if save_pickle == True:
+        savepickle(article_dict, filename=f'{description}_', path=path, append_version=append_version)
+    if save_json == True:
+        save_to_json(article_dict, description=description, path=path, append_version=append_version)
+    if to_csv == True:
+        save_csv(pd.DataFrame(article_dict).transpose(), path=path, filename=f'{description}_',
+            index=False, append_version=append_version)
