@@ -159,9 +159,9 @@ def trim_text(text, article_regex=None, abs_regex=None):
     }
     return processed_article, display_dict
 
-def text_dict_from_web(article_dict, header=2, to_display=0.01,
-        article_regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*',
-        abs_regex_str='.*(<h\d>Abstract</h\d>.*(?:Introduction.*)?)<h\d.*?>Introduction</h\d>.*References<.*'
+def text_dict_from_web(article_dict, header=(2,4), to_display=0.01,
+        article_regex_str=r'.*<h\d.*?>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*',
+        abs_regex_str=r'.*(<h\d.*?>Abstract</h\d>.*(?:Introduction.*)?)<h\d.*?>Introduction</h\d>.*References<.*'
         ):
     """
     Create a text dictionary from a dictionary containing web-scraped articles.
@@ -173,8 +173,13 @@ def text_dict_from_web(article_dict, header=2, to_display=0.01,
     Returns:
         text_dict: Dictionary where each item is a string of the text of an article, starting with the title.
     """
-    article_regex_str = article_regex_str.replace('\d', f'{header}')
-    abs_regex_str = abs_regex_str.replace('\d', f'{header}')
+    if type(header) == int:
+        header = str(header) 
+    else :
+        header = rf"[{''.join([str(h) for h in range(header[0], header[-1]+1)])}]"
+    print(rf'header: {header}')
+    article_regex_str = article_regex_str.replace('\d', header)
+    abs_regex_str = abs_regex_str.replace('\d', header)
     article_regex = rf'{article_regex_str}'
     abs_regex = rf'{abs_regex_str}'
     print(f'Regex patterns: \n\t{article_regex}\n\t{abs_regex}')
@@ -198,6 +203,15 @@ def text_dict_from_web(article_dict, header=2, to_display=0.01,
             }
     print(f'text_dict keys: {[key for key in text_dict.keys()]}')
     return text_dict, display_dict
+
+def display_html(display_dict, type='abstract'):
+    """
+    Display the HTML from the dictionary of HTML displays.
+    """
+    print()
+    for text in display_dict:
+        print('************************************* Start *************************************')
+        display.display(display_dict[text][type])
 
 def partial_article_dict(article_dict, n_articles=2, journals='all'):
     """
@@ -227,11 +241,3 @@ def partial_article_dict(article_dict, n_articles=2, journals='all'):
     for journal in journals:
         print(f'\t{journal}')
     return article_dict
-
-def display_html(display_dict, type='abstract'):
-    """
-    Display the HTML from the dictionary of HTML displays.
-    """
-    for text in display_dict:
-        print('Start')
-        display.display(display_dict[text][type])
