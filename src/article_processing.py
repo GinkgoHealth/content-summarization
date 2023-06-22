@@ -160,3 +160,40 @@ def text_dict_from_web(article_dict, header=2, to_display=0,
             display_dict[article_key] = display
     print(f'text_dict keys: {[key for key in text_dict.keys()]}')
     return text_dict, display_dict
+
+def partial_article_dict(article_dict, n_articles=2, journals='all'):
+    """
+    Creates a partial article dictionary from the full article dictionary.
+    
+    Args:
+        article_dict (dict): The full article dictionary.
+        n_articles (int, optional): The number of articles per journal to include in the partial dictionary.
+            Defaults to 2.
+        journals ('all', int, or list, optional): The integers of the journals to include in the partial dictionary.
+            Defaults to 'all'.
+    
+    Returns:
+        dict: A partial article dictionary.
+    """
+    if journals == 'all':
+        journals = list(set([key//1 for key in article_dict.keys()]))
+    elif (type(journals) == float) or (type(journals) == int):
+        journals = [journals]
+    article_dict = {
+        key: article_dict[key] for key in article_dict.keys() if \
+        (key//1 in journals) and (key - int(key) < n_articles/100)
+        }
+    print(f'Keys for article_dict: {[key for key in sorted(article_dict.keys())]}')
+    journals = [journal for journal in set([key["journal"] for key in article_dict.values()])]
+    print('Journals:')
+    for journal in journals:
+        print(f'\t{journal}')
+    return article_dict
+
+def display_html(display_dict, type='abstract'):
+    """
+    Display the HTML from the dictionary of HTML displays.
+    """
+    for text in display_dict:
+        print('Start')
+        display.display(display_dict[text][type])
