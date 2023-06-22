@@ -30,11 +30,31 @@ class spider_BMJO(scrapy.Spider):
         
 @wait_for(10)
 def run_spider():
+    """
+    Scrape articles from non-RSS URLs. Must instantiate a blank dictionary as `article_dict` 
+    before running the script.
+    
+    Parameters: None
+
+    How to call the function:
+    ```
+    article_dict = dict()
+    run_spider()
+
+    ```
+    """
     crawler = CrawlerRunner()
     d = crawler.crawl(spider_BMJO)
     return d
 
+
+
+
+
+
+
+
+
 iteration_id = 1
 article_dict = dict()
 
-run_spider()
