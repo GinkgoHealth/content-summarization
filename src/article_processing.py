@@ -121,20 +121,47 @@ def grab_references(
     
     return new_references_df
 
-def trim_text(text, regex=None):
-    if regex==None:
-        regex = '.*<h2>Abstract</h2>.*(?:Introduction.*)?(<h2.*?>Introduction</h2>.*References)<.*' 
+def trim_text(text, article_regex=None, abs_regex=None):
+    if article_regex==None:
+        article_regex = '.*<h2>Abstract</h2>.*(?:Introduction.*)?(<h2.*?>Introduction</h2>.*References)<.*' 
+        abs_regex = '.*(<h2>Abstract</h2>.*(?:Introduction.*)?)<h2.*?>Introduction</h2>.*References<.*' 
     try:
-        processed = re.search(regex, text, re.DOTALL).group(1)
-        html_display = display.HTML(processed)
-    except: 
-        print('Unable to parse article text')
-        processed = '<Error parsing article text>' 
-        html_display = processed
-    return processed, html_display
+        body = re.search(article_regex, text, re.DOTALL).group(1)
+        abstract = re.search(abs_regex, text, re.DOTALL).group(1)
+    except Exception as error: 
+        exc_type, exc_obj, tb = sys.exc_info()
+        file = tb.tb_frame
+        lineno = tb.tb_lineno
+        filename = file.f_code.co_filename
+        print(f'\tAn error occurred on line {lineno} in {filename}: {error}')    
+        print('\t\tUnable to parse article text')
+        body = text 
+        abstract = text 
+    try:
+        article_display = display.HTML(body)
+        abs_display = display.HTML(abstract)
+    except Exception as error: 
+        exc_type, exc_obj, tb = sys.exc_info()
+        file = tb.tb_frame
+        lineno = tb.tb_lineno
+        filename = file.f_code.co_filename
+        print(f'\tAn error occurred on line {lineno} in {filename}: {error}')    
+        print('\t\tUnable to create HTML display')
+        article_display = f'<p>{body}</p>'
+        abs_display = f'<p>{abstract}</p>'
+    processed_article = {
+        'abstract': abstract,
+        'body': body,
+    }
+    display_dict = {
+        'article_display': article_display,
+        'abs_display': abs_display
+    }
+    return processed_article, display_dict
 
-def text_dict_from_web(article_dict, header=2, to_display=0,
-        regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*'
+def text_dict_from_web(article_dict, header=2, to_display=0.01,
+        article_regex_str='.*<h\d>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*',
+        abs_regex_str='.*(<h\d>Abstract</h\d>.*(?:Introduction.*)?)<h\d.*?>Introduction</h\d>.*References<.*'
         ):
     """
     Create a text dictionary from a dictionary containing web-scraped articles.
@@ -146,18 +173,29 @@ def text_dict_from_web(article_dict, header=2, to_display=0,
     Returns:
         text_dict: Dictionary where each item is a string of the text of an article, starting with the title.
     """
-    regex_str = regex_str.replace('\d', f'{header}')
-    regex = rf'{regex_str}'
-    print(f'Regex pattern: {regex}')
+    article_regex_str = article_regex_str.replace('\d', f'{header}')
+    abs_regex_str = abs_regex_str.replace('\d', f'{header}')
+    article_regex = rf'{article_regex_str}'
+    abs_regex = rf'{abs_regex_str}'
+    print(f'Regex patterns: \n\t{article_regex}\n\t{abs_regex}')
     text_dict = dict()
     display_dict = dict()
-    if type(to_display) != list:
+    if (type(to_display) == int) or (type(to_display) == float):
         to_display = [to_display] 
     for article_key in article_dict:
-        trimmed_text, display = trim_text(article_dict[article_key]['text'], regex)
-        text_dict[article_key] = f"{article_dict[article_key]['title']}\n\n{trimmed_text}"
-        if article_key in to_display:
-            display_dict[article_key] = display
+        if (article_key +1) - (article_key +1) //1 == 0: # if integer
+            print(f'Journal: {article_dict[article_key]["journal"]} {article_key}')
+        trimmed_text, display = trim_text(article_dict[article_key]['text'], article_regex, abs_regex)
+        text_dict[article_key] = {
+            'title': article_dict[article_key]['title'],
+            'body': f"{article_dict[article_key]['title']}\n\n{trimmed_text['body']}",
+            'abstract': trimmed_text['abstract'],
+        }
+        if (to_display == 'all') or (to_display == None) or (article_key in to_display):
+            display_dict[article_key] = {
+                'abstract': display['abs_display'],
+                'body': display['article_display']
+            }
     print(f'text_dict keys: {[key for key in text_dict.keys()]}')
     return text_dict, display_dict
 
