@@ -50,7 +50,7 @@ def run_spider():
 class crawler_RSS1(scrapy.Spider):
     name = "crawler_RSS1"
     
-    def __init__(self, n_articles):
+    def __init__(self, n_articles='all'):
         self.n_articles = n_articles
     
     def start_requests(self):
@@ -97,8 +97,8 @@ class crawler_RSS1(scrapy.Spider):
             [unique_article_title.append(article) for article in article_title if article not in unique_article_title]
             article_title = unique_article_title
             print(f'\tCorrected number of article titles: {len(article_title)}')
-        if type(n_articles) == int:
-            article_url = article_url[:n_articles]
+        if type(self.n_articles) == int:
+            article_url = article_url[:self.n_articles]
 
         for index, url in enumerate(article_url):
             # print(url)
