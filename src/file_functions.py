@@ -234,5 +234,5 @@ def save_article_dict(article_dict, path, description='scraped_articles_dict', a
     if save_json == True:
         save_to_json(article_dict, description=description, path=path, append_version=append_version)
     if to_csv == True:
-        save_csv(pd.DataFrame(article_dict).transpose(), path=path, filename=f'{description}_',
-            index=False, append_version=append_version)
+        save_csv(pd.DataFrame(article_dict).transpose().drop(columns=['text']), path=path, filename=f'{description}_',
+            index=True, append_version=append_version)
