@@ -241,3 +241,13 @@ def partial_article_dict(article_dict, n_articles=2, journals='all'):
     for journal in journals:
         print(f'\t{journal}')
     return article_dict
+
+def html_to_string(html):
+    """
+    Remove HTML tags and prepare text for export to CSV.
+    """
+    cleaned_text = re.sub('<[^<]+?>', '', html)  # Remove HTML tags
+    cleaned_text = cleaned_text.replace('\n', ' ').replace('\r', '')  # Remove line breaks
+    cleaned_text = cleaned_text.replace(',', '[comma]')
+    cleaned_text +='\n'
+    return cleaned_text
