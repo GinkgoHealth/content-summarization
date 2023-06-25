@@ -123,8 +123,8 @@ def grab_references(
 
 def trim_text(text, article_regex=None, abs_regex=None):
     if article_regex==None:
-        article_regex = '.*<h2>Abstract</h2>.*(?:Introduction.*)?(<h2.*?>Introduction</h2>.*References)<.*' 
-        abs_regex = '.*(<h2>Abstract</h2>.*(?:Introduction.*)?)<h2.*?>Introduction</h2>.*References<.*' 
+        article_regex = '.*<h2>Abstract</h2>.*(?:(?:Introduction|Background).*)?(<h2.*?>\d?.?\s?(?:Introduction|Background)</h2>.*References)<.*' 
+        abs_regex = '.*(<h2>Abstract</h2>.*(?:(?:Introduction|Background).*)?)<h2.*?>\d?.?\s?(?:Introduction|Background)</h2>.*References<.*' 
     try:
         body = re.search(article_regex, text, re.DOTALL).group(1)
         abstract = re.search(abs_regex, text, re.DOTALL).group(1)
@@ -159,9 +159,9 @@ def trim_text(text, article_regex=None, abs_regex=None):
     }
     return processed_article, display_dict
 
-def text_dict_from_web(article_dict, header=(2,4), to_display=0.01,
-        article_regex_str=r'.*<h\d.*?>Abstract</h\d>.*(?:Introduction.*)?(<h\d.*?>Introduction</h\d>.*References)<.*',
-        abs_regex_str=r'.*(<h\d.*?>Abstract</h\d>.*(?:Introduction.*)?)<h\d.*?>Introduction</h\d>.*References<.*'
+def text_dict_from_web(article_dict, header=(2,4), to_display=0.01, verbose=False,
+        article_regex_str=r'.*<h\d.*?>Abstract</h\d>.*(?:(?:Introduction|Background).*)?(<h\d.*?>1?.?\s?(?:Introduction|Background)</h\d>.*References)<.*',
+        abs_regex_str=r'.*(<h\d.*?>Abstract</h\d>.*(?:(?:Introduction|Background).*)?)<h\d.*?>1?.?\s?(?:Introduction|Background)</h\d>.*References<.*'
         ):
     """
     Create a text dictionary from a dictionary containing web-scraped articles.
@@ -188,19 +188,33 @@ def text_dict_from_web(article_dict, header=(2,4), to_display=0.01,
     if (type(to_display) == int) or (type(to_display) == float):
         to_display = [to_display] 
     for article_key in article_dict:
-        if (article_key +1) - (article_key +1) //1 == 0: # if integer
-            print(f'Journal: {article_dict[article_key]["journal"]} {article_key}')
-        trimmed_text, display = trim_text(article_dict[article_key]['text'], article_regex, abs_regex)
-        text_dict[article_key] = {
-            'title': article_dict[article_key]['title'],
-            'body': f"{article_dict[article_key]['title']}\n\n{trimmed_text['body']}",
-            'abstract': trimmed_text['abstract'],
-        }
-        if (to_display == 'all') or (to_display == None) or (article_key in to_display):
-            display_dict[article_key] = {
-                'abstract': display['abs_display'],
-                'body': display['article_display']
+        journal = article_dict[article_key]["journal"]
+        text = article_dict[article_key]['text']
+        if 'PLOS' in journal:
+            article_type_regex = r'id="artType">(.+?)<.*'
+            article_type = re.search(article_type_regex, text, re.DOTALL).group(1)
+            types_to_exclude = ['Editorial', 'Correction', 'Perspective', 'Retraction']
+            types_to_exclude += [type.lower() for type in types_to_exclude]
+            types_to_exclude += [type.upper() for type in types_to_exclude]
+        else:
+            article_type = 'Research Article'
+        if (verbose == True) or  ((article_key +1) - (article_key +1) //1 == 0): # if integer
+            print(f'Journal: {journal} {article_key}')
+            # print(f'\tArticle type: {article_type}')
+        if (article_type == 'Research Article') or (article_type not in types_to_exclude):
+            trimmed_text, display = trim_text(text, article_regex, abs_regex)
+            text_dict[article_key] = {
+                'title': article_dict[article_key]['title'],
+                'body': f"{article_dict[article_key]['title']}\n\n{trimmed_text['body']}",
+                'abstract': trimmed_text['abstract'],
             }
+            if (to_display == 'all') or (to_display == None) or (article_key in to_display):
+                display_dict[article_key] = {
+                    'abstract': display['abs_display'],
+                    'body': display['article_display']
+                }
+        else:
+            print(f'\tArticle type "{article_type}" excluded')
     print(f'text_dict keys: {[key for key in text_dict.keys()]}')
     return text_dict, display_dict
 
