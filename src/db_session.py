@@ -26,7 +26,8 @@ def with_sql_session(function, args, kwargs, engine=None):
     try:
         return function(session, *args, **kwargs)
     finally:
-        session.close()
+        # session.close()
+        pass
 
 def with_local_sql_session(function, *args, **kwargs):
     return with_sql_session(function, args, kwargs)
