@@ -56,3 +56,17 @@ def remote_sql_session(function):
     def wrapper(*args, **kwargs):
         return with_remote_sql_session(function, *args, **kwargs)
     return wrapper
+
+def testing_session(function):
+    @wraps(function)
+    def wrapper(*args, **kwargs):
+        return with_testing_session(function)
+    return wrapper
+
+def with_testing_session(function, engine=None):
+    if engine is None:
+        # Default to local port
+        engine = get_engine_for_port(5432)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return function(session)
