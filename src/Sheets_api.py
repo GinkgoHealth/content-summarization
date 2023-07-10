@@ -121,6 +121,7 @@ def pull_from_Sheet(data=None, sheet_name='Master', cell_range='',
                 lineno = tb.tb_lineno
                 filename = f.f_code.co_filename
                 print("An error occurred on line", lineno, "in", filename, ":", error)
+        print(f'Columns: {[column for column in data.columns]}')
         return df
     
 def pull_kl_results(save=True,
