@@ -70,3 +70,10 @@ def with_testing_session(function, engine=None):
     Session = sessionmaker(bind=engine)
     session = Session()
     return function(session)
+
+@testing_session
+def get_session(session):
+    """
+    Return a database session for testing purposes.
+    """
+    return session
