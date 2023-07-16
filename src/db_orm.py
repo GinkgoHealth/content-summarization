@@ -1,18 +1,15 @@
 import sys
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
-
 from db_session import *
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import text
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, TIMESTAMP, Numeric
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, TIMESTAMP, Numeric, Boolean
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 import pandas as pd
 # from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
-
-
 
 Base = declarative_base()
 
@@ -188,8 +185,6 @@ def bulk_append(input_df, table='summaries'):
     return insert_rows()
 
 ########## No longer needed
-
-
 class Feed(Base):
     __tablename__ = 'feed'
     id = mapped_column(Integer, primary_key=True)
