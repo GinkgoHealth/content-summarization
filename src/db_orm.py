@@ -16,21 +16,13 @@ from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
-class Feed(Base):
-    __tablename__ = 'feed'
+class GPT_queue(Base):
+    __tablename__ = 'gpt_queue'
     id = mapped_column(Integer, primary_key=True)
     title = mapped_column(String(255))
-    abstract = mapped_column(Text)
-    publication = mapped_column(String(100))
-    url = mapped_column(String(255))
-    authors = mapped_column(String(300))
-    year = mapped_column(Integer)
-    month = mapped_column(String(10))
-    pub_volume = mapped_column(String(10))
-    pub_issue = mapped_column(String(10))
-    start_page = mapped_column(String(10))
-    end_page = mapped_column(String(10))
-    doi = mapped_column(String(50))
+    body = mapped_column(Text)
+    section = mapped_column(String(100))
+    sent_to_sources = mapped_column(Boolean)
 
 class Sources(Base):
     __tablename__ = 'sources'
@@ -98,7 +90,7 @@ def get_table(session, query='SELECT *', table='publications', limit=None, order
     return df
 
 
-def bulk_append(input_df, table='summaries', engine=None):
+def bulk_append(input_df, table='summaries'):
     """
     Add articles to the `sources` table in the database from a dataframe containing article text and metadata.
     
@@ -127,6 +119,15 @@ def bulk_append(input_df, table='summaries', engine=None):
                         end_page=row['end_page'],
                         doi=row['doi'],
                         section=row['section'] 
+                    )
+                    session.add(data)
+                    print(f'\t{row["title"]}')
+                elif table == 'gpt_queue':
+                    data = GPT_queue(
+                        title=row['title'],
+                        body=row['body'],
+                        section=row['section'],
+                        sent_to_sources=row['sent_to_sources']
                     )
                     session.add(data)
                     print(f'\t{row["title"]}')
@@ -185,3 +186,22 @@ def bulk_append(input_df, table='summaries', engine=None):
             session.close()
 
     return insert_rows()
+
+########## No longer needed
+
+
+class Feed(Base):
+    __tablename__ = 'feed'
+    id = mapped_column(Integer, primary_key=True)
+    title = mapped_column(String(255))
+    abstract = mapped_column(Text)
+    publication = mapped_column(String(100))
+    url = mapped_column(String(255))
+    authors = mapped_column(String(300))
+    year = mapped_column(Integer)
+    month = mapped_column(String(10))
+    pub_volume = mapped_column(String(10))
+    pub_issue = mapped_column(String(10))
+    start_page = mapped_column(String(10))
+    end_page = mapped_column(String(10))
+    doi = mapped_column(String(50))
