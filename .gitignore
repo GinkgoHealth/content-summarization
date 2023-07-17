@@ -6,3 +6,7 @@ notebooks/credentials.json
 notebooks/google_sheet_id.json
 private
 .gitignore
+*.json
+*.csv
+*.txt
+*.docx
