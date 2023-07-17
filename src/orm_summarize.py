@@ -1,16 +1,16 @@
-from db_session import *
+from db_session import * # custom .py file
 import pandas as pd
 import sys
 import os
 sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
 from file_functions import *
-from response_processing import *
+# from response_processing import * # custom .py file
 import time
 import pytz
 import re
 from itertools import product
 import openai
-from prompts import *
+from prompts import * # custom .py file
 import json
 
 class Chaining:
@@ -175,6 +175,15 @@ def create_summaries_df(
     ):
     """
     Create DataFrame from initial ChatGPT summaries.
+
+    Parameters:
+        - qna_dict (dict): Dictionary for storing the DataFrames of the summaries.
+        - chatbot_dict (dict): Dictionary of ChatGPT instances from the `batch_summarize` function in `orm_summarize.py`.
+        - iteration_id (int): Iteration ID for content generation.
+        - chatbot_id (int): Chatbot ID for content generation. Usually the same as the iteration_id.
+
+    Returns:
+        - qna_dict (dict): Dictionary of DataFrames of the summaries.
     """
     dfs_list = []
     chatbot_id = iteration_id if chatbot_id == None else chatbot_id
@@ -211,7 +220,17 @@ def create_summaries_df(
 
 
 def extract_summary(df, summary_column='summary'):
-    # Convert the string to JSON
+    """
+    Convert the string in a DataFrame column to JSON.
+    
+    Parameters:
+        - df (pandas DataFrame): DataFrame containing the column with a string in JSON format.
+        - summary_column (str): Name of the column containing the string in JSON format to be converted.
+
+    Returns:
+        - df (pandas DataFrame): DataFrame with the JSON string column parsed into separate columns.
+
+    """
     try:
         df[summary_column] = df[summary_column].apply(json.loads)
     except Exception as error:

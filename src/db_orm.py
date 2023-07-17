@@ -11,6 +11,8 @@ import pandas as pd
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
+## This script calls upon functions and magic functions in db_session.py
+
 Base = declarative_base()
 
 class GPT_queue(Base):

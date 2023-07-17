@@ -8,7 +8,9 @@ import pandas as pd
 import requests
 from article_processing import create_text_dict_from_folder
 from orm_summarize import *
-api_key = os.getenv('api_ncbi')
+api_key = os.getenv('api_ncbi') # Pubmed API key
+
+### These scripts populate data in the sources table with data from the Pubmed API.
 
 def search_article(title, api_key, verbose=False):
     """
