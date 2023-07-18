@@ -141,7 +141,7 @@ def pubmed_details_by_title(title, api_key):
     """
     record_string = search_article(title, api_key)
     # return record_string
-    if record_string:
+    if len(record_string) > 0:
         article_details = extract_pubmed_details(record_string)
         return article_details
     else:
@@ -169,7 +169,7 @@ def add_pubmed_details(text_df, api_key):
                 'abstract': '',
                 'publication': '',
                 'authors': '',
-                'year': '',
+                'year': 0,
                 'month': '',
                 'pub_volume': '',
                 'pub_issue': '',
