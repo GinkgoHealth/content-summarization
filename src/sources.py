@@ -40,7 +40,6 @@ def search_article(title, api_key, verbose=False):
 
     cleaned_title = re.sub(r'</?[ib]>', '', title) # remove bold and italic html tags
     cleaned_title = re.sub(r'[^a-zA-Z0-9 ]', '', cleaned_title).lower().strip()
-    # cleaned_title = re.sub(rf'[{string.punctuation}]', '', cleaned_title).lower().strip()
     cleaned_title = re.sub(r"\u2010", '', cleaned_title)
 
     try:
@@ -79,7 +78,8 @@ def search_article(title, api_key, verbose=False):
         filename = file.f_code.co_filename
         print(f'\tAn error occurred on line {lineno} in {filename}: {error}')    
         print('Article not found.')
-        return id_list 
+        print(f'\tInput title: {title.lower().strip()}')
+        return ''.join([id for id in id_list]) 
     
 def retrieve_citation(article_id, api_key):
     """
@@ -174,7 +174,7 @@ def pubmed_details_by_title(title, api_key):
     else:
         return None
 
-def add_pubmed_details(text_df, api_key, section=None):
+def add_pubmed_details(text_df, api_key):
     """
     Add the article metadata to a DataFrame containing article title and text.
 
@@ -186,9 +186,13 @@ def add_pubmed_details(text_df, api_key, section=None):
     DataFrame with added PubMed details for each article.
     """
     article_details_list = []
-    for article in text_df['title']:
+    for index in text_df.index:
+        article = text_df.loc[index, 'title']
+        text = str(text_df.loc[index, 'body'])
+        # section = text_df.loc[index, 'section']
         article_details = pubmed_details_by_title(article, api_key)
         if article_details:
+            article_details['text'] = text
             article_details_list.append(article_details)
         else:
             article_details_list.append({
@@ -203,9 +207,10 @@ def add_pubmed_details(text_df, api_key, section=None):
                 'start_page': '',
                 'end_page': '',
                 'doi': '',
+                'text': text,
+                'section': section
             })
     article_details_df = pd.DataFrame(article_details_list)
-    article_details_df['section'] = pd.Series(section, index=article_details_df.index, dtype=str)
     return pd.concat([text_df.reset_index(drop=True), article_details_df], axis=1)
 
 def compare_columns(df, col1='title', col2='pubmed_title'):
@@ -247,8 +252,8 @@ def compare_columns(df, col1='title', col2='pubmed_title'):
     
     return df
 
-def create_sources_table(text_df, col1='title', col2='pubmed_title', section=None):
-    references_df = add_pubmed_details(text_df, api_key, section=section)
+def create_sources_table(text_df, col1='title', col2='pubmed_title'):
+    references_df = add_pubmed_details(text_df, api_key)
 
     references_df = compare_columns(references_df, col1=col1, col2=col2)
     return references_df
