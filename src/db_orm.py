@@ -107,6 +107,7 @@ def bulk_append(input_df, table='summaries'):
                     existing_record = session.query(Sources).filter_by(
                         title=row['title'],
                         doi=row['doi'],
+                        section=row['section']
                     ).first()
                     if not existing_record:
                         data = Sources(
