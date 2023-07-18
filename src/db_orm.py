@@ -104,31 +104,32 @@ def bulk_append(input_df, table='summaries'):
             print(f'Adding {len(input_df)} rows to the database...')
             def insert_row(row):
                 if table == 'sources':
-                    existing_record = session.query(Sources).filter_by(
-                        title=row['title'],
-                        doi=row['doi'],
-                        section=row['section']
-                    ).first()
-                    if not existing_record:
-                        data = Sources(
+                    with session.no_autoflush:
+                        existing_record = session.query(Sources).filter_by(
                             title=row['title'],
-                            text=row['text'],
-                            abstract=row['abstract'],
-                            publication=row['publication'],
-                            authors=row['authors'],
-                            year=row['year'],
-                            month=row['month'],
-                            pub_volume=row['pub_volume'],
-                            pub_issue=row['pub_issue'],
-                            start_page=row['start_page'],
-                            end_page=row['end_page'],
                             doi=row['doi'],
-                            section=row['section'] 
-                        )
-                        session.add(data)
-                        print(f'\t{row["title"]}')
-                    else:
-                        print(f'\t** Already exists in the database: {row["title"]}.')
+                            section=row['section']
+                        ).first()
+                        if not existing_record:
+                            data = Sources(
+                                title=row['title'],
+                                text=row['text'],
+                                abstract=row['abstract'],
+                                publication=row['publication'],
+                                authors=row['authors'],
+                                year=row['year'],
+                                month=row['month'],
+                                pub_volume=row['pub_volume'],
+                                pub_issue=row['pub_issue'],
+                                start_page=row['start_page'],
+                                end_page=row['end_page'],
+                                doi=row['doi'],
+                                section=row['section'] 
+                            )
+                            session.add(data)
+                            print(f'\t{row["title"]}')
+                        else:
+                            print(f'\t** Already exists in the database: {row["title"]}.')
                 elif table == 'gpt_queue':
                     data = GPT_queue(
                         title=row['title'],
