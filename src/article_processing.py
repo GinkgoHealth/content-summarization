@@ -18,7 +18,7 @@ def initialize_text_df(folder_path, encoding='ISO-8859-1', subset=None):
     text_df = pd.Series(text_dict, index=text_dict.keys())
     return text_df
 
-def parse_fulltext(folder_path, title_pattern=r'^(.*)\n*.+', encoding='ISO-8859-1', subset=None):
+def parse_fulltext(folder_path, section, title_pattern=r'^(.*)\n*.+', encoding='ISO-8859-1', subset=None):
     # Initialize empty lists to store the captured groups
     titles = []
     bodies = []
@@ -40,8 +40,9 @@ def parse_fulltext(folder_path, title_pattern=r'^(.*)\n*.+', encoding='ISO-8859-
             titles.append(None)
             bodies.append(None)
     
+    section = [section for index in range(len(titles))]
     # Create a new DataFrame from the captured groups
-    df = pd.DataFrame({ 'title': titles, 'text': bodies })
+    df = pd.DataFrame({ 'title': titles, 'body': bodies, 'section': section })
     
     return df
 
