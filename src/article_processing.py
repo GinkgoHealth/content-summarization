@@ -1,5 +1,49 @@
 import re
 from IPython import display
+import pandas as pd
+
+def initialize_text_df(folder_path, encoding='ISO-8859-1', subset=None):
+    """
+    Create a DataFrame from a folder containing text files.
+
+    Parameters:
+    - folder_path (str): Path to folder containing text files.
+    - encoding (str): Encoding of the text files.
+    - subset (int): Number of text files to be read. If None, read all files.
+
+    Returns:
+    DataFrame containing the text files.
+    """
+    text_dict = create_text_dict_from_folder(folder_path, encoding, subset)
+    text_df = pd.Series(text_dict, index=text_dict.keys())
+    return text_df
+
+def parse_fulltext(folder_path, title_pattern=r'^(.*)\n*.+', encoding='ISO-8859-1', subset=None):
+    # Initialize empty lists to store the captured groups
+    titles = []
+    bodies = []
+    
+    text_df = initialize_text_df(folder_path, encoding, subset)
+    # Iterate over each element in the series
+    for text in text_df:
+        # print(text)
+        # Apply the regular expression pattern
+        title_match = re.search(title_pattern, text)
+        
+        # Extract the capture groups and append them to the lists
+        if title_match:
+            titles.append(title_match.group(1))
+            body = re.sub(title_pattern, '', text)
+            bodies.append(body.strip())
+            
+        else:
+            titles.append(None)
+            bodies.append(None)
+    
+    # Create a new DataFrame from the captured groups
+    df = pd.DataFrame({ 'title': titles, 'text': bodies })
+    
+    return df
 
 def create_text_dict(text, text_dict=None):
     """
