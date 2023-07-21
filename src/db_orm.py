@@ -74,6 +74,29 @@ class Summaries(Base):
     sources = relationship('Sources', back_populates='summaries')
 
 @remote_sql_session
+def get_from_queue(session, input_df, order_by='id', order='ASC'):
+    """
+    Return the matching records from the sources table as a pandas dataframe.
+
+    Parameters:
+    - input_df: A pandas DataFrame with the article records from the gpt_queue table or equivalent. Columns include 'title' and 'section'.
+    - limit: The number of records to return.
+    """
+    def row_to_dict(row):
+        result = session.query(Sources).filter_by(
+            title=row['title'],
+            section=row['section']
+        ).limit(1).all()[0]
+        
+        sources_series = pd.Series({column.name: getattr(result, column.name) for column in result.__table__.columns})
+        return sources_series
+
+    sources_df = input_df.apply(row_to_dict, axis=1)
+    ascending = True if order == 'ASC' else False
+    sources_df.sort_values(order_by, ascending=ascending, inplace=True)
+    return sources_df
+
+@remote_sql_session
 def get_table(session, query='SELECT *', table='publications', limit=None, order_by='id', order='ASC'):
     """
     Return a database table as a pandas dataframe.
