@@ -1,3 +1,9 @@
+import pandas as pd
+import sys
+import os
+sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\custom_python")
+sys.path.append(r"C:\Users\silvh\OneDrive\lighthouse\Ginkgo coding\content-summarization\src")
+from file_functions import *
 import scrapy
 from scrapy.crawler import CrawlerRunner
 from crochet import setup, wait_for
@@ -74,7 +80,6 @@ class crawler_RSS1(scrapy.Spider):
     
     def parse_front(self, response, journal, journal_index, article_dict):
         response.selector.remove_namespaces() # This is needed for any Atom feeds
-        # print('Initiation')
         try:
             if self.n_articles != 1:
                 article_title = response.xpath('//entry/title/text()').getall()
@@ -100,8 +105,8 @@ class crawler_RSS1(scrapy.Spider):
             [unique_article_title.append(article) for article in article_title if article not in unique_article_title]
             article_title = unique_article_title
             print(f'\tCorrected number of article titles: {len(article_title)}')
-        if type(n_articles) == int:
-            article_url = article_url[:n_articles]
+        if type(self.n_articles) == int:
+            article_url = article_url[:self.n_articles]
 
         for index, url in enumerate(article_url):
             # print(url)
@@ -113,12 +118,17 @@ class crawler_RSS1(scrapy.Spider):
             }
             yield response.follow(
                 url=url, callback=self.parse_pages, 
-                cb_kwargs={'key': key, 'article_dict': article_dict})
+                cb_kwargs={'journal': journal, 'key': key, 'article_dict': article_dict})
                 
     
-    def parse_pages(self, response, key, article_dict):
-        # print(f'Journal #{key}')
-        text = response.xpath('//h2|//p|//h3|//h4').extract()
+    def parse_pages(self, response, journal, key, article_dict):
+        print(f'Journal #{key}: {journal}')
+        if journal != 'Applied Physiology, Nutrition, and Metabolism':
+            text = response.xpath('//h2|//p|//h3|//h4|//div[@role="paragraph"]').extract()
+        else:
+            iframe = response.xpath('//iframe/@src').extract()
+            article_dict[key]['iframe'] = iframe
+            text = response.xpath('//div[@class="core-container"]').extract()
         article_dict[key]['text'] = ''.join(['\n'+line for line in text])
         if key - int(key) == 0:
             print(f'\t{article_dict[key]["journal"]}')
@@ -172,21 +182,21 @@ def save_article_dict(article_dict, path, description='scraped_articles_dict', a
         save_csv(pd.DataFrame(article_dict).transpose(), path=path, filename=f'{description}_',
             index=False, append_version=append_version)
 
+if __name__ == "__main__":
+    iteration_id = 1
+    main_dict = dict()
+    article_dict = dict()
+    n_articles = 2
+    run_RSS_spider(n_articles)
 
-iteration_id = 2.82
-# main_dict = dict()
-article_dict = dict()
-n_articles = 2
-run_RSS_spider(n_articles)
+    main_dict[iteration_id] = article_dict
+    # sorted(article_dict.keys())
 
-main_dict[iteration_id] = article_dict
-# sorted(article_dict.keys())
+    # save_article_dict(article_dict, path='../web_articles/2023-06-21', to_csv=True, save_json=True)
+    article_titles(article_dict)
 
-# save_article_dict(article_dict, path='../web_articles/2023-06-21', to_csv=True, save_json=True)
-article_titles(article_dict)
-
-# time.sleep(10)
-# text_dict, display_dict = text_dict_from_web(article_dict, to_display=[0])
+    # time.sleep(10)
+    # text_dict, display_dict = text_dict_from_web(article_dict, to_display=[0])
 
 
 
