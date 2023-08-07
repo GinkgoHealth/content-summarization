@@ -22,6 +22,7 @@ class GPT_queue(Base):
     body = mapped_column(Text)
     section = mapped_column(String(100))
     sent_to_sources = mapped_column(Boolean)
+    publication = mapped_column(String(100))
 
 class Sources(Base):
     __tablename__ = 'sources'
@@ -138,7 +139,7 @@ def bulk_append(input_df, table='summaries'):
                                 title=row['title'],
                                 text=row['text'],
                                 abstract=row['abstract'],
-                                publication=row['publication'],
+                                publication=row['journal'],
                                 authors=row['authors'],
                                 year=row['year'],
                                 month=row['month'],
@@ -158,7 +159,8 @@ def bulk_append(input_df, table='summaries'):
                         title=row['title'],
                         body=row['body'],
                         section=row['section'],
-                        sent_to_sources=row['sent_to_sources']
+                        sent_to_sources=row['sent_to_sources'],
+                        publication=row['publication']
                     )
                     session.add(data)
                     print(f'\t{row["title"]}')

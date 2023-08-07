@@ -45,7 +45,6 @@ def search_article(title, publication, api_key, verbose=False):
     cleaned_title = re.sub(r'</?[ib]>', '', title) # remove bold and italic html tags
     cleaned_title = re.sub(r'[^a-zA-Z0-9 ]', '', cleaned_title).lower().strip()
     cleaned_title = re.sub(r"\u2010", '', cleaned_title)
-    # print(f'Data keys: {data.keys()}')
     try:
         id_list = data['esearchresult']['idlist']
         if id_list:
@@ -76,6 +75,7 @@ def search_article(title, publication, api_key, verbose=False):
                 print(f'\tCleaned result title: {cleaned_result_title}\n')
             return result     
     except Exception as error: 
+        print(f'Response: \n{data}')
         exc_type, exc_obj, tb = sys.exc_info()
         file = tb.tb_frame
         lineno = tb.tb_lineno
@@ -155,12 +155,10 @@ def extract_pubmed_details(record_string):
     else:
         abstract = re.sub(r'<AbstractText.*?>(.*?)</AbstractText>', r'\1', abstract_matches[0])  if abstract_matches else ''
 
-    # abstract = 'abstract'
-
     return {
         'pubmed_title': article_title,
         'abstract': abstract,
-        'publication': journal_title,
+        'journal': journal_title,
         'authors': formatted_authors,
         'year': publication_year,
         'month': publication_month,
@@ -215,7 +213,7 @@ def add_pubmed_details(text_df, api_key):
             article_details_list.append({
                 'pubmed_title': article,
                 'abstract': '',
-                'publication': publication,
+                'journal': publication,
                 'authors': '',
                 'year': '',
                 'month': '',
