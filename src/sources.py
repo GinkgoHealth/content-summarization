@@ -12,7 +12,7 @@ api_key = os.getenv('api_ncbi') # Pubmed API key
 
 ### These scripts populate data in the sources table with data from the Pubmed API.
 
-def search_article(title, api_key, verbose=False):
+def search_article(title, publication, api_key, verbose=False):
     """
     Search for article title in PubMed database.
 
@@ -27,13 +27,17 @@ def search_article(title, api_key, verbose=False):
     title_without_not = re.sub(r'not', '', title)
     if api_key:
         base_url += f'&api_key={api_key}'
+    if publication:
+        search_term = f'({title_without_not} [ti]) AND ({publication} [ta])'
+    else:
+        search_term = f'{title_without_not} [ti]'
     params = {
         'db': 'pubmed',
-        'term': title_without_not,
-        'field': 'title',
+        'term': search_term,
         'retmax': 5,
         'retmode': 'json'
     }
+    print(f'Search term: {search_term}')
 
     response = requests.get(base_url, params=params)
     data = response.json()
@@ -41,7 +45,7 @@ def search_article(title, api_key, verbose=False):
     cleaned_title = re.sub(r'</?[ib]>', '', title) # remove bold and italic html tags
     cleaned_title = re.sub(r'[^a-zA-Z0-9 ]', '', cleaned_title).lower().strip()
     cleaned_title = re.sub(r"\u2010", '', cleaned_title)
-
+    # print(f'Data keys: {data.keys()}')
     try:
         id_list = data['esearchresult']['idlist']
         if id_list:
@@ -137,8 +141,21 @@ def extract_pubmed_details(record_string):
     doi = re.search(r'<ELocationID.*?EIdType="doi".*?>(.*?)</ELocationID>', record_string)
     doi = doi.group(1) if doi else ''
 
-    abstract = re.search(r'<AbstractText.*?>(.*?)</AbstractText>', record_string)
-    abstract = abstract.group(1) if abstract else ''
+    abstract_matches = re.findall(r'(<AbstractText.*?>.*?</AbstractText>)', record_string)
+    print(f'Number of abstract sections: {len(abstract_matches)}')
+    if len(abstract_matches) > 1:
+        cleaned_abstract_sections = []
+        for match in abstract_matches:
+            # clean_match = re.sub(r'<AbstractText(.*?>.*)</AbstractText>', r'\1', match)
+            clean_match = re.sub(r'<AbstractText.*?((?:Label=".*")?.*?>.*)</AbstractText>', r'\1', match)
+            clean_match = re.sub(r'(?: Label="(.*?)")?.*?>(.*)', r'\1: \2', clean_match)
+            cleaned_abstract_sections.append(clean_match)
+            
+        abstract = ''.join([f'{group}<br>' for group in cleaned_abstract_sections])
+    else:
+        abstract = re.sub(r'<AbstractText.*?>(.*?)</AbstractText>', r'\1', abstract_matches[0])  if abstract_matches else ''
+
+    # abstract = 'abstract'
 
     return {
         'pubmed_title': article_title,
@@ -155,7 +172,7 @@ def extract_pubmed_details(record_string):
     }
 
 
-def pubmed_details_by_title(title, api_key):
+def pubmed_details_by_title(title, publication, api_key):
     """
     Search for article title in PubMed database and return article details.
 
@@ -166,7 +183,7 @@ def pubmed_details_by_title(title, api_key):
     Returns:
     article_details (dict): Article metadata from PubMed database if present. Otherwise, returns list of PMIDs.
     """
-    record_string = search_article(title, api_key)
+    record_string = search_article(title, publication, api_key)
     # return record_string
     if record_string:
         article_details = extract_pubmed_details(record_string)
@@ -189,8 +206,8 @@ def add_pubmed_details(text_df, api_key):
     for index in text_df.index:
         article = text_df.loc[index, 'title']
         text = str(text_df.loc[index, 'body'])
-        # section = text_df.loc[index, 'section']
-        article_details = pubmed_details_by_title(article, api_key)
+        publication = text_df.loc[index, 'publication']
+        article_details = pubmed_details_by_title(article, publication, api_key)
         if article_details:
             article_details['text'] = text
             article_details_list.append(article_details)
@@ -198,7 +215,7 @@ def add_pubmed_details(text_df, api_key):
             article_details_list.append({
                 'pubmed_title': article,
                 'abstract': '',
-                'publication': '',
+                'publication': publication,
                 'authors': '',
                 'year': '',
                 'month': '',
