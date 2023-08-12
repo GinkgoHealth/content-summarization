@@ -71,7 +71,8 @@ def search_article(title, publication, api_key, verbose=False):
                 print(f'\tInput title: {title.lower().strip()}')
                 print(f'\tResult title: {result_title if result_title else cleaned_result}')
                 print(f'\tCleaned input title: {cleaned_title}')
-                print(f'\tCleaned result title: {cleaned_result_title}\n')
+                print(f'\tCleaned result title: {cleaned_result_title}\n') 
+                result = retrieve_citation(id_list[0], api_key).decode('utf-8')
             return result     
     except Exception as error: 
         print(f'Response: \n{data}')
@@ -145,7 +146,6 @@ def extract_pubmed_details(record_string):
     if len(abstract_matches) > 1:
         cleaned_abstract_sections = []
         for match in abstract_matches:
-            # clean_match = re.sub(r'<AbstractText(.*?>.*)</AbstractText>', r'\1', match)
             clean_match = re.sub(r'<AbstractText.*?((?:Label=".*")?.*?>.*)</AbstractText>', r'\1', match)
             clean_match = re.sub(r'(?: Label="(.*?)")?.*?>(.*)', r'\1: \2', clean_match)
             cleaned_abstract_sections.append(clean_match)
