@@ -57,21 +57,25 @@ def search_article(title, publication, api_key, verbose=False):
                     cleaned_result_title = re.sub(r'</?[ib]>', '', result_title)
                     cleaned_result_title = re.sub(r'/(?![^<>]*>)', '', cleaned_result_title) # Remove any / that is not within html tag
                     cleaned_result_title = re.sub(r'[^a-zA-Z0-9 <>/]', '', cleaned_result_title).lower().strip()
+                    if index == 0:
+                        first_cleaned_result = cleaned_result
+                        first_result_title = result_title
+                        first_cleaned_result_title = cleaned_result_title
                 else:
                     cleaned_result_title = cleaned_result
                 if cleaned_title == cleaned_result_title:
                     if verbose:
                         print(f'Match found for {title}: PMID = {id_list[index]}.')
-                        return result
+                    return result
                 else:
                     continue
             if cleaned_title != cleaned_result_title:
                 print(f'Warning: Article title not found in PMIDs.')
                 print(f'Check these PMIDs: {id_list}')
                 print(f'\tInput title: {title.lower().strip()}')
-                print(f'\tResult title: {result_title if result_title else cleaned_result}')
+                print(f'\tResult title: {first_result_title if first_result_title else first_cleaned_result}')
                 print(f'\tCleaned input title: {cleaned_title}')
-                print(f'\tCleaned result title: {cleaned_result_title}\n') 
+                print(f'\tCleaned first result title: {first_cleaned_result_title}\n') 
                 result = retrieve_citation(id_list[0], api_key).decode('utf-8')
             return result     
     except Exception as error: 
