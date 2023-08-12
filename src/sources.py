@@ -51,7 +51,6 @@ def search_article(title, publication, api_key, verbose=False):
             for index in range(len(id_list)):
                 result = retrieve_citation(id_list[index], api_key).decode('utf-8')
                 cleaned_result = re.sub(r'[^a-zA-Z0-9 <>/]', '', result).lower().strip() 
-                result = retrieve_citation(id_list[index], api_key).decode('utf-8')
                 result_title_match = re.search(r'<articletitle>(.*?)</articletitle>', cleaned_result)
                 if result_title_match:
                     result_title = result_title_match.group(1)
@@ -62,7 +61,7 @@ def search_article(title, publication, api_key, verbose=False):
                     cleaned_result_title = cleaned_result
                 if cleaned_title == cleaned_result_title:
                     if verbose:
-                        print(f'Match found for {title}: PMID = {article_id}.')
+                        print(f'Match found for {title}: PMID = {id_list[index]}.')
                         return result
                 else:
                     continue
@@ -222,8 +221,7 @@ def add_pubmed_details(text_df, api_key):
                 'start_page': '',
                 'end_page': '',
                 'doi': '',
-                'text': text,
-                'section': section
+                'text': text
             })
     article_details_df = pd.DataFrame(article_details_list)
     return pd.concat([text_df.reset_index(drop=True), article_details_df], axis=1)
