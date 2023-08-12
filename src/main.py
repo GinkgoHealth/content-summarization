@@ -76,5 +76,5 @@ def generate_summaries(n_choices, temperature, model, pause_per_request, folder_
     return qna_dict[iteration_id]
 
 if __name__ == "__main__":
-    qna_dict = generate_summaries(n_choices, temperature, model, pause_per_request, folder_path, section, local=True, article_limit=article_limit)
+    qna_dict = generate_summaries(n_choices, temperature, model, pause_per_request, folder_path, section, local=local, article_limit=article_limit)
     print(qna_dict[iteration_id])
