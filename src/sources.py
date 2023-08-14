@@ -157,7 +157,11 @@ def extract_pubmed_details(record_string):
         abstract = ''.join([f'{group}<br>' for group in cleaned_abstract_sections])
     else:
         abstract = re.sub(r'<AbstractText.*?>(.*?)</AbstractText>', r'\1', abstract_matches[0])  if abstract_matches else ''
-
+        
+    # Extract MeshHeadingList
+    MeshHeadingList = re.search(r'<MeshHeadingList>(.*?)</MeshHeadingList>', record_string)
+    MeshHeadingList = MeshHeadingList.group(1) if MeshHeadingList else ''
+    
     return {
         'pubmed_title': article_title,
         'abstract': abstract,
@@ -170,6 +174,7 @@ def extract_pubmed_details(record_string):
         'start_page': start_page,
         'end_page': end_page,
         'doi': doi,
+        'mesh_headings': MeshHeadingList
     }
 
 
@@ -225,7 +230,8 @@ def add_pubmed_details(text_df, api_key):
                 'start_page': '',
                 'end_page': '',
                 'doi': '',
-                'text': text
+                'text': text,
+                'mesh_headings': ''
             })
     article_details_df = pd.DataFrame(article_details_list)
     return pd.concat([text_df.reset_index(drop=True), article_details_df], axis=1)
