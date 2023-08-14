@@ -40,6 +40,7 @@ class Sources(Base):
     end_page = mapped_column(String(10))
     doi = mapped_column(String(50))
     section = mapped_column(String(100))
+    mesh_headings = mapped_column(Text)
     summaries = relationship('Summaries', back_populates='sources')
 
 class Prompts(Base):
@@ -148,7 +149,8 @@ def bulk_append(input_df, table='summaries'):
                                 start_page=row['start_page'],
                                 end_page=row['end_page'],
                                 doi=row['doi'],
-                                section=row['section'] 
+                                section=row['section'],
+                                mesh_headings=row['mesh_headings']
                             )
                             session.add(data)
                             print(f'\t{row["title"]}')
