@@ -88,7 +88,7 @@ class Chaining:
         model = self.model if model == None else model
         print(f'\tSending request to {model}')
         print(f'\t\tRequesting {n_choices} choices using {model}')
-        openai.api_key = os.getenv('api_openai')
+        openai.api_key = os.getenv('api_key_openai')
         response = openai.ChatCompletion.create(
             model=model, messages=messages, 
             temperature=temperature, 
