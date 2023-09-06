@@ -16,6 +16,8 @@ section = 'discussion'
 local = False
 n_choices = 1
 article_limit = 4
+queue_id = None
+sources_id = None
 temperature = 1
 pause_per_request=0
 # summary_iteration_id = iteration_id
@@ -25,7 +27,9 @@ model = 'gpt-3.5-turbo-16k-0613'
 # model = 'gpt-4'
 save_outputs=False
 
-def generate_summaries(n_choices, temperature, model, pause_per_request, folder_path, section, local, queue_id=queue_id, article_limit=article_limit):
+def generate_summaries(
+    n_choices, temperature, model, pause_per_request, folder_path, section, local, queue_id=queue_id, sources_id=sources_id, article_limit=article_limit
+    ):
     ### Set up
     qna_dict = dict()
     chatbot_dict = dict()
@@ -37,38 +41,43 @@ def generate_summaries(n_choices, temperature, model, pause_per_request, folder_
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
 
-    ####### 
-    # Step 1: Create sources table
-    if local:
-        text_df = parse_fulltext(folder_path, section).iloc[:article_limit if article_limit else len(text_df)]
-    elif queue_id:
-        if (type(queue_id) == list) & (len(queue_id) > 1):
-            print('Converting queue_id list to tuple')
-            queue_id = tuple(queue_id)
-        elif (type(queue_id) == list):
-            print('Converting queue_id list to number')
-            queue_id = queue_id[0]
-        if type(queue_id) == tuple:
-            text_df = get_table(
-                table='gpt_queue', limit=article_limit, 
-                filter_statement=f'id IN {queue_id}'
-                )
-        else:
-            text_df = get_table(
-                table='gpt_queue', limit=article_limit, 
-                filter_statement=f'id = {queue_id}'
-                )
+    if sources_id:
+        # ##### 
+        # Step 3: Get the new sources for summarization
+        sources_df = get_from_sources(sources_id, order_by='id', order='ASC')
     else:
-        text_df = get_table(table='gpt_queue', limit=article_limit, order='DESC') # db_orm.py
-    references_df_dict[iteration_id] = create_sources_table(text_df) # sources.py
+        ####### 
+        # Step 1: Create sources table
+        if local:
+            text_df = parse_fulltext(folder_path, section).iloc[:article_limit if article_limit else len(text_df)]
+        elif queue_id:
+            if (type(queue_id) == list) & (len(queue_id) > 1):
+                print('Converting queue_id list to tuple')
+                queue_id = tuple(queue_id)
+            elif (type(queue_id) == list):
+                print('Converting queue_id list to number')
+                queue_id = queue_id[0]
+            if type(queue_id) == tuple:
+                text_df = get_table(
+                    table='gpt_queue', limit=article_limit, 
+                    filter_statement=f'id IN {queue_id}'
+                    )
+            else:
+                text_df = get_table(
+                    table='gpt_queue', limit=article_limit, 
+                    filter_statement=f'id = {queue_id}'
+                    )
+        else:
+            text_df = get_table(table='gpt_queue', limit=article_limit, order='DESC') # db_orm.py
+        references_df_dict[iteration_id] = create_sources_table(text_df) # sources.py
 
-    ###### 
-    # Step 2:  Add rows from gpt_queue table to sources table 
-    bulk_append(table='sources', input_df=references_df_dict[iteration_id]) # db_orm.py
+        ###### 
+        # Step 2:  Add rows from gpt_queue table to sources table 
+        bulk_append(table='sources', input_df=references_df_dict[iteration_id]) # db_orm.py
 
-    # ##### 
-    # Step 3: Get the new sources for summarization
-    sources_df = get_from_queue(input_df=text_df, order_by='id', order='ASC')
+        # ##### 
+        # Step 3: Get the new sources for summarization
+        sources_df = get_from_queue(input_df=text_df, order_by='id', order='ASC')
 
     # ##### 
     # Step 4: Create summaries (functions contained in orm_summarize.py)
