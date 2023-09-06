@@ -108,8 +108,9 @@ def save_output(df, filename=None, description=None, append_version=True, iterat
     try:
         savepickle(df, filename=filename, path=pickle_path, append_version=append_version)
         print('\tObject saved as pickle')
-    except:
+    except Exception as error:
         print('Unable to save pickle')
+        print(f'\t{error}')
     if (type(df) == pd.core.frame.DataFrame) & (csv_path != None):
         save_csv(df, filename=filename, path=csv_path, append_version=append_version, index=index)
         print('\tDataFrame saved as CSV')
