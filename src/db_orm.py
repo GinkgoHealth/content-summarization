@@ -99,6 +99,28 @@ def get_from_queue(session, input_df, order_by='id', order='ASC'):
     return sources_df
 
 @remote_sql_session
+def get_from_sources(session, id_list, order_by='id', order='ASC'):
+    """
+    Return the matching records from the sources table as a pandas dataframe.
+
+    Parameters:
+    - id_list: A list or tuple of integers corresponding to the id column in the sources table.
+    - limit: The number of records to return.
+    """
+    def id_to_dict(id):
+        result = session.query(Sources).filter_by(
+            id=id
+        ).limit(1).all()[0]
+        
+        sources_series = pd.Series({column.name: getattr(result, column.name) for column in result.__table__.columns})
+        return sources_series
+
+    sources_df = pd.DataFrame([id_to_dict(id) for id in id_list])
+    ascending = True if order == 'ASC' else False
+    sources_df.sort_values(order_by, ascending=ascending, inplace=True)
+    return sources_df
+
+@remote_sql_session
 def get_table(
         session, query='SELECT *', table='publications', limit=None, order_by='id', order='ASC',
         filter_statement=None
