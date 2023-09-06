@@ -68,7 +68,7 @@ simplify_task = [
     # \nc. Return the final version of the summary to be shown to the audience. \
     # \n\nYour audience is""",
 
-    """3. Rewrite the text in a fun tone.\
+    """3. Rewrite the text in a fun tone.\ 
     Follow these steps to accomplish this: \
     \na. Check if the content and language are appropriate for the audience. \
     \nb. If it is suitable for the audience, keep it the same. \
@@ -77,7 +77,7 @@ simplify_task = [
     \nc. Return the final version of the summary to be shown to the audience. \
     \n\nYour audience is""",
 
-    """3. Make a more concise and simple version of the summary.\
+    """3. Make a more concise and simple version of the summary.\ 
     Follow these steps to accomplish this: \
     \a. Rewrite it to have only the most interesting finding. \
     \nb. Check if the content and language are appropriate for the audience. \
@@ -88,13 +88,14 @@ simplify_task = [
     \n\nYour audience is""",
 
     """
-    3. Use the text from step 1 to create a fun tweet. \
+    3. Use the text from step 1 to create a fun tweet.  \
     Follow these steps to accomplish this: \
-    \na. Check if the content and language are appropriate for the audience. \
-    \nb. If it is suitable for the audience, keep it the same. \
+    \na. Present the research without prompting the reader to read it elsewhere.\ 
+    \nb. Check if the content and language are appropriate for the audience. \
+    \nc. If it is suitable for the audience, keep it the same. \
     If not, rewrite using terms appropriate for the audience. \
-    \nc. Check that the rewritten text is accurate. If not, correct it. \ 
-    \nd. Return the final version of the summary to be shown to the audience. \
+    \nd. Check that the rewritten text is accurate. If not, correct it. \ 
+    \ne. Return the final version of the summary to be shown to the audience. \
     \n\nYour audience is"""
 
     # ""
