@@ -88,7 +88,7 @@ simplify_task = [
     \n\nYour audience is""",
 
     """
-    3. Re-write the text as a fun tweet. \
+    3. Use the text from step 1 to create a fun tweet. \
     Follow these steps to accomplish this: \
     \na. Check if the content and language are appropriate for the audience. \
     \nb. If it is suitable for the audience, keep it the same. \
