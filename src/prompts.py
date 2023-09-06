@@ -12,13 +12,13 @@ summarize_task = [
 prep_step = [
     # "Tell your friend about the research in a text message.",
 
-    "In the summary, cover the following information: \
-    \n- Identify the key points and statistics from this text that would make interesting or helpful health content. \
-    \n- If available, include the effect sizes found in the research. \
-    Otherwise, skip this step. \
-    \n- If applicable, get a brief description of the research participants, \
-    such as age, sex, and health conditions. Otherwise, you can skip this step.\
-    \n- Think about why the general population should care about the research.",
+    # "In the summary, cover the following information: \
+    # \n- Identify the key points and statistics from this text that would make interesting or helpful health content. \
+    # \n- If available, include the effect sizes found in the research. \
+    # Otherwise, skip this step. \
+    # \n- If applicable, get a brief description of the research participants, \
+    # such as age, sex, and health conditions. Otherwise, you can skip this step.\
+    # \n- Think about why the general population should care about the research.",
 
     "In the summary, cover the following information: \
     \n- Identify the key points and statistics from this text that would make interesting or helpful health content. \
@@ -86,6 +86,16 @@ simplify_task = [
     \nc. Check that the rewritten text is accurate. If not, correct it. \ 
     \nd. Return the final version of the summary to be shown to the audience. \
     \n\nYour audience is""",
+
+    """
+    3. Re-write the text as a fun tweet. \
+    Follow these steps to accomplish this: \
+    \na. Check if the content and language are appropriate for the audience. \
+    \nb. If it is suitable for the audience, keep it the same. \
+    If not, rewrite using terms appropriate for the audience. \
+    \nc. Check that the rewritten text is accurate. If not, correct it. \ 
+    \nd. Return the final version of the summary to be shown to the audience. \
+    \n\nYour audience is"""
 
     # ""
 ]
