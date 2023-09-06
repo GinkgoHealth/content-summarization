@@ -99,11 +99,16 @@ def get_from_queue(session, input_df, order_by='id', order='ASC'):
     return sources_df
 
 @remote_sql_session
-def get_table(session, query='SELECT *', table='publications', limit=None, order_by='id', order='ASC'):
+def get_table(
+        session, query='SELECT *', table='publications', limit=None, order_by='id', order='ASC',
+        filter_statement=None
+        ):
     """
     Return a database table as a pandas dataframe.
     """
     query_statement = f'{query} from {table}'
+    if filter_statement:
+        query_statement += f' WHERE {filter_statement}'
     if order_by:
         query_statement += f' ORDER BY {order_by} {order}'
     if limit:
