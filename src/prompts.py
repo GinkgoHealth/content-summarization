@@ -68,7 +68,7 @@ simplify_task = [
     # \nc. Return the final version of the summary to be shown to the audience. \
     # \n\nYour audience is""",
 
-    """3. Rewrite the text in a fun tone.\ 
+    """3. Rewrite the text in a fun tone.\
     Follow these steps to accomplish this: \
     \na. Check if the content and language are appropriate for the audience. \
     \nb. If it is suitable for the audience, keep it the same. \
@@ -77,7 +77,7 @@ simplify_task = [
     \nc. Return the final version of the summary to be shown to the audience. \
     \n\nYour audience is""",
 
-    """3. Make a more concise and simple version of the summary.\ 
+    """3. Make a more concise and simple version of the summary.\
     Follow these steps to accomplish this: \
     \a. Rewrite it to have only the most interesting finding. \
     \nb. Check if the content and language are appropriate for the audience. \
