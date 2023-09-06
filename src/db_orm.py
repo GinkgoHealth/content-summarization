@@ -107,6 +107,8 @@ def get_from_sources(session, id_list, order_by='id', order='ASC'):
     - id_list: A list or tuple of integers corresponding to the id column in the sources table.
     - limit: The number of records to return.
     """
+    if (type(id_list) != list) & (type(id_list) != tuple):
+        id_list = [id_list]
     def id_to_dict(id):
         result = session.query(Sources).filter_by(
             id=id
