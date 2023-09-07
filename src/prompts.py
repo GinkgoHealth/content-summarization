@@ -53,7 +53,7 @@ edit_task = [
     Once you have written your text message: \
     \nEvaluate your text message to see if it may be confusing or redundant. \
     \nIf so, re-write it so it is clear and concise. Otherwise, keep it the same. \
-    \n2. Create an intriguing subject line for the text.
+    \n2. Create an intriguing subject line for the text that includes the key take-away.
     """,
 
     # ""
@@ -68,24 +68,26 @@ simplify_task = [
     # \nc. Return the final version of the summary to be shown to the audience. \
     # \n\nYour audience is""",
 
-    """3. Rewrite the text in a fun tone.\
-    Follow these steps to accomplish this: \
-    \na. Check if the content and language are appropriate for the audience. \
-    \nb. If it is suitable for the audience, keep it the same. \
-    If not, rewrite using terms appropriate for the audience. \
-    \nc. Check that the rewritten text is accurate. If not, correct it. \ 
-    \nc. Return the final version of the summary to be shown to the audience. \
-    \n\nYour audience is""",
+    # # 2023-09-07 Uncomment later
+    # """3. Rewrite the text in a fun tone.\
+    # Follow these steps to accomplish this: \
+    # \na. Check if the content and language are appropriate for the audience. \
+    # \nb. If it is suitable for the audience, keep it the same. \
+    # If not, rewrite using terms appropriate for the audience. \
+    # \nc. Check that the rewritten text is accurate. If not, correct it. \ 
+    # \nc. Return the final version of the summary to be shown to the audience. \
+    # \n\nYour audience is""",
 
-    """3. Make a more concise and simple version of the summary.\
-    Follow these steps to accomplish this: \
-    \a. Rewrite it to have only the most interesting finding. \
-    \nb. Check if the content and language are appropriate for the audience. \
-    \n. If it is suitable for the audience, keep it the same. \
-    If not, rewrite using terms appropriate for the audience. \
-    \nc. Check that the rewritten text is accurate. If not, correct it. \ 
-    \nd. Return the final version of the summary to be shown to the audience. \
-    \n\nYour audience is""",
+    # # 2023-09-07 Uncomment later
+    # """3. Make a more concise and simple version of the summary.\
+    # Follow these steps to accomplish this: \
+    # \a. Rewrite it to have only the most interesting finding. \
+    # \nb. Check if the content and language are appropriate for the audience. \
+    # \n. If it is suitable for the audience, keep it the same. \
+    # If not, rewrite using terms appropriate for the audience. \
+    # \nc. Check that the rewritten text is accurate. If not, correct it. \ 
+    # \nd. Return the final version of the summary to be shown to the audience. \
+    # \n\nYour audience is""",
 
     """
     3. Use the text from step 1 to create a fun tweet.  \
