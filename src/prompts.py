@@ -53,7 +53,7 @@ edit_task = [
     Once you have written your text message: \
     \nEvaluate your text message to see if it may be confusing or redundant. \
     \nIf so, re-write it so it is clear and concise. Otherwise, keep it the same. \
-    \n2. Create an intriguing subject line for the text that includes the key take-away.
+    \n2. Create a subject line for the text that includes the conclusion.
     """,
 
     # ""
