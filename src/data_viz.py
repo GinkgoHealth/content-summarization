@@ -55,7 +55,6 @@ def process_sheet(df, content_standard=4, language_standard=4, column_pairs=None
     Returns:
     - processed_df (DataFrame): The processed DataFrame after applying the specified operations.
     """
-
     spreadsheet_columns = [letter for letter in string.ascii_uppercase]+['A'+letter for letter in string.ascii_uppercase]
     processed_df = df.copy()
     processed_df.columns = [f'{spreadsheet_columns[index]}: {column}' for index, column in enumerate(processed_df.columns)]
@@ -75,7 +74,6 @@ def process_sheet(df, content_standard=4, language_standard=4, column_pairs=None
     processed_df[str_cols] = processed_df[str_cols].apply(lambda x: x.str.strip())
     print('White spaces stripped at start and end of strings')
 
-
     if column_pairs == None:
         content_ratings_columns = processed_df.columns[processed_df.columns.str.contains('content rating')]
         language_ratings_columns = processed_df.columns[processed_df.columns.str.contains('language rating')]
@@ -88,5 +86,4 @@ def process_sheet(df, content_standard=4, language_standard=4, column_pairs=None
         ]
     processed_df = processed_df.apply(
         evaluate_standard, args=(column_groups,  content_standard, language_standard), axis=1)
-    
     return processed_df
